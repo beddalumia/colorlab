@@ -96,7 +96,7 @@ function [map,num,typ,scheme] = map(N,scheme) %#ok<*ISMAT>
 % num = NumericVector, the number of nodes defining the ColorBrewer colorscheme.
 % typ = CharRowVector, the colorscheme type: 'Diverging'/'Qualitative'/'Sequential'.
 %
-% See also BREWER.PLOT BREWER.GUI PRESET_COLORMAP CUBEHELIX MAXDISTCOLOR
+% See also BREWER.SHOW BREWER.GUI PRESET_COLORMAP CUBEHELIX MAXDISTCOLOR
 % LBMAP PARULA LINES RGBPLOT COLORMAP COLORBAR PLOT PLOT3 AXES SET CONTOURF
 
 %% Input Wrangling %%

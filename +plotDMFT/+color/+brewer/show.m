@@ -1,10 +1,10 @@
-function plot()
-% Simple plot of all ColorBrewer colorscheme nodes in one figure.
+function show()
+% Simple plot of all ColorBrewer colorscheme nodes in one static figure.
 %
 % (c) 2014-2022 Stephen Cobeldick, 2022 Gabriele Bellomia (package adaptation)
 %
 %%% Syntax:
-% brewer.plot()
+% brewer.show()
 %
 % See also BREWER.MAP BREWER.GUI CUBEHELIX MAXDISTCOLOR
 % LBMAP PARULA LINES RGBPLOT COLORMAP COLORBAR PLOT PLOT3 AXES SET
@@ -52,4 +52,4 @@ end
 drawnow()
 %
 end
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%brewer.plot
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%brewer.show

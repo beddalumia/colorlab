@@ -1,7 +1,7 @@
 function map = preset_colormap(N,varargin)
 % Wrapper for any COLORMAP function, to provide preset parameter values.
 %
-% (c) 2020-2022 Stephen Cobeldick
+% (c) 2020-2022 Stephen Cobeldick, Apache 2.0 License
 %
 %%% Syntax:
 % preset_colormap(@fun,p1,p2,...,pN) % store function and any parameters
@@ -9,7 +9,7 @@ function map = preset_colormap(N,varargin)
 %
 %%% Examples %%%
 %
-% >> preset_colormap(@cubehelix,0.25,-0.67,1.5,1)
+% >> preset_colormap(@cubehelix.map,0.25,-0.67,1.5,1)
 % >> colormap(preset_colormap)
 % or
 % >> preset_colormap(5)
@@ -20,7 +20,7 @@ function map = preset_colormap(N,varargin)
 %     0.6463    0.8479    0.5076
 %     1.0000    1.0000    1.0000
 %
-% >> preset_colormap(@brewermap,'PuOr')
+% >> preset_colormap(@brewer.map,'PuOr')
 % >> load topo
 % >> load coast
 % >> figure
@@ -29,7 +29,7 @@ function map = preset_colormap(N,varargin)
 % >> contourcmap('preset_colormap', 'Colorbar','on', 'Location','horizontal','TitleString','Contour Intervals in Meters');
 % >> plotm(lat, long, 'k')
 %
-% See Also BREWERMAP CUBEHELIX COLORMAP CONTOURCMAP
+% See Also BREWER.MAP CUBEHELIX.MAP COLORMAP CONTOURCMAP
 
 persistent fnh arg
 %

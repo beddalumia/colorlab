@@ -49,7 +49,7 @@ function [map,num,typ,scheme] = gui(N,scheme) %#ok<*ISMAT>
 % num = NumericVector, the number of nodes defining the ColorBrewer colorscheme.
 % typ = CharRowVector, the colorscheme type: 'Diverging'/'Qualitative'/'Sequential'.
 %
-% See also BREWER.MAP BREWER.PLOT CUBEHELIX PRESET_COLORMAP MAXDISTCOLOR
+% See also BREWER.MAP BREWER.SHOW CUBEHELIX PRESET_COLORMAP MAXDISTCOLOR
 % RGBPLOT COLORMAP COLORMAPEDITOR COLORBAR UICONTROL ADDLISTENER
 
 %% Import statement

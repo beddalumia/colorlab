@@ -8,10 +8,9 @@ BREWER is compatible with all MATLAB functions that require a colormap function.
 ### Examples: usage of the `brewer.map()` function ###
 
 ```matlab
-    % New colors for the IMAGE example:
-    S = load('spine.mat');
-    image(S.X)
-    colormap(brewer.map([],"YlGnBu"))
+    % New colors for the PHOTO example:
+    S = load('mandrill');
+    imshow(S.X,colormap(brewer.map([],"YlGnBu"))) % default parameters
     
     % New colors for the SURF example:
     [X,Y,Z] = peaks(30);
@@ -57,9 +56,9 @@ BREWER is compatible with all MATLAB functions that require a colormap function.
     end
 ```
 
-### Bonus functions: `brewer.plot()` and `brewer.gui()` ###
+### Bonus functions: `brewer.show()` and `brewer.gui()` ###
 
-BREWER PLOT creates a figure which shows the nodes (defining colors) of all ColorBrewer colorschemes.
+BREWER SHOW creates a static figure which shows the nodes (defining colors) of all ColorBrewer colorschemes.
 
 BREWER GUI creates an interactive figure that allows selection of the colorscheme, and that contains two colorbars showing colors of the colormap and the grayscale equivalent.
 
@@ -80,7 +79,7 @@ PRESET_COLORMAP is a wrapper for any colormap function, storing the function and
     colormap(preset_colormap)
 ```
 
-### Notes ###
+### Overview ###
 
 The BREWER package:
 * Consists of just three convenient .m files (no .mat files or other clutter).
@@ -95,5 +94,22 @@ The BREWER package:
 * Is compatible with all MATLAB toolboxes that use colormaps (eg: CONTOURCMAP from Mapping Toolbox).
 * Includes the option to reverse the colormap color sequence.
 * Does not break ColorBrewer's Apache license conditions (unlike many on MATLAB File Exchange).
+
+### COPYRIGHT & LICENSING ###
+
+ © 2014-2022 Stephen Cobeldick, original [BREWERMAP Function](https://github.com/DrosteEffect/BrewerMap)    
+ © 2022 Gabriele Bellomia, +BREWER Package adaptation and embedding
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at:
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and limitations under the License.
+
 
 [^1]: This product includes color specifications and designs developed by Cynthia Brewer (http://colorbrewer.org/). See the ColorBrewer website for further information about each colorscheme, colorblind suitability, licensing, and citations.
