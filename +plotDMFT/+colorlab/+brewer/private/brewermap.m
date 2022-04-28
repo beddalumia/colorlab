@@ -1,21 +1,21 @@
-function [map,num,typ,scheme] = map(N,scheme) %#ok<*ISMAT>
+function [map,num,typ,scheme] = brewermap(N,scheme) %#ok<*ISMAT>
 % The complete selection of ColorBrewer colorschemes/palettes (RGB colormaps).
 %
-% (c) 2014-2022 Stephen Cobeldick, 2022 Gabriele Bellomia (package adaptation)
+% (c) 2014-2022 Stephen Cobeldick
 %
 % Returns any RGB colormap from the ColorBrewer colorschemes, especially
 % intended for mapping and plots with attractive, distinguishable colors.
 %
 %%% Basic Syntax:
-% brewer.map() % print summary
-% map = brewer.map(N,scheme)
+% brewermap() % print summary
+% map = brewermap(N,scheme)
 %
 %%% Preset Syntax:
-% old = brewer.map(scheme)
-% map = brewer.map()
-% map = brewer.map(N)
+% old = brewermap(scheme)
+% map = brewermap()
+% map = brewermap(N)
 %
-% [...,num,typ] = brewer.map(...)
+% [...,num,typ] = brewermap(...)
 %
 %% Colorschemes %%
 %
@@ -49,32 +49,32 @@ function [map,num,typ,scheme] = map(N,scheme) %#ok<*ISMAT>
 %%% New colors for the COLORMAP example:
 % >> S = load('spine');
 % >> image(S.X)
-% >> colormap(brewer.map([],"YlGnBu"))
+% >> colormap(brewermap([],"YlGnBu"))
 %
 %%% New colors for the SURF example:
 % >> [X,Y,Z] = peaks(30);
 % >> surfc(X,Y,Z)
-% >> colormap(brewer.map([],'RdYlGn'))
+% >> colormap(brewermap([],'RdYlGn'))
 % >> axis([-3,3,-3,3,-10,5])
 %
 %%% Plot a colorscheme's RGB values:
-% >> rgbplot(brewer.map(NaN, 'Blues')) % standard
-% >> rgbplot(brewer.map(NaN,'-Blues')) % reversed
+% >> rgbplot(brewermap(NaN, 'Blues')) % standard
+% >> rgbplot(brewermap(NaN,'-Blues')) % reversed
 %
 %%% View information about a colorscheme:
-% >> [~,num,typ] = brewer.map(NaN,'Paired')
+% >> [~,num,typ] = brewermap(NaN,'Paired')
 % num = 12
 % typ = 'Qualitative'
 %
 %%% Multi-line plot using matrices:
 % >> N = 6;
-% >> axes('ColorOrder',brewer.map(N,'Pastel2'),'NextPlot','replacechildren')
+% >> axes('ColorOrder',brewermap(N,'Pastel2'),'NextPlot','replacechildren')
 % >> X = linspace(0,pi*3,1000);
 % >> Y = bsxfun(@(x,n)n*sin(x+2*n*pi/N), X(:), 1:N);
 % >> plot(X,Y, 'linewidth',4)
 %
 %%% Multi-line plot in a loop:
-% set(0,'DefaultAxesColorOrder',brewer.map(NaN,'Accent'))
+% set(0,'DefaultAxesColorOrder',brewermap(NaN,'Accent'))
 % N = 6;
 % X = linspace(0,pi*3,1000);
 % Y = bsxfun(@(x,n)n*sin(x+2*n*pi/N), X(:), 1:N);
@@ -96,7 +96,7 @@ function [map,num,typ,scheme] = map(N,scheme) %#ok<*ISMAT>
 % num = NumericVector, the number of nodes defining the ColorBrewer colorscheme.
 % typ = CharRowVector, the colorscheme type: 'Diverging'/'Qualitative'/'Sequential'.
 %
-% See also BREWER.SHOW BREWER.GUI PRESET_COLORMAP CUBEHELIX MAXDISTCOLOR
+% See also BREWERMAP_PLOT BREWERMAP_VIEW PRESET_COLORMAP CUBEHELIX MAXDISTCOLOR
 % LBMAP PARULA LINES RGBPLOT COLORMAP COLORBAR PLOT PLOT3 AXES SET CONTOURF
 
 %% Input Wrangling %%
@@ -125,25 +125,25 @@ elseif isnumeric(N)
 		N = cmDefaultN();
 	else
 		assert(isscalar(N),...
-			'SC:brewer.map:N:NotScalarNumeric',err)
+			'SC:brewermap:N:NotScalarNumeric',err)
 		assert(isnan(N) || isreal(N) && isfinite(N) && fix(N)==N && N>=0,...
-			'SC:brewer.map:N:NotWholeRealNotNaN',err)
+			'SC:brewermap:N:NotWholeRealNotNaN',err)
 	end
 	if nargin<2
 		assert(~isempty(scm),...
 			'SC:colorbrewer:scheme:NotPreset',...
-			'Colorscheme must be preset before this call: BREWER.MAP(SCHEME)')
+			'Colorscheme must be preset before this call: BREWERMAP(SCHEME)')
 		scheme = scm;
 	else
 		scheme = bm1s2c(scheme);
 		assert(ischar(scheme) && ndims(scheme)==2 && size(scheme,1)==1,...
-			'SC:brewer.map:scheme:NotText',...
+			'SC:brewermap:scheme:NotText',...
 			'Input <scheme> must be a character vector or string scalar.')
 	end
 else % preset
 	scheme = bm1s2c(N);
 	assert(ischar(scheme) && ndims(scheme)==2 && size(scheme,1)==1,...
-		'SC:brewer.map:N:NotText',...
+		'SC:brewermap:N:NotText',...
 		'To preset the scheme <N> must be a character vector or string scalar.')
 	if strcmpi(scheme,'list')
 		map = {bmc.str};
@@ -157,7 +157,7 @@ isr = strncmp(scheme,'-',1) || strncmp(scheme,'*',1);
 isd = strncmp(scheme,'+',1) || isr; % direction
 ids = strcmpi(scheme(1+isd:end),{bmc.str});
 assert(any(ids),...
-	'SC:brewer.map:scheme:UnknownColorscheme',...
+	'SC:brewermap:scheme:UnknownColorscheme',...
 	'Unknown colorscheme name: "%s"',scheme)
 %
 num = bmc(ids).num;
@@ -210,7 +210,7 @@ if itp
 		case 'Sequential'
 			map = interp1(1:num,map,ido,'pchip');
 		otherwise
-			error('SC:brewer.map:NoInterp','Cannot interpolate this type.')
+			error('SC:brewermap:NoInterp','Cannot interpolate this type.')
 	end
 	%
 	map = bmLab2RGB(map,M,wpt); % optional
@@ -226,7 +226,7 @@ if isr
 end
 %
 end
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%brewer.map
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%brewermap
 function N = cmDefaultN()
 % Get the colormap size from the current figure or default colormap.
 try
@@ -344,7 +344,7 @@ switch typ
 				idx = [1,3,4,6,7,8,10,11,13];
 		end
 	otherwise
-		error('SC:brewer.map:UnknownType','Unknown type string.')
+		error('SC:brewermap:UnknownType','Unknown type string.')
 end
 %
 end
@@ -467,7 +467,7 @@ for k = 1:numel(bmc)
 		case 'Sequential'
 			bmc(k).num = 9;
 		otherwise
-			error('SC:brewer.map:UnknownType','Unknown type string.')
+			error('SC:brewermap:UnknownType','Unknown type string.')
 	end
 end
 %
@@ -475,8 +475,7 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%bmColors
 %
 % Code and Implementation:
-% Copyright (c) 2014-2022 Stephen Cobeldick, original BREWERMAP function
-% Copyright (c) 2022 Gabriele Bellomia, BREWER package adaptation and embedding
+% Copyright (c) 2014-2022 Stephen Cobeldick
 % Color Values Only:
 % Copyright (c) 2002 Cynthia Brewer, Mark Harrower, and The Pennsylvania State University.
 %

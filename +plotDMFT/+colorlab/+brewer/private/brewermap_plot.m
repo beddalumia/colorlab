@@ -1,18 +1,15 @@
-function show()
-% Simple plot of all ColorBrewer colorscheme nodes in one static figure.
+function brewermap_plot()
+% Simple plot of all ColorBrewer colorscheme nodes in one figure.
 %
-% (c) 2014-2022 Stephen Cobeldick, 2022 Gabriele Bellomia (package adaptation)
+% (c) 2014-2022 Stephen Cobeldick
 %
 %%% Syntax:
-% brewer.show()
+% brewermap_plot()
 %
-% See also BREWER.MAP BREWER.GUI CUBEHELIX MAXDISTCOLOR
+% See also BREWERMAP BREWERMAP_VIEW CUBEHELIX MAXDISTCOLOR
 % LBMAP PARULA LINES RGBPLOT COLORMAP COLORBAR PLOT PLOT3 AXES SET
 
-%% Import statement
-import plotDMFT.color.*
-
-[mcs,nmn,pyt] = brewer.map('list');
+[mcs,nmn,pyt] = brewermap('list');
 %
 persistent cbh axh
 %
@@ -35,14 +32,14 @@ end
 %
 axh = axes('Parent',cbh, 'Color','none',...
 	'XTick',0:xmx, 'YTick',0.5:ymx, 'YTickLabel',mcs, 'YDir','reverse');
-title(axh,'ColorBrewer Color Schemes (+brewer package)', 'Interpreter','none')
+title(axh,'ColorBrewer Color Schemes (brewermap.m)', 'Interpreter','none')
 xlabel(axh,'Scheme Nodes')
 ylabel(axh,'Scheme Name')
 axf = get(axh,'FontName');
 %
 for y = 1:ymx
 	N = nmn(y);
-	M = brewer.map(N,mcs{y});
+	M = brewermap(N,mcs{y});
 	for x = 1:N
 		patch([x-1,x-1,x,x],[y-1,y,y,y-1],1, 'FaceColor',M(x,:), 'Parent',axh)
 	end
@@ -52,4 +49,4 @@ end
 drawnow()
 %
 end
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%brewer.show
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%brewermap_plot

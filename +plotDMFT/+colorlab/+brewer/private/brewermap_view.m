@@ -1,7 +1,7 @@
-function [map,num,typ,scheme] = gui(N,scheme) %#ok<*ISMAT>
+function [map,num,typ,scheme] = brewermap_view(N,scheme) %#ok<*ISMAT>
 % An interactive figure for ColorBrewer colorscheme selection (RGB colormaps)
 %
-% (c) 2014-2022 Stephen Cobeldick, 2022 Gabriele Bellomia (package adaptation)
+% (c) 2014-2022 Stephen Cobeldick
 %
 % View Cynthia Brewer's ColorBrewer colorschemes in a figure.
 %
@@ -14,12 +14,12 @@ function [map,num,typ,scheme] = gui(N,scheme) %#ok<*ISMAT>
 % * Text with the colorscheme's number of nodes (defining colors).
 %
 %%% Syntax:
-% brewer.gui
-% brewer.gui(N)
-% brewer.gui(N,scheme)
-% brewer.gui([],...)
-% brewer.gui(axes/figure handles,...) % see "Adjust Colormaps"
-% [map,num,typ] = brewer.gui(...)
+% brewermap_view
+% brewermap_view(N)
+% brewermap_view(N,scheme)
+% brewermap_view([],...)
+% brewermap_view(axes/figure handles,...) % see "Adjust Colormaps"
+% [map,num,typ] = brewermap_view(...)
 %
 % Calling the function with an output argument blocks MATLAB execution until
 % the figure is deleted: the final colormap and colorscheme are then returned.
@@ -27,13 +27,13 @@ function [map,num,typ,scheme] = gui(N,scheme) %#ok<*ISMAT>
 %% Adjust Colormaps of Figures or Axes %%
 %
 % Only R2014b or later. Provide axes or figure handles as the first input
-% and their colormaps will be updated in real-time by BREWER.GUI.
+% and their colormaps will be updated in real-time by BREWERMAP_VIEW.
 %
 %%% Example:
 %
 % >> S = load('spine');
 % >> image(S.X)
-% >> brewer.gui(gca)
+% >> brewermap_view(gca)
 %
 %% Input and Output Arguments %%
 %
@@ -49,11 +49,8 @@ function [map,num,typ,scheme] = gui(N,scheme) %#ok<*ISMAT>
 % num = NumericVector, the number of nodes defining the ColorBrewer colorscheme.
 % typ = CharRowVector, the colorscheme type: 'Diverging'/'Qualitative'/'Sequential'.
 %
-% See also BREWER.MAP BREWER.SHOW CUBEHELIX PRESET_COLORMAP MAXDISTCOLOR
+% See also BREWERMAP BREWERMAP_PLOT CUBEHELIX PRESET_COLORMAP MAXDISTCOLOR
 % RGBPLOT COLORMAP COLORMAPEDITOR COLORBAR UICONTROL ADDLISTENER
-
-%% Import statement
-import plotDMFT.color.*
 
 %% Input Wrangling %%
 %
@@ -70,27 +67,27 @@ err = 'First input must be a real positive scalar numeric or [] or NaN.';
 if nargin==0 || isnumeric(N)&&isequal(N,[])
 	N = dfn;
 elseif isnumeric(N)
-	assert(isscalar(N),'SC:brewer.gui:NotScalarNumeric',err)
+	assert(isscalar(N),'SC:brewermap_view:NotScalarNumeric',err)
 	assert(isnan(N)||isreal(N)&&isfinite(N)&&fix(N)==N&&N>0,...
-		'SC:brewer.gui:NotRealPositiveNotNaN',err)
+		'SC:brewermap_view:NotRealPositiveNotNaN',err)
 	N = double(N);
 elseif all(ishghandle(N(:))) % R2014b or later
 	assert(isgraphics(N(:),'axes')|isgraphics(N(:),'figure'),...
-		'SC:brewer.gui:NotAxesNorFigureHandles',...
+		'SC:brewermap_view:NotAxesNorFigureHandles',...
 		'First input may be an array of figure or axes handles.')
 	hgv = N(:);
 	nmr = arrayfun(@(h)size(colormap(h),1),hgv);
 	N = nmr(1);
 else
-	error('SC:brewer.gui:UnsupportedInput',err)
+	error('SC:brewermap_view:UnsupportedInput',err)
 end
 %
-[mcs,nmn,pyt] = brewer.map('list');
+[mcs,nmn,pyt] = brewermap('list');
 %
-% Check BREWER.MAP output:
+% Check BREWERMAP output:
 tmp = find([any(diff(double(char(pyt)),1),2);1]);
-assert(isequal(tmp,[9;17;35]),'SC:brewer.gui:SchemeSequence',...
-	'The BREWER.MAP function returned an unexpected scheme sequence.')
+assert(isequal(tmp,[9;17;35]),'SC:brewermap_view:SchemeSequence',...
+	'The BREWERMAP function returned an unexpected scheme sequence.')
 %
 % Default pseudo-random colorscheme:
 if nargin==0 || new
@@ -102,7 +99,7 @@ end
 if nargin==2
 	scheme = bmv1s2c(scheme);
 	assert(ischar(scheme) && ndims(scheme)==2 && size(scheme,1)==1,...
-		'SC:brewer.gui:NotCharacterVector',...
+		'SC:brewermap_view:NotCharacterVector',...
 		'Second input <scheme> must be a 1xN char vector.')
 	% Check if a reversed colormap was requested:
 	isr = strncmp(scheme,'-',1) || strncmp(scheme,'*',1);
@@ -226,7 +223,7 @@ end
 		ids = strcmpi(scm,mcs);
 		if any(ids)
 			str = [drn(1+isr),mcs{ids}];
-		else % will throw an error in BREWER.MAP:
+		else % will throw an error in BREWERMAP:
 			str = scm;
 		end
 	end
@@ -235,7 +232,7 @@ end
 		% Update all graphics objects in the figure.
 		%
 		% Get ColorBrewer colormap and grayscale equivalent:
-		[map,num,typ] = brewer.map(N,bmvName());
+		[map,num,typ] = brewermap(N,bmvName());
 		mag = map*[0.298936;0.587043;0.114021];
 		%
 		% Update colorbar values:
@@ -268,7 +265,7 @@ end
 		% Update external axes/figure:
 		nmr(1) = N;
 		for k = 1:numel(hgv)
-			colormap(hgv(k),brewer.map(nmr(k),bmvName()));
+			colormap(hgv(k),brewermap(nmr(k),bmvName()));
 		end
 		%
 		drawnow()
@@ -371,7 +368,7 @@ else
 end
 %
 end
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%brewer.gui
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%brewermap_view
 function arr = bmv1s2c(arr)
 % If scalar string then extract the character vector, otherwise data is unchanged.
 if isa(arr,'string') && isscalar(arr)
@@ -380,8 +377,7 @@ end
 end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%bmv1s2c
 %
-% Copyright (c) 2014-2022 Stephen Cobeldick, original BREWERMAP_VIEW function
-% Copyright (c) 2022 Gabriele Bellomia, BREWER package adaptation and embedding
+% Copyright (c) 2014-2022 Stephen Cobeldick
 %
 % Licensed under the Apache License, Version 2.0 (the "License");
 % you may not use this file except in compliance with the License.

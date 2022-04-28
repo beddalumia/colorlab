@@ -1,7 +1,7 @@
-function [map,lo,hi,prm] = gui(N,start,rots,satn,gamma,irange,domain)
+function [map,lo,hi,prm] = cubehelix_view(N,start,rots,satn,gamma,irange,domain)
 % An interactive figure for CubeHelix colormap parameter selection. With demo!
 %
-% (c) 2013-2022 Stephen Cobeldick, 2022 Gabriele Bellomia (package adaptation)
+% (c) 2013-2022 Stephen Cobeldick
 %
 % View Dave Green's CubeHelix colorschemes in a figure.
 %
@@ -13,15 +13,15 @@ function [map,lo,hi,prm] = gui(N,start,rots,satn,gamma,irange,domain)
 % * Warning text if the grayscale is not monotonic increasing/decreasing.
 %
 %%% Syntax:
-%  cubehelix.gui
-%  cubehelix.gui(N)
-%  cubehelix.gui(N,start,rots,satn,gamma)
-%  cubehelix.gui(N,start,rots,satn,gamma,irange)
-%  cubehelix.gui(N,start,rots,satn,gamma,irange,domain)
-%  cubehelix.gui(N,[start,rots,satn,gamma],...)
-%  cubehelix.gui([],...)
-%  cubehelix.gui(axes/figure handles,...) % see "Adjust Colormaps"
-%  [map,lo,hi] = cubehelix.gui(...)
+%  cubehelix_view
+%  cubehelix_view(N)
+%  cubehelix_view(N,start,rots,satn,gamma)
+%  cubehelix_view(N,start,rots,satn,gamma,irange)
+%  cubehelix_view(N,start,rots,satn,gamma,irange,domain)
+%  cubehelix_view(N,[start,rots,satn,gamma],...)
+%  cubehelix_view([],...)
+%  cubehelix_view(axes/figure handles,...) % see "Adjust Colormaps"
+%  [map,lo,hi] = cubehelix_view(...)
 %
 % Calling the function with an output argument blocks MATLAB execution until
 % the figure is deleted: the final colormap and parameters are then returned.
@@ -41,7 +41,7 @@ function [map,lo,hi,prm] = gui(N,start,rots,satn,gamma,irange,domain)
 %
 % >> S = load('spine');
 % >> image(S.X)
-% >> cubehelix.gui(gca)
+% >> cubehelix_view(gca)
 %
 %% Input and Output Arguments %%
 %
@@ -64,9 +64,6 @@ function [map,lo,hi,prm] = gui(N,start,rots,satn,gamma,irange,domain)
 % See also CUBEHELIX BREWERMAP PRESET_COLORMAP MAXDISTCOLOR
 % RGBPLOT COLORMAP COLORMAPEDITOR COLORBAR UICONTROL ADDLISTENER
 
-%% Import statement
-import plotDMFT.color.*
-
 %% Input Wrangling %%
 %
 persistent ax2D ln2D ax3D pt3D txtH is2D cbAx cbIm pTxt pSld prw
@@ -83,24 +80,24 @@ if nargin==0 || isnumeric(N)&&isequal(N,[])
 	N = dfn;
 elseif isnumeric(N)
 	assert(isscalar(N),...
-		'SC:cubehelix.gui:N:NotScalarNumeric', err)
+		'SC:brewermap_view:N:NotScalarNumeric', err)
 	assert(isnan(N)||isreal(N)&&isfinite(N)&&fix(N)==N&&N>=0,...
-		'SC:cubehelix.gui:N:NotRealWholeNorNaN', err)
+		'SC:brewermap_view:N:NotRealWholeNorNaN', err)
 	N = double(N);
 elseif all(ishghandle(N(:))) % R2014b or later
 	assert(isgraphics(N(:),'axes')|isgraphics(N(:),'figure'),...
-		'SC:cubehelix.gui:N:NotAxesNorFigureHandles',...
+		'SC:cubehelix_view:N:NotAxesNorFigureHandles',...
 		'First input <N> may be an array of figure or axes handles.')
 	hgv = N(:);
 	nmr = arrayfun(@(h)size(colormap(h),1),hgv);
 	N = nmr(1);
 else
-	error('SC:cubehelix.gui:N:UnsupportedInput', err)
+	error('SC:cubehelix_view:N:UnsupportedInput', err)
 end
 %
-idp = 'SC:cubehelix.gui:start:NotParameterVector';
-idi = 'SC:cubehelix.gui:irange:NotNodeRangeVector';
-idd = 'SC:cubehelix.gui:domain:NotNodeDomainVector';
+idp = 'SC:cubehelix_view:start:NotParameterVector';
+idi = 'SC:cubehelix_view:irange:NotNodeRangeVector';
+idd = 'SC:cubehelix_view:domain:NotNodeDomainVector';
 txp = '%s input can be a vector of the four CubeHelix parameters.';
 txi = '%s input can be a vector of the endnode lightness levels (irange).';
 txd = '%s input can be a vector of the endnode relative positions (domain).';
@@ -242,7 +239,7 @@ end
 		% Update all graphics objects.
 		%
 		% Get CubeHelix colormap and grayscale equivalent:
-		[map,lo,hi] = cubehelix.map(N, prw(1:4),prw(5:6),prw(7:8));
+		[map,lo,hi] = cubehelix(N, prw(1:4),prw(5:6),prw(7:8));
 		mag = map*[0.298936;0.587043;0.114021];
 		%
 		% Update colorbar values:
@@ -275,7 +272,7 @@ end
 		% Update external axes/figure:
 		nmr(1) = N;
 		for k = 1:numel(hgv)
-			colormap(hgv(k),cubehelix.map(nmr(k), prw(1:4),prw(5:6),prw(7:8)));
+			colormap(hgv(k),cubehelix(nmr(k), prw(1:4),prw(5:6),prw(7:8)));
 		end
 		%
 		drawnow()
@@ -373,14 +370,14 @@ else
 end
 %
 end
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%cubehelix.gui
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%cubehelix_view
 function V = prmChk(varargin)
 % Check that separate parameter values are real scalar numerics.
 for k = 1:nargin
 	t = inputname(k);
 	v = varargin{k};
 	assert(isnumeric(v)&&isscalar(v)&&isfinite(v)&&isreal(v),...
-		sprintf('SC:cubehelix.gui:%s:NotRealScalarNumeric',t),...
+		sprintf('SC:cubehelix_view:%s:NotRealScalarNumeric',t),...
 		'Input parameter <%s> must be real, finite, numeric scalar.',t)
 end
 V = cellfun(@double,varargin(:));
@@ -393,8 +390,7 @@ x = double(x(:));
 end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%chvChk
 %
-% Copyright (c) 2013-2022 Stephen Cobeldick, original CUBEHELIX_VIEW function
-% Copyright (c) 2022 Gabriele Bellomia, CUBEHELIX package adaptation and embedding
+% Copyright (c) 2013-2022 Stephen Cobeldick
 %
 % Licensed under the Apache License, Version 2.0 (the "License");
 % you may not use this file except in compliance with the License.
