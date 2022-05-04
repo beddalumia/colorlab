@@ -93,9 +93,6 @@ if any(dash)
    ColormapName(dash) = []; 
 end
 
-% Standardize all colormap names to lowercase: 
-ColormapName = lower(ColormapName); 
-
 % Oleron's too hard for me to remember, so I'm gonna use dem or topo. 
 if ismember(ColormapName,{'dem','topo'})
    ColormapName = 'oleron'; 
@@ -122,12 +119,21 @@ if any(tmp)
 end
 
 %% Load RGB values and interpolate to NLevels: 
-
 try
    S = load('CrameriColourMaps7.0.mat',ColormapName); 
-   cmap = S.(ColormapName); 
-catch
-   error(['Unknown colormap name ''',ColormapName,'''. Try typing crameri with no inputs to check the options and try again.'])
+   cmap = S.(ColormapName);  warning('off','last')
+catch 
+   try % Standardize colormap name to lowercase
+       ColormapName = lower(ColormapName);
+       wmsg = lastwarn; fprintf(2,'Warning: %s\n',wmsg)
+       fprintf(2,"> trying with '%s'\n",ColormapName)
+       % Retry loading from the .mat dataset
+       S = load('CrameriColourMaps7.0.mat',ColormapName); 
+       cmap = S.(ColormapName); 
+   catch
+       error(['Unknown colormap name ''',ColormapName,...
+       '''. Try typing crameri with no inputs to check the options and try again.'])
+   end
 end
 
 % Interpolate if necessary: 
