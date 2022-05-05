@@ -1,14 +1,13 @@
 function crameri_update(release_major,zenodo_record_number)
 % Retrieves all *relevant* CRAMERI data from ZENODO and collect it into a single .mat file 
 % 
-%% >> CRAMERI_UPDATE(release_major,zenodo_record_number)
+%% >> CRAMERI.UPDATE(release_major,zenodo_record_number)
 %
-%  • Unzips the requested(†) release from http://doi.org/10.5281/zenodo.1243862
-%  • Navigates to the resulting dìrectory: …/ScientificColourMaps*/ (* = version)
+%  • Retrieves the requested(†) release from http://doi.org/10.5281/zenodo.1243862
 %  • Imports all the colormaps, except the discrete-but-not-categorical ones
 %  • Bundles everything in a single .mat archive, thus upgrading the package
 %
-%% EXAMPLES: crameri_update(7,5501399) or crameri_update('6','4153113')
+%% EXAMPLES: crameri.update(7,5501399) or crameri.update('6','4153113')
 %
 % (†) TODO: we don't want to input the version details everytime we update...
 %           > we'd better find a way to automatically point to the latest release

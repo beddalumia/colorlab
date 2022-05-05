@@ -3,8 +3,7 @@ function update(varargin)
 % 
 %% >> CRAMERI.UPDATE(release_major,zenodo_record_number)
 %
-%  • Unzips the requested(†) release from http://doi.org/10.5281/zenodo.1243862
-%  • Navigates to the resulting dìrectory: …/ScientificColourMaps*/ (* = version)
+%  • Retrieves the requested(†) release from http://doi.org/10.5281/zenodo.1243862
 %  • Imports all the colormaps, except the discrete-but-not-categorical ones
 %  • Bundles everything in a single .mat archive, thus upgrading the package
 %
@@ -21,7 +20,11 @@ function update(varargin)
 % See also CRAMERI.CMAP, CRAMERI.SHOW, BREWER, CUBEHELIX, MATPLOTLIB, and PRESET_COLORMAP.  
 
 	%% Wrap the private crameri_update function
-      crameri_update(varargin{:});
+      if nargin < 2
+            help crameri_update
+      else
+            crameri_update(varargin{:});
+      end
 
 end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%crameri.update
