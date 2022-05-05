@@ -96,8 +96,8 @@ function varargout = cmap(varargin)
 % num = NumericVector, the number of nodes defining the ColorBrewer colorscheme.
 % typ = CharRowVector, the colorscheme type: 'Diverging'/'Qualitative'/'Sequential'.
 %
-% See also BREWER.SHOW BREWER.GUI PRESET_COLORMAP CUBEHELIX MAXDISTCOLOR
-% LBMAP PARULA LINES RGBPLOT COLORMAP COLORBAR PLOT PLOT3 AXES SET CONTOURF
+% See also BREWER.SHOW BREWER.GUI PRESET_COLORMAP CUBEHELIX MATPLOTLIB
+% PARULA LINES RGBPLOT COLORMAP COLORBAR PLOT PLOT3 AXES SET CONTOURF
 
 	%% Wrap the private brewermap function
 	[varargout{1:nargout}] = brewermap(varargin{:});

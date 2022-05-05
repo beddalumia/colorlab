@@ -1,34 +1,14 @@
-function varargout = cmap(varargin) 
-% CRAMERI.CMAP returns perceptually-uniform scientific colormaps created by Fabio Crameri
+function varargout = show(varargin) 
+% CRAMERI.SHOW prints to screen a visual guide to Crameri colormaps 
 % 
 %% Syntax 
 % 
-%  crameri.cmap
-%  cmap = crameri.cmap('ColormapName') 
-%  cmap = crameri.cmap('-ColormapName') 
-%  cmap = crameri.cmap(...,NLevels)
-%  cmap = crameri.cmap(...,'pivot',PivotValue) 
-%  crameri.cmap(...)
+%  crameri.show
 % 
 %% Description 
 %  
-% crameri.cmap without any inputs displays the available colormaps. 
+% crameri.show, without any inputs, displays all the colormaps available in +CRAMERI. 
 %
-% cmap = crameri.cmap('ColormapName') returns a 256x3 colormap.  For a visual
-% depiction of valid colormap names, type |crameri.cmap|. 
-%
-% cmap = crameri.cmap('-ColormapName') a minus sign preceeding any ColormapName flips the
-% order of the colormap. 
-%
-% cmap = crameri.cmap(...,NLevels) specifies a number of levels in the colormap.  Default
-% value is 256. 
-%
-% cmap = crameri.cmap(...,'pivot',PivotValue) centers a diverging colormap such that white 
-% corresponds to a given value and maximum extents are set using current caxis limits. 
-% If no PivotValue is set, 0 is assumed. 
-%
-% crameri.cmap(...) without any outputs sets the current colormap to the current axes.  
-% 
 %% Author Info 
 % The original CRAMERI function was written by Chad A. Greene of the University of Texas
 % Institute for Geophysics (UTIG), August 2018, using Fabio Crameri's 
@@ -45,10 +25,14 @@ function varargout = cmap(varargin)
 % Crameri, F. (2018). Scientific colour-maps. Zenodo. http://doi.org/10.5281/zenodo.1243862
 % 
 %
-% See also CRAMERI.SHOW BREWER, CUBEHELIX, MATPLOTLIB, PRESET_COLORMAP, COLORMAP and CAXIS.  
+% See also CRAMERI.CMAP BREWER, CUBEHELIX, MATPLOTLIB, PRESET_COLORMAP, COLORMAP and CAXIS.  
 
 	%% Wrap the private crameri function
-	   [varargout{1:nargout}] = crameri(varargin{:});
+	   if nargin > 0
+			fprintf(2,'Warning: you might want to call crameri.cmap instead.\n');
+	   else
+	   		[varargout{1:nargout}] = crameri();
+	   end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%creameri.cmap
 %

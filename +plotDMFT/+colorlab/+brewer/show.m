@@ -6,7 +6,7 @@ function show()
 %%% Syntax:
 % brewer.show()
 %
-% See also BREWER.MAP BREWER.GUI CUBEHELIX MAXDISTCOLOR
+% See also BREWER.CMAP BREWER.GUI CUBEHELIX MAXDISTCOLOR
 % LBMAP PARULA LINES RGBPLOT COLORMAP COLORBAR PLOT PLOT3 AXES SET
 
 	%% Wrap the private brewermap_plot function

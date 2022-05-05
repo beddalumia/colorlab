@@ -20,16 +20,8 @@ function map = preset_colormap(N,varargin)
 %     0.6463    0.8479    0.5076
 %     1.0000    1.0000    1.0000
 %
-% >> preset_colormap(@brewer.map,'PuOr')
-% >> load topo
-% >> load coast
-% >> figure
-% >> worldmap(topo, topolegend)
-% >> contourfm(topo, topolegend);
-% >> contourcmap('preset_colormap', 'Colorbar','on', 'Location','horizontal','TitleString','Contour Intervals in Meters');
-% >> plotm(lat, long, 'k')
 %
-% See Also BREWER.MAP CUBEHELIX.MAP COLORMAP CONTOURCMAP
+% See Also BREWER.CMAP CUBEHELIX.CMAP CRAMERI.CMAP MATPLOTLIB COLORMAP
 
 persistent fnh arg
 %

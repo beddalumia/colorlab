@@ -80,8 +80,8 @@ function varargout = cmap(varargin)
 %  lo  = LogicalMatrix, true where <map> values<0 were clipped to 0. Size Nx3
 %  hi  = LogicalMatrix, true where <map> values>1 were clipped to 1. Size Nx3
 %
-% See also CUBEHELIX.GUI PRESET_COLORMAP BREWER.MAP MAXDISTCOLOR LBMAP
-% PARULA LINES RGBPLOT COLORMAP COLORBAR PLOT PLOT3 AXES SET CONTOURF
+% See also CUBEHELIX.GUI PRESET_COLORMAP BREWER CRAMERI MATPLOTLIB
+% LINES RGBPLOT COLORMAP COLORBAR PLOT PLOT3 AXES SET CONTOURF
 
 	%% Wrap the private cubehelix function
 	[varargout{1:nargout}] = cubehelix(varargin{:});

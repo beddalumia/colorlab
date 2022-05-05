@@ -61,7 +61,7 @@ function varargout = gui(varargin)
 % lo  = LogicalMatrix, true where <map> values<0 were clipped to 0. Size Nx3
 % hi  = LogicalMatrix, true where <map> values>1 were clipped to 1. Size Nx3
 %
-% See also CUBEHELIX.CMAP BREWER PRESET_COLORMAP MAXDISTCOLOR
+% See also CUBEHELIX.CMAP BREWER PRESET_COLORMAP CRAMERI MATPLOTLIB
 % RGBPLOT COLORMAP COLORMAPEDITOR COLORBAR UICONTROL ADDLISTENER
 
 	%% Wrap the private cubehelix_view function

@@ -39,6 +39,7 @@ function cmap = crameri(ColormapName,varargin)
 % This function was written by Chad A. Greene of the University of Texas
 % Institute for Geophysics (UTIG), August 2018, using Fabio Crameri's 
 % scientific colormaps, version 4.0. http://www.fabiocrameri.ch/colourmaps.php
+% > Currently upgraded to version 7.1.
 % 
 %% Citing this colormap: 
 % Please acknowledge the free use of these colormaps by citing
@@ -60,16 +61,15 @@ function cmap = crameri(ColormapName,varargin)
 %% Display colormap options: 
 
 if nargin==0
-   figure('menubar','none','numbertitle','off','Name','crameri options:')
-   
-   if license('test','image_toolbox')
-      imshow(imread('crameri7.0.png')); 
-   else
+   figure('menubar','none','numbertitle','off','Name','Crameri: palette')
+   crameritable = load('CrameriShowPalette.mat','im');
+   try
+      imshow(crameritable.im); 
+   catch
       axes('pos',[0 0 1 1])
-      image(imread('crameri7.0.png')); 
+      image(crameritable.im); 
       axis image off
    end
-   
    return
 end
 
@@ -93,11 +93,6 @@ if any(dash)
    ColormapName(dash) = []; 
 end
 
-% Oleron's too hard for me to remember, so I'm gonna use dem or topo. 
-if ismember(ColormapName,{'dem','topo'})
-   ColormapName = 'oleron'; 
-end
-
 % Does the user want to center a diverging colormap on a specific value? 
 % This parsing support original 'zero' syntax and current 'pivot' syntax. 
 tmp = strncmpi(varargin,'pivot',3); 
@@ -119,20 +114,22 @@ if any(tmp)
 end
 
 %% Load RGB values and interpolate to NLevels: 
+
 try
-   S = load('CrameriColourMaps7.0.mat',ColormapName); 
-   cmap = S.(ColormapName);  warning('off','last')
+   S = load('CrameriColourMaps.mat',ColormapName); 
+   cmap = S.(ColormapName);
 catch 
+   warning('off','last')
    try % Standardize colormap name to lowercase
        ColormapName = lower(ColormapName);
        wmsg = lastwarn; fprintf(2,'Warning: %s\n',wmsg)
        fprintf(2,"> trying with '%s'\n",ColormapName)
        % Retry loading from the .mat dataset
-       S = load('CrameriColourMaps7.0.mat',ColormapName); 
+       S = load('CrameriColourMaps.mat',ColormapName); 
        cmap = S.(ColormapName); 
    catch
        error(['Unknown colormap name ''',ColormapName,...
-       '''. Try typing crameri with no inputs to check the options and try again.'])
+       '''. Try typing crameri.show to check the options and try again.'])
    end
 end
 
@@ -161,19 +158,3 @@ if nargout==0
    colormap(gca,cmap) 
    clear cmap  
 end
-
-%% Code to collect Fabio's data into a single .mat file: 
-% Unzip the latest folder, navigate to that filepath, and run this.
-% Update the file list as needed. 
-%
-% clear all
-% f = {'acton','bam','bamO','bamako','batlow','batlowK','batlowW','berlin','bilbao','broc','brocO','buda','bukavu','cork',...
-%    'corkO','davos','devon','fes','grayC','hawaii','imola','lajolla','lapaz','lisbon',...
-%    'nuuk','oleron','oslo','roma','romaO','tofino','tokyo','turku','vanimo','vik','vikO'}; 
-% 
-% for k = 1:length(f)
-%    load([f{k},'/',f{k},'.mat'])
-% end
-% 
-% clear f k 
-% save('CrameriColourMaps7.0.mat')

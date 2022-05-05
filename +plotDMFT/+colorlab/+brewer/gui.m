@@ -49,7 +49,7 @@ function varargout = gui(varargin)
 % num = NumericVector, the number of nodes defining the ColorBrewer colorscheme.
 % typ = CharRowVector, the colorscheme type: 'Diverging'/'Qualitative'/'Sequential'.
 %
-% See also BREWER.MAP BREWER.SHOW CUBEHELIX PRESET_COLORMAP MAXDISTCOLOR
+% See also BREWER.CMAP BREWER.SHOW CUBEHELIX PRESET_COLORMAP MATPLOTLIB
 % RGBPLOT COLORMAP COLORMAPEDITOR COLORBAR UICONTROL ADDLISTENER
 
 	%% Wrap the private brewermap_view function
