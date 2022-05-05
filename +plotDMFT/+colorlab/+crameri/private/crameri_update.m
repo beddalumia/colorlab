@@ -6,28 +6,24 @@
 
  clear()
 
- subentries = dir('.'); % Retrieves every subdir and file in current directory 
- subfolders = subentries([subentries(:).isdir]); % Keeps only subdirectories
- subfolders = {subfolders(:).name}; % Convert to appropriate cell array
- subfolders = subfolders(~ismember(subfolders,{'.','..'})); % . ..
- % subfolders = subfolders(~ismember(strfind(subfolders,'+'),{true})); [BROKEN]
+ stru = dir('*/*.mat');
+ fold = {stru(:).folder}; 
 
- f = {'acton','bam','bamO','bamako','batlow','batlowK','batlowW','berlin','bilbao','broc','brocO',...
-      'buda','bukavu','cork','corkO','davos','devon','fes','grayC','hawaii','imola','lajolla','lapaz',...
-      'lisbon','nuuk','oleron','oslo','roma','romaO','tofino','tokyo','turku','vanimo','vik','vikO'}; 
+ new = {stru(:).name};
+ new = erase(new,'.mat');
 
- for k = 1:length(subfolders)
-      if ~ismember(f,subfolders{k})
-         fprintf(1,"'%s' is a candidate new colormap!\n",subfolders{k})
+ old = {'acton','bam','bamO','bamako','batlow','batlowK','batlowW','berlin','bilbao','broc','brocO',...
+        'buda','bukavu','cork','corkO','davos','devon','fes','grayC','hawaii','imola','lajolla','lapaz',...
+        'lisbon','nuuk','oleron','oslo','roma','romaO','tofino','tokyo','turku','vanimo','vik','vikO'}; 
+
+ for k = 1:length(new)
+      if ~ismember(old,new{k})
+         fprintf("'%s' is a new colormap!\n",new{k})
       end
-      try
-         load([subfolders{k},'/',subfolders{k},'.mat']);
-      catch
-         fprintf(2,"'%s' is not a colormap: omitted from import\n",subfolders{k})
-      end
+      load([fold{k},'/',new{k},'.mat']);
  end
  
- clear('subentries','subfolders','f','k') 
+ clear('stru','fold','new','old','k') 
 
  save('CrameriColourMaps.mat') % Move the .mat archive to the original path [Automate?]
 
