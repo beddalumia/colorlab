@@ -39,7 +39,7 @@ function cmap = crameri(ColormapName,varargin)
 % This function was written by Chad A. Greene of the University of Texas
 % Institute for Geophysics (UTIG), August 2018, using Fabio Crameri's 
 % scientific colormaps, version 4.0. http://www.fabiocrameri.ch/colourmaps.php
-% > Currently upgraded to version 7.1.
+% > Currently upgraded to version 7.0.1.
 % 
 %% Citing this colormap: 
 % Please acknowledge the free use of these colormaps by citing

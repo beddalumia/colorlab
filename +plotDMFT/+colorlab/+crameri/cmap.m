@@ -33,7 +33,7 @@ function varargout = cmap(varargin)
 % The original CRAMERI function was written by Chad A. Greene of the University of Texas
 % Institute for Geophysics (UTIG), August 2018, using Fabio Crameri's 
 % scientific colormaps, version 4.0. http://www.fabiocrameri.ch/colourmaps.php
-% The present implementation upgrades to version 7.0 of such colormaps. 
+% The present implementation upgrades to version 7.0.1 of such colormaps. 
 % The packaging end embedding in +COLORLAB has been curated by Gabriele Bellomia.
 % 
 %% Citing this colormap: 
