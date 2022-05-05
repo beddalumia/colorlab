@@ -45,12 +45,12 @@ function varargout = cmap(varargin)
 % Crameri, F. (2018). Scientific colour-maps. Zenodo. http://doi.org/10.5281/zenodo.1243862
 % 
 %
-% See also CRAMERI.SHOW BREWER, CUBEHELIX, MATPLOTLIB, PRESET_COLORMAP, COLORMAP and CAXIS.  
+% See also CRAMERI.SHOW, CRAMERI.UPDATE, BREWER, CUBEHELIX, MATPLOTLIB, and PRESET_COLORMAP.
 
 	%% Wrap the private crameri function
 	   [varargout{1:nargout}] = crameri(varargin{:});
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%creameri.cmap
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%crameri.cmap
 %
 % Copyright (c) 2018 Fabio Crameri, original colormap values
 % Copyright (c) 2018 Chad Greene, original CRAMERI function 
