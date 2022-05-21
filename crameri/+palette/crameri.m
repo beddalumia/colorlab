@@ -3,8 +3,7 @@ function cmap = crameri(ColormapName,varargin)
 % by Fabio Crameri. 
 % 
 %% Syntax 
-% 
-%  crameri 
+%
 %  cmap = palette.crameri('ColormapName') 
 %  cmap = palette.crameri('-ColormapName') 
 %  cmap = palette.crameri(...,NLevels)
@@ -12,8 +11,6 @@ function cmap = crameri(ColormapName,varargin)
 %  palette.crameri(...)
 % 
 %% Description 
-% 
-% palette.crameri without any inputs displays the options for colormaps. 
 % 
 % cmap = palette.crameri('ColormapName') returns a 256x3 colormap.  
 % For a visual depiction of valid colormap names, type paletteshow.crameri.
