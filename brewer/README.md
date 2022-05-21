@@ -7,7 +7,7 @@ BREWER provides _all_ ColorBrewer[^1] discrete schemes, with simple selection by
 ```matlab
     contourcmap('palette.brewer') % DOES NOT WORK
 ``` 
-Nevertheless the issue can be easily overcome by presetting the colormap with our custom [lambda-wrapper](#how-to-make-a-scheme-permanent-preset_palette-function):
+Nevertheless the issue can be easily overcome by presetting the colormap with our custom [lambda-wrapper](#how-to-make-a-scheme-permanent-presetpalette-function):
 ```matlab
     preset_palette(@palette.brewer, '-PuOr'); % preselection
     contourcmap('preset_palette') % VALID COLORMAP INPUT
