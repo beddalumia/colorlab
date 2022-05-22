@@ -9,8 +9,8 @@ surf(X,Y,Z,'LineStyle','none');
 grid,axis('off','equal');
 
 
-addpath ../../colorverse/
-colorverse.enter
+addpath ../../colorlab/
+colorlab.enter
 import palette.*
 
 colormap(magma)

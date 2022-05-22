@@ -9,7 +9,7 @@ y=s(1).*(1-s(10).^2/5.*(.5+s(2).^2))-.5;
 rotate(fill(r()*5+x,r()*5+y,r(),'Linewidth',1),[0 0 1],r()*360);
 end
 axis equal off
-colorverse.enter
+colorlab.enter
 import palette.crameri
 colormap autumn
 pause
