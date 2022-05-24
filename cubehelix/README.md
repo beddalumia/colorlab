@@ -16,12 +16,12 @@ The CUBEHELIX algorithm[^3] is originally defined [here](http://astron-soc.in/bu
 ```matlab
     %% Classic CubeHelix mapping of a PHOTO:
     S = load('mandrill');
-    imshow(S.X,colormap(palette.cubehelix)) % default parameters: classic look!
+    imshow(S.X,palette.cubehelix) % default parameters: classic look!
 ```
 ![mandrill](resources/mandrill_cubehelix.png)
 ```matlab
     % Generating a brand new cmap for a SURF:
-    [X,Y,Z] = peaks(30);
+    [X,Y,Z] = peaks(50);
     surfc(X,Y,Z)
     colormap(palette.cubehelix([],3,-0.5,1.5,1)) % Giving a relaxed forest-green vibe
 ```

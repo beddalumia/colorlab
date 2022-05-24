@@ -13,7 +13,7 @@ Nevertheless the issue can be easily overcome by presetting the colormap with ou
     contourcmap('preset_palette') % VALID COLORMAP INPUT
 ``` 
 
-## Overview: colorschemes and main ##
+## Overview: colorschemes and main functionality ##
 
 ![Brewer_TABLE](resources/brewer_show.svg)
 
@@ -38,7 +38,7 @@ The above table, showing all the discrete schemes defined in the package, can be
 ```matlab
     % Brewer colors for a sample PHOTO:
     S = load('mandrill');
-    imshow(S.X,colormap(palette.brewer([],"-YlGnBu"))) % reversed yellow-green-blue scheme
+    imshow(S.X,palette.brewer([],"-YlGnBu")) % reversed yellow-green-blue scheme
 ```
 ![invYlGnBu](resources/mandrill_invYlGnBu.png)
 ```matlab

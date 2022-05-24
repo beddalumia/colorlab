@@ -7,14 +7,14 @@ Providing perceptually _**exact**_ sequential and cyclic continuous colormaps an
 
 ![Matplotlib_TABLE](resources/matplotlib_show.png)
 
-Note that the package delivers only a subset of all matplotlib's colorscheme, namely those that have been originally developed by its team. If you are looking for `Paired` or `RdBu`, etc... you might want to check the [BREWER](../brewer/) colormap package. Same goes for [CubeHelix](../cubehelix/).
+Note that the package delivers only a subset of all matplotlib's colorscheme, namely those that have been originally developed by its team. If you are looking for `Paired` or `RdBu`, etc... you might want to check the [BREWER](../brewer/) colormap package. Same goes for [CubeHelix](../cubehelix/) and [cmocean](../cmocean/).
 
 ### Examples: ###
 
 ```matlab
     % View a PHOTO with matplotlib default colormap
     S = load('mandrill');
-    imshow(S.X,colormap(palette.viridis))
+    imshow(S.X,palette.viridis)
 ```
 ![mandrill_viridis](resources/mandrill_viridis.png)
 ```matlab
@@ -63,6 +63,15 @@ Note that the package delivers only a subset of all matplotlib's colorscheme, na
     xlim([0,3*pi]);
 ```
 ![tab20](resources/tab20.svg)
+
+### How to make a scheme permanent: `preset_palette()` function ###
+
+PRESET_PALETTE is a wrapper for any colormap function, storing the function and any parameter values for future calls.
+
+```matlab
+    preset_palette(@palette.magma)
+    colormap(preset_palette)
+```
 
 ### COPYRIGHT & LICENSING ###
 © 2022, Stephen Cobeldick, Gabriele Bellomia    
