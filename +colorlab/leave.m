@@ -22,9 +22,15 @@ function leave(quiet)
     folder = erase(fileparts(mfilename('fullpath')),'+colorlab');
     % > COLORLAB destroys itself
     
-    COLORLAB = xgenpath(folder,'**/*.git');
+    try
+        COLORLAB = xgenpath(folder,'**/*.git');
+    catch
+        COLORLAB = genpath(folder);
+    end
     oldpath = rmpath(COLORLAB);
-    addpath(userpath); % Safety-measure
+    if ~isoctave
+        addpath(userpath); % Safety-measure
+    end
     printflag = not(isequal(oldpath,path));
     
     % Final greetings!
@@ -37,4 +43,22 @@ function leave(quiet)
         fprintf('  > in the case something has went bad: restoredefaultpath() ✦ \n')
         fprintf('  \n                                                           \n')
     end
+end
+
+% contains
+
+function bool = isoctave()
+%% ISOCTAVE Determines if you are running under GNU Octave or MATLAB
+%   
+%       >> isoctave()
+%
+%       ans = 
+%
+%           logical
+%
+%           0 ----> IF running under MATLAB
+%           1 ----> IF running under OCTAVE
+%
+% See also ispc, ismac, isunix, ver
+  bool = exist('__octave_config_info__','builtin') == 5;
 end

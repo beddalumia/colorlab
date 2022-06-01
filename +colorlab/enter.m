@@ -22,12 +22,18 @@ function enter(quiet)
     folder = erase(fileparts(mfilename('fullpath')),'+colorlab');
     % > COLORLAB initiates itself
 
-    COLORLAB = xgenpath(folder,'**/*.git');
+    try
+        COLORLAB = xgenpath(folder,'**/*.git');
+    catch
+        COLORLAB = genpath(folder);
+    end
     oldpath = addpath(COLORLAB);
     printflag = not(isequal(oldpath,path));
     
-    % Better to check for duplicates
-    find_duplicate(folder);
+    % Better to check for duplicates (in MATLAB)
+    if ~isoctave
+        find_duplicate(folder);
+    end
     
     % Let the user decide if to save or not to save...
     if printflag && not(quietflag)
@@ -40,4 +46,22 @@ function enter(quiet)
         fprintf('  \n                                              \n')
     end
 
+end
+
+% contains
+
+function bool = isoctave()
+%% ISOCTAVE Determines if you are running under GNU Octave or MATLAB
+%   
+%       >> isoctave()
+%
+%       ans = 
+%
+%           logical
+%
+%           0 ----> IF running under MATLAB
+%           1 ----> IF running under OCTAVE
+%
+% See also ispc, ismac, isunix, ver
+  bool = exist('__octave_config_info__','builtin') == 5;
 end
