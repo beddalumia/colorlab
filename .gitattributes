@@ -2,3 +2,5 @@
 * text=auto
 # Language override for matlab syntax recognition
 *.m linguist-language=MATLAB
+# Language override for HTML documentation files
+*.html linguist-documentation
