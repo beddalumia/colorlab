@@ -1,59 +1,59 @@
-function [RGB] = xkcd(varargin)
-% XKCD returns rgb triplets according to the celebrated XKCD color-survey. 
-% > https://blog.xkcd.com/2010/05/03/color-survey-results/ 
-% 
-% To explore all available colors, visit: https://xkcd.com/color/rgb/
+function [RGB] = X11(varargin)
+% X11 returns rgb triplets according to historical X11/rgb.txt UNIX file
+%
 % 
 %% SYNTAX 
 %
-% col = rgb.xkcd('Color Name') 
-% col = rgb.xkcd('Color Name 1','Color Name 2',...,'Color Name N') 
-% col = rgb.xkcd({'Color Name 1','Color Name 2',...,'Color Name N'})  
-% rgb.xkcd("show");
+% col = rgb.X11('Color Name') 
+% col = rgb.X11('Color Name 1','Color Name 2',...,'Color Name N') 
+% col = rgb.X11({'Color Name 1','Color Name 2',...,'Color Name N'})  
+% rgb.X11("show");
 % 
 %% DESCRIPTION 
 %
-% col = xkcd('Color Name') returns the rgb triplet of the color described by the
+% col = X11('Color Name') returns the rgb triplet of the color described by the
 % string 'Color Name'. Try any color name you can think of, it'll probably work.
 % If not we'll provide well-targeted suggestions for you :)
 % 
-% col = xkcd('Color Name 1','Color Name 2',...,'Color Name N') returns an
+% col = X11('Color Name 1','Color Name 2',...,'Color Name N') returns an
 % N by 3 matrix containing RGB triplets for each color name. 
 % 
-% col = xkcd({'Color Name 1','Color Name 2',...,'Color Name N'}) accepts
+% col = X11({'Color Name 1','Color Name 2',...,'Color Name N'}) accepts
 % list of color names as a character array, too. 
 %
-% xkcd('show') will try to open a local copy of http://xkcd.com/color/rgb/
-% on the default browser. If not possible it would resort to CPRINTF to
-% print all the available names on stdout, with a colored '⬜' as a sample. 
+% X11('show') will try to open a local html chart on the default browser.
+% If not possible it would resort to CPRINTF to print all the available 
+% names on stdout, with a colored '⬜' as a sample. 
 % Please note that this would be quite slow. Furthermore, being based on 
 % (undocumented) java features of the MATLAB runtime, it will /not/ work 
 % outside of the official MATLAB command window (i.e. no external terminals
-% nor ssh servers, nor GNU Octave, etc.).
-% Finally if everything else fails, xkcd will print to stdout all available
-% colornames and the url to manually visit the original xkcd webpage.
+% nor ssh servers, nor GNU Octave, etc.). Finally if everything else fails,
+% all available names will be printed in black, leaving it to your intuition.
 %
-% NB) Name recognition is case-insensitive, through strcmpi. Spaces allowed.
+% NB) Name recognition is case-insensitive, through strcmpi. No spaces though.
 %
 %% USAGE
 %
 % EXAMPLE 1
-% rgb.xkcd('baby blue') 
+% rgb.X11('navyblue') 
 % 
 % EXAMPLE 2
-% rgb.xkcd('wintergreen','sunflower yellow','sapphire','radioactive green')
+% rgb.X11('SpringGreen','CornflowerBlue','sapphire','radioactive green')
 % 
 % EXAMPLE 3
 % x = -pi:.1:pi;
 % y = cos(x);
-% plot(x,y,'linewidth',4,'color',rgb.xkcd('cornflower'))
+% plot(x,y,'linewidth',4,'color',rgb.X11('CornflowerBlue'))
 % hold on
-% plot(x,y-1,'*','color',rgb.xkcd('strawberry'))
-% plot(x,y-2,'linewidth',4,'color',rgb.xkcd('puke green'))
-% legend('cornflower','strawberry','puke green') 
-% set(gca,'color',rgb.xkcd('eggshell'))
-% text(-1,-2,'This text is burnt orange.','fontweight','bold','color',...
-%      rgb.xkcd('burnt orange')); 
+% plot(x,y-1,'*','color',rgb.X11('Brown1'))
+% plot(x,y-2,'linewidth',4,'color',rgb.X11('SeaGreen'))
+% legend('cornflower','brown1 (wtf?!)','SeaGreen') 
+% set(gca,'color',rgb.X11('seashell'))
+% text(-1,-2,'This text is chocolate (wtf?!).','fontweight','bold','color',...
+%      rgb.X11('chocolate')); 
+%
+% As you can see, the X11 colors do not always match commons sense. A nice,
+% large-numbers-driven alternative is provided by the rgb.xkcd function :)
 % 
 %% AUTHOR INFO
 %
@@ -62,26 +62,26 @@ function [RGB] = xkcd(varargin)
 % embedded in the wider +rgb package by Gabriele Bellomia. Many thanks also
 % to Florian Klimm and Cedric Wannaz for their contributions. License @EOF.
 % 
-% See also rgb.x11, str2rgb, hex2rgb, rgb2hex, strcmpi and cprintf. 
+% See also rgb.xkcd, str2rgb, hex2rgb, rgb2hex, strcmpi and cprintf. 
 
-    %% Load XKCD/RGB data:
+    %% Load X11/RGB data:
 
     here = fileparts(mfilename('fullpath'));
     try % MATLAB apparently cannot load GNU-generated .mat files...
-        load([here,'/private/xkcd_rgb_data.mat'],'namelist','rgblist');
+        load([here,'/private/X11_rgb_data.mat'],'namelist','rgblist');
     catch
         % Make sure the function can load the data, rebuild it if necessary
-        disp 'Cannot load xkcd/rgb database. I will try to import from local rgb.txt file now.'
-        xkcd_install
+        disp 'Cannot load X11/rgb database. I will try to import from local X11.txt file now.'
+        X11_install
         % Load data created by xkcd_install
-        load([here,'/private/xkcd_rgb_data.mat'],'namelist','rgblist');
+        load([here,'/private/X11_rgb_data.mat'],'namelist','rgblist');
     end
         
 
     %% Input wrangling: 
 
     if nargin < 1
-       help rgb.xkcd
+       help rgb.X11
        return
     end
     
@@ -97,17 +97,16 @@ function [RGB] = xkcd(varargin)
     
     if isequal(ColorNames,"show")
         try
-            open([here,'/resources/xkcd.html']); 
+            open([here,'/resources/X11.html']);
         catch
             try   % VERY VERY SLOW, FOR THAT WE HAVE LOADS OF COLORS HERE!
                 for i = 2:950 
-                    cprintf(rgblist(i,:),'\t⬛ '); 
+                    cprintf(rgblist(i,:),'\t⬛ ');
                     cprintf([0,0,0],[namelist{i},'\n']);
                 end
             catch % In case cprintf breaks (based on undocumented features)
                 disp(namelist(2:end));
             end
-            fprintf('\n\t> find more at https://xkcd.com/color/rgb/ \n\n');
         end
         return
     end
@@ -126,12 +125,11 @@ function [RGB] = xkcd(varargin)
     % Find rgb triplet for each input color string: 
     for k = 1:numcolors
         ColorName = ColorNames{k}; 
-        ColorName = strrep(ColorName,'gray','grey'); % because many users spell it 'gray'. 
-
+        
         % If a color name is not found in the database, display error message
         % and look for near matches: 
         if sum(strcmpi(namelist,ColorName))==0
-            disp(['Color ''',ColorName,''' not found in xkcd/rgb.'])
+            disp(['Color ''',ColorName,''' not found in X11/rgb.'])
             disp(['Consider one of these options:'])
 
             % Special thanks to Cedric Wannaz for writing this bit of code. He came up with a
@@ -160,7 +158,7 @@ end
 
 %% Web-installation subfunction: 
 
-function xkcd_install 
+function X11_install 
 
     % Entering the appropriate private path
     udir = pwd;
@@ -175,97 +173,38 @@ function xkcd_install
     % Entering the private folder
     cd private
 
-    if ~exist('rgb.txt','file')
-        disp 'Cannot find rgb.txt file. I will try to download it from the internet now.'
+    if ~exist('X11.txt','file')
+        disp 'Cannot find X11.txt file.'
         try
-        websave('rgb.txt','https://xkcd.com/color/rgb.txt');
+        %websave('rgb.txt','https://X11.com/color/rgb.txt');
         catch 
             try
-                urlwrite('https://xkcd.com/color/rgb.txt','rgb.txt'); %#ok <GNU>
+                %urlwrite('https://X11.com/color/rgb.txt','rgb.txt'); %#ok <GNU>
             catch
                 disp('Having trouble downloading the txt file. You''ll need to download it manually')
-                fprintf('from http://xkcd.com/color/rgb.txt and place it in %s.\n',pwd)
-                disp('Then run again.');
+                disp('from http://X11.com/color/rgb.txt and place it in current folder. Then run again.')
                 return
             end
         end
     end
 
-    fid = fopen('rgb.txt'); 
-    RGB = textscan(fid,'%s %s','delimiter','\t');
-    fclose(fid); delete('rgb.txt')
+    fid = fopen('X11.txt'); 
+    RGB = textscan(fid,'%d %d %d\t\t%s');
+    fclose(fid); % DO NOT delete('X11.txt')!
 
-    if not(isoctave)
-        namelist = RGB{1};
-        hex = RGB{2};
-        rgblist = local_hex2rgb(hex);
-        rgblist = [NaN NaN NaN;rgblist];
-    else
-        namelist = RGB{2}; % CRAZY disparity between
-        hex = RGB{1};      % MATLAB and GNU Octave..
-        namelist = {[ ], namelist{1:end-1}};
-        rgblist = local_hex2rgb(hex(2:end)); 
-        rgblist = [NaN NaN NaN;rgblist];
-    end
+    R = double(RGB{1})/255;
+    G = double(RGB{2})/255;
+    B = double(RGB{3})/255;
+    namelist = RGB{4};
+    rgblist = [R,G,B];
 
-    save('xkcd_rgb_data.mat','namelist','rgblist')
-    disp('xkcd/rgb succesfully installed.'); cd(udir);
-end
-
-%% Local HEX2RGB subfunction: 
-
-function [ rgb ] = local_hex2rgb(hex,range)
-% HEX2RGB converts hex color values to rgb arrays on the range 0 to 1. 
-% See also hex2rgb and rgb2hex  
-
-    %% Input checks:
-    assert(nargin>0&nargin<3,'hex2rgb function must have one or two inputs.') 
-    if nargin==2
-        assert(isscalar(range),'Range must be a scalar, either "1" to scale from 0 to 1 or "256" to scale from 0 to 255.')
-    end
-    
-    %% Tweak inputs if necessary: 
-    if iscell(hex)
-        assert(isvector(hex),'Unexpected dimensions of input hex values.')
-
-        % In case cell array elements are separated by a comma instead of a
-        % semicolon, reshape hex:
-        if isrow(hex)
-            hex = hex'; 
-        end
-
-        % If input is cell, convert to matrix: 
-        hex = cell2mat(hex);
-    end
-    if strcmpi(hex(1,1),'#')
-        hex(:,1) = [];
-    end
-    if nargin == 1
-        range = 1; 
-    end
-    
-    %% Convert from hex to rgb: 
-    switch range
-        case 1
-            rgb = reshape(sscanf(hex.','%2x'),3,[]).'/255;
-        case {255,256}
-            rgb = reshape(sscanf(hex.','%2x'),3,[]).';
-
-        otherwise
-            error('Range must be either "1" to scale from 0 to 1 or "256" to scale from 0 to 255.')
-    end
-    
-end
-
-%% Determine if running under GNU Octave
-
-function bool = isoctave()
-    bool = exist('__octave_config_info__','builtin') == 5;
+    save('X11_rgb_data.mat','namelist','rgblist')
+    disp('X11/rgb succesfully installed.'); cd(udir);
 end
 
 %% LICENSE
 % Copyright (c) 2014 Chad Greene, original rgb function on FEX
-% Copyright (c) 2022 Gabriele Bellomia, rgb.xkcd package adaptation
+% Copyright (c) 2022 Gabriele Bellomia, rgb.X11 adaptation
 % All rights reserved.
 % 
 % Redistribution and use in source and binary forms, with or without
@@ -289,5 +228,3 @@ end
 % CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 % ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 % POSSIBILITY OF SUCH DAMAGE.
-
-
