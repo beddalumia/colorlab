@@ -32,7 +32,7 @@ function crameri_update(release_major,zenodo_record_number)
 
    %% Entering the appropriate private path
    self = mfilename('fullpath'); 
-   here = erase(self,'crameri_update'); cd(here)
+   here = fileparts(self); cd(here)
 
    %% Download the .zip archive
    fprintf('Downloading artifact from ZENODO..')
