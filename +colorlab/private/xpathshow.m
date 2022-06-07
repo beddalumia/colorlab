@@ -13,7 +13,7 @@ function xpathshow(dir)
     if nargin < 1
         p = strsplit(path,pathsep);
     else
-        p = xgenpath(dir,'**/*.git');
+        p = xgenpath(dir,'^\..*');
         p = strsplit(p,pathsep);
     end
     for i = length(p):-1:1

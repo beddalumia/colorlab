@@ -40,7 +40,10 @@ function [ hex ] = rgb2hex(rgb)
 % See also hex2rgb, dec2hex, and hex2num. 
 
     %% Check inputs: 
-    assert(nargin==1,'This function requires an RGB input.') 
+    if nargin == 0
+       help rgb2hex
+       return
+    end 
     assert(isnumeric(rgb)==1,'Function input must be numeric.') 
     sizergb = size(rgb); 
     assert(sizergb(2)==3,'rgb value must have three components in the form [r g b].')

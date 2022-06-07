@@ -1,7 +1,6 @@
 function [ rgb ] = hex2rgb(hex,range)
 % HEX2RGB converts hex color values to rgb arrays on the range 0 to 1. 
 % 
-% 
 % * * * * * * * * * * * * * * * * * * * * 
 % SYNTAX:
 % rgb = hex2rgb(hex) returns rgb color values in an n x 3 array. Values are
@@ -60,6 +59,10 @@ function [ rgb ] = hex2rgb(hex,range)
 % 
 
     %% Input checks:
+    if nargin == 0
+       help hex2rgb
+       return
+    end 
     assert(nargin>0&nargin<3,'hex2rgb function must have one or two inputs.') 
     if nargin==2
         assert(isscalar(range)==1,'Range must be a scalar, either "1" to scale from 0 to 1 or "256" to scale from 0 to 255.')

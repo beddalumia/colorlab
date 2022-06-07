@@ -23,7 +23,7 @@ function enter(quiet)
     % > COLORLAB initiates itself
 
     try
-        COLORLAB = xgenpath(folder,'**/*.git');
+        COLORLAB = xgenpath(folder,'^\..*');
     catch
         COLORLAB = genpath(folder);
     end

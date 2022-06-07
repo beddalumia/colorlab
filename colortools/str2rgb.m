@@ -34,6 +34,12 @@ function [RGB] = str2rgb(varargin)
 %  See also rgb.X11, rgb.xkcd, rgb.view, strlookup, palette
 
     %% Input wrangling
+    
+    if nargin == 0
+       help str2rgb
+       return
+    end
+    
     if ischar(varargin{1}) || isstring(varargin{1})
        number_of_colors = length(varargin);
     else
@@ -164,10 +170,8 @@ function [RGB] = str2rgb(varargin)
             end
         end
     end
-    
      
-   %% contains    
-   
+   %% contains      
    
    function colliding_names = intersection()
             colliding_names = { 'aquamarine';

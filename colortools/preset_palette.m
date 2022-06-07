@@ -41,7 +41,12 @@ else % Store function handle and parameter values.
 	return
 end
 %
-map = fnh(N,arg{:});
+try
+    map = fnh(N,arg{:});
+catch
+    map = fnh(arg{:});
+    map = map(1:N,:);
+end
 %
 end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%preset_colormap
