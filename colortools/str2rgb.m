@@ -12,6 +12,7 @@ function [RGB] = str2rgb(varargin)
 %  >> str2rgb({'yellow','red2','reddish',"yellowish"})
 %  >> str2rgb('matlab1','matlab2','matlab3','matlab4')
 %  >> str2rgb({'pyplot1',"pyplot2",'pyplot3'})
+%  >> str2rgb('#ff00ff','de56f0')
 %
 %  As you can see the interface is very robust and can take many strings or
 %  charvectors, as well as single cell-arrays of both. In case one or more 
@@ -20,6 +21,8 @@ function [RGB] = str2rgb(varargin)
 %
 %  STR2RGB is essentially a glorified wrapper of the very ingenious rgb.X11
 %  and rgb.xkcd functions, both derived from an original work of C. Greene.
+%
+%  NEW! Now str2rgb accepts also HEX color codes as input, through hex2rgb.
 %
 %  NB) As an ergonomic bonus STR2RGB provides also traductions for MATLAB
 %      intrinsics ('r','g','b','k'...), for default linecolors ('matlab1',
@@ -65,6 +68,15 @@ function [RGB] = str2rgb(varargin)
     RGB = zeros(number_of_colors,3); 
     MATLAB = lines(7);
     PYPLOT = palette.tab10(10);
+    
+    %% Is it just an hex code?
+    
+    try %#ok
+        for i = 1:number_of_colors
+            RGB(i,:) = hex2rgb(varargin{i});
+        end
+        return
+    end
     
     %% Hardcode XKCD backend for overlapping colornames
     

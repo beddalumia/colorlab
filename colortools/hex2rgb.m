@@ -99,4 +99,8 @@ function [ rgb ] = hex2rgb(hex,range)
             error('Range must be either "1" to scale from 0 to 1 or "256" to scale from 0 to 255.')
     end
     
+    if isempty(rgb)
+       error('HEX color not recognized.')
+    end
+    
 end
