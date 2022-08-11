@@ -1,20 +1,22 @@
 function view(colors,formfactor)
-%% RGB.VIEW(colors) displays the given colors in a figure window.
+%% view_color(colors) displays the given colors in a figure window.
 %  
-%   >> rgb.view(color,'squares') ---> matrix-like representation (default)
+%   >> view_color(color,'squares') ---> matrix-like representation (default)
 %
-%   >> rgb.view(color,'hbars') ---> horizontal barplot-like representation
+%   >> view_color(color,'hbars') ---> horizontal barplot-like representation
 %
-%   >> rgb.view(color,'vbars') ---> vertical barplot-like representation
+%   >> view_color(color,'vbars') ---> vertical barplot-like representation
 %
 %  NB) colors can be both a matrix of rgb-triplets or a cell of colornames!
 %
 %% EXAMPLES
 %
-%  rgb.view({'r','g','b','c','m','y','k','w'},'squares')
-%  rgb.view({'strawberry','apple','blueberry',"banana"})
-%  rgb.view({'matlab1','matlab2','matlab3','matlab4'},'hbars')
-%  rgb.view({'pyplot1',"pyplot2",'pyplot3'},'vbars')
+%  view_color({'r','g','b','c','m','y','k','w'},'squares')
+%  view_color({'strawberry','apple','blueberry',"banana"})
+%  view_color({'matlab1','matlab2','matlab3','matlab4'},'hbars')
+%  view_color({'pyplot1',"pyplot2",'pyplot3'},'vbars')
+%  view_color(palette.tab20(16),'hbars')
+%  view_color(palette.cubehelix(36))
 %
 %% COPYRIGHT
 %  
@@ -40,7 +42,7 @@ function view(colors,formfactor)
                 handle = subplot(1,n,i);
            otherwise
                 fprintf(2,'\nERROR: invalid form-factor.\n\n')
-                close(figurehandle); help rgb.view; 
+                close(figurehandle); help view_color; 
                 return
        end
            set(handle,'color',colors(i,:));

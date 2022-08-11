@@ -24,24 +24,6 @@ Here we provide methods to retrieve rgb triplets, from two huge well-known datas
 
 For more detailed information and examples just invoke the docstrings by typing `help rgb.X11`, `help rgb.xkcd` (or use the `doc` command instead of `help` for a nicer pop-up window).
 
-## Additional interactive funtionaity through `rgb.view`
-
-To help interactive exploration we furthermore provide a very simple --yet effective-- tool to visualize small collections of colors, so to allow fast visual comparisons and easier overall evaluation of different colornames. It supports single or multiple colors (as cells, not multiple arguments allowed, currently) and an optional string to specify the visual format of the shown palette: `'squares'` for a matrix, `'hbars'` and `'vbars'` for respectively horizonatal and vertical barplots. It supports colornames from _both_ the X11 and xkcd datasets, prioritizing the latter when there is collision: learn more about our naming criteria in the docstrings of [`str2rgb`](../colortools/str2rgb.m), our higher level wrapper for colorname-to-rgb-triplet conversions, which includes also other smaller sets and provide a hex-to-rgb converter.
-
-Some examples:
-
-```matlab
-rgb.view({'r','g','b','c','m','y','k','w'},'squares')
-rgb.view({'strawberry','apple','blueberry',"banana"})
-rgb.view({'matlab1','matlab2','matlab3','matlab4'},'hbars')
-rgb.view({'pyplot1',"pyplot2",'pyplot3'},'vbars')
-```
-would produce the following (_clockwise_ ordering):
-
-![rgbcmykw](resources/rgbcmykw.svg) | ![fruit](resources/fruit.svg)
---|--
-![pyplot](resources/pyplot.svg) | ![matlab](resources/matlab.svg)
-
 ### COPYRIGHT & LICENSING ###
 
 © 2014 Chad Greene, original [rgb function](https://it.mathworks.com/matlabcentral/fileexchange/46872-intuitive-rgb-color-values-from-xkcd)    
