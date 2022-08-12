@@ -10,19 +10,14 @@ grid,axis('off','equal');
 
 addpath ../../colorlab/
 colorlab.enter
-import palette.*
-
-colormap(viridis)
-save_fig rosa_viridis
-
-colormap(crameri('batlow'))
-save_fig rosa_batlow
-
-colormap(cubehelix)
-save_fig rosa_cubehelix
-
-colormap(magma)
-save_fig rosa_magma
+set_palette viridis
+save_fig viridis 
+set_palette batlow
+save_fig batlow 
+set_palette cubehelix
+save_fig cubehelix
+set_palette magma
+save_fig magma 
 
 
 function save_fig(name)

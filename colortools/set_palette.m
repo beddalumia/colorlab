@@ -35,6 +35,9 @@ function set_palette(input_name,varargin)
 %
 % See also palette, paletteshow, paletteditor, preset_palette
 %
+% Copyright (c) 2022 Gabriele Bellomia
+% MIT License
+
     if nargin < 1
         help set_palette
         return

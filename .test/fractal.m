@@ -6,7 +6,7 @@ clearvars
 %axis equal off 
 
 import plotDMFT.colorlab.*
-set(0,'DefaultAxesColorOrder',matplotlib.tab20)
+set(0,'DefaultAxesColorOrder',palette.tab20)
 
 for j = 1:10
     for i=1:1000

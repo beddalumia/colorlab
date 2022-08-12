@@ -24,7 +24,7 @@ To start using the packages just:
 2. start a matlab session therein and in the matlab command window type
    ```matlab
    >> colorlab.enter
-   >> savepath %to make changes resilient to session restart
+   >> savepath % to make changes resilient to session restart
    ```
 3. call any function, import any subpackage as explained [below](#usage) :)
 
@@ -36,7 +36,16 @@ To start using the packages just:
 
 ### Usage
 
-The higher level API consists of the functions included in the colortools folder. Ideally the user would mostly use just these, although lower level machinery is made available by means of specialized namespaces. Let's start...
+The higher level API consists of the functions included in the colortools folder. Ideally the user would mostly use just these, although lower level machinery is made available by means of specialized namespaces. These are thoroughly documented in their specific READMEs, to which we'll refer whenever appropriate:
+
+- [`BREWER`](brewer/README.md) colormap package.
+- [`CMOCEAN`](cmocean/README.md) colormap package.
+- [`CRAMERI`](crameri/README.md) colormap package.
+- [`CUBEHELIX`](cubehelix/README.md) colormap package.
+- [`MATPLOTLIB`](matplotlib/README.md) colormap package.
+- [`RGB`](+rgb/README.md) colorname package, to allow selecting colors by their conventional names.
+
+So let's start now describing the colortools!
 
 [🚧🚧🚧 Work ⚠️ in 🪜 Progress 🚧🚧🚧🚧🚧🚧 ]
 
