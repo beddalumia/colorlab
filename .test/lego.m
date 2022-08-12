@@ -40,15 +40,12 @@ function legoland(name)
     zdata = b(k).ZData;
     b(k).CData = zdata;
     end
-    InSet = get(gca, 'TightInset'); % [These two lines ensure filling of the fig]
-    set(gca, 'Position', [InSet(1:2), 1-InSet(1)-InSet(3), 1-InSet(2)-InSet(4)]);
-    %colorbar()
+    colorbar()
 
 end
 
 function save_fig(name)
-    file = ['logo_',name,'.png'];
+    file = ['lego_',name,'.png'];
     res  = '-r228.3298'; % -> 1080px wide
-    res = '-r1200'
     export_fig(file,res);
 end
