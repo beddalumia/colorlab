@@ -32,7 +32,7 @@ function legoland(name)
     figure('Name',name)
     Z = max(round(membrane*24),0);
     b = bar3(Z);
-    view([35 30]);
+    view([50 30]);
     cmap = lines(8);
     colormap([1,1,1; cmap])
     axis equal off
@@ -45,7 +45,7 @@ function legoland(name)
 end
 
 function save_fig(name)
-    file = ['logo_',name,'.png'];
+    file = ['lego_',name,'.png'];
     res  = '-r228.3298'; % -> 1080px wide
-    %export_fig(file,res);
+    export_fig(file,res);
 end
