@@ -53,6 +53,10 @@ So let's start now describing the colortools!
 
 [...]
 
+![](resources/parulaVSviridis.svg)
+![](resources/magmaVScubehelix.svg)
+<img src=resources/lego.gif width=300>
+
 #### Preset parameters for colormap generators via `preset_palette` 
 
 [...]
@@ -64,6 +68,8 @@ So let's start now describing the colortools!
 #### Common colornames to RGB triplets via the mighty `str2rgb`
 
 [...]
+
+![](resources/X11vsXKCD.jpg)
 
 #### RGB to HEX space and viceversa through `rgb2hex` and `hex2rgb`
 
