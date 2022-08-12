@@ -1,4 +1,4 @@
-<img src=resources/logo.gif width=250>
+<img src=https://user-images.githubusercontent.com/56808633/184309047-71a9e8b4-cc7b-473a-8277-a520b1951787.gif width=250>
 
 # `COLORLAB` a curated collection of color-related MATLAB libraries
 
@@ -10,33 +10,35 @@ So here we provide a fair amount of such new color functionality, building up on
 
 - [Stephen Cobeldick](https://github.com/DrosteEffect), refined matlab programmer and color-theory expert.
 
-The codebase mainly embeds several functions and packages by these two authors, retrieved either from the [file-exchange](https://www.mathworks.com/matlabcentral/fileexchange/) or github and then appropriately tweaked/extended, while providing some common wrappers and tools. All for a unified user experience.
+The codebase mainly embeds several functions and packages by these two authors, retrieved either from the [file-exchange](https://www.mathworks.com/matlabcentral/fileexchange/) or github and then appropriately tweaked/extended, while providing some common wrappers and tools.    
+All for a unified user experience.
 
 ## Installation
 
 To start using the packages just:
 
 1. clone the repository somewhere in your machine
-   ```ssh
+   ```
    git clone https://github.com/bellomia/colorlab.git
    ```
 2. start a matlab session therein and in the matlab command window type
-   ```matlab
-   colorlab.enter
-   savepath !to make changes resilient to session restart
+   ```
+   >> colorlab.enter
+   >> savepath !to make changes resilient to session restart
    ```
 3. call any function, import any subpackage as explained [below](#usage) :)
 
 4. If you wish to unoad the library from the matlab path, just type in the commmand window (from whatever directory)
-   ```matlab
-   colorlab.leave
-   savepath
+   ```
+   >> colorlab.leave
+   >>savepath
    ```
 
 ## Usage
 
 
-## Additional interactive funtionaity through `view_color`
+
+### Additional interactive funtionaity through `view_color`
 
 To help interactive exploration we furthermore provide a very simple --yet effective-- tool to visualize small collections of colors, so to allow fast visual comparisons and easier overall evaluation of different colornames. It supports single or multiple colors (as cells, not multiple arguments allowed, currently) and an optional string to specify the visual format of the shown palette: `'squares'` for a matrix, `'hbars'` and `'vbars'` for respectively horizontal and vertical barplots. It supports colornames from _both_ the X11 and xkcd datasets, prioritizing the latter when there is collision: learn more about our naming criteria in the docstrings of [`str2rgb`](../colortools/str2rgb.m), our higher level wrapper for colorname-to-rgb-triplet conversions, which includes also other smaller sets and provide a hex-to-rgb converter.
 
