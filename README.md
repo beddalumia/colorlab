@@ -49,7 +49,27 @@ So let's start now describing the colortools!
 
 [🚧🚧🚧 Work ⚠️ in 🪜 Progress 🚧🚧🚧🚧🚧🚧 ]
 
-#### Additional interactive funtionaity through `view_color`
+#### Select all available colormaps via `set_palette`
+
+[...]
+
+#### Preset parameters for colormap generators via `preset_palette` 
+
+[...]
+
+#### Build fully custom diverging colormaps through `diverging_cmap`
+
+[...]
+
+#### Common colornames to RGB triplets via the mighty `str2rgb`
+
+[...]
+
+#### RGB to HEX space and viceversa through `rgb2hex` and `hex2rgb`
+
+[...]
+
+#### Additional interactive functionality through `view_color`
 
 To help interactive exploration we furthermore provide a very simple --yet effective-- tool to visualize small collections of colors, so to allow fast visual comparisons and easier overall evaluation of different colornames. It supports single or multiple colors (as cells, not multiple arguments allowed, currently) and an optional string to specify the visual format of the shown palette: `'squares'` for a matrix, `'hbars'` and `'vbars'` for respectively horizontal and vertical barplots. It supports colornames from _both_ the X11 and xkcd datasets, prioritizing the latter when there is collision: learn more about our naming criteria in the docstrings of [`str2rgb`](../colortools/str2rgb.m), our higher level wrapper for colorname-to-rgb-triplet conversions, which includes also other smaller sets and provide a hex-to-rgb converter.
 
@@ -69,3 +89,7 @@ would produce the following (left-right and top-down ordering):
 --|--
 ![pyplot](resources/pyplot.svg) | ![matlab](resources/matlab.svg)
 ![pyplot](resources/tab20.svg) | ![matlab](resources/cubehelix_palette.svg)
+
+#### BONUS: we embeed also the legendary `cprintf`, for colorful terminal output (with caveats)
+
+[...]
