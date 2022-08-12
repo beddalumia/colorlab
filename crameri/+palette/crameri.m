@@ -117,7 +117,7 @@ catch
        cmap = S.(ColormapName); 
    catch
        error(['Unknown colormap name ''',ColormapName,...
-       '''. Try typing crameri.show to check the options and try again.'])
+       '''. Try typing paletteshow.crameri to check the options and try again.'])
    end
 end
 
