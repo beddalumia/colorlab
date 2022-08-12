@@ -8,19 +8,21 @@ Y=K.*cos(T);Z=x.*(R.*J-y.*L);
 surf(X,Y,Z,'LineStyle','none');
 grid,axis('off','equal');
 
-
 addpath ../../colorlab/
 colorlab.enter
 import palette.*
 
-colormap(magma)
-save_fig magma 
-
-colormap(cubehelix)
-save_fig helix
+colormap(viridis)
+save_fig rosa_viridis
 
 colormap(crameri('batlow'))
-save_fig wales
+save_fig rosa_batlow
+
+colormap(cubehelix)
+save_fig rosa_cubehelix
+
+colormap(magma)
+save_fig rosa_magma
 
 
 function save_fig(name)
