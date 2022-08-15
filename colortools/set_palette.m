@@ -1,7 +1,11 @@
-function set_palette(input_name,varargin)
+function set_palette(input_name,N,varargin)
 %% Generic wrapper to set all available colormaps
 %
-%  >> set_palette(cmap_name,varargin)
+%  >> set_palette(cmap_name,N,varargin)
+%
+%     cmap_name: string, the input colormap name
+%     N: optional int, the number of requested levels
+%     varargin: optional, to request low level API
 %
 %  To see all available colormap names just call:
 %  >> set_palette('list') or set_palette list
@@ -43,6 +47,14 @@ function set_palette(input_name,varargin)
         return
     end
 
+    if nargin < 2
+        N = cmDefaultN();
+    end
+
+    if not(isnumeric(N))
+        N = str2num(N);
+    end
+
     % First we retrieve all available colormap names
     namelist = build_namelist();
     %load('/home/gbellomia/Dropbox/GitHub/colorlab/+rgb/private/X11_rgb_data.mat','namelist')
@@ -78,29 +90,28 @@ function set_palette(input_name,varargin)
     position = find(strcmp(namelist,input_name)); % Crameri calls for case!
     switch true
     case ismember(position, 1:11)
-        matplotlib_dispatch(input_name);
+        matplotlib_dispatch(input_name,N);
         fprintf('Set through palette.%s\n',input_name)
     case ismember(position, 12)
-        map = palette.cubehelix(varargin{:});
+        map = palette.cubehelix(N,varargin{:});
         colormap(map)
         fprintf('Set through palette.%s\n',input_name)
     case ismember(position, 13:46)
-        if nargin > 1
-            map = palette.brewer(varargin{1},input_name);
-        else
-            map = palette.brewer(256,input_name);
-        end
+        map = palette.brewer(N,input_name);
         colormap(map)
         fprintf('Set through palette.brewer\n')
     case ismember(position, 47:68)
-        palette.cmocean(input_name,varargin{:});
+        palette.cmocean(input_name,N,varargin{:});
         fprintf('Set through palette.cmocean\n')
     case ismember(position, 69:121)
-        palette.crameri(input_name,varargin{:});
+        palette.crameri(input_name,N,varargin{:});
         fprintf('Set through palette.crameri\n')
     case ismember(position, 122:140)
         colormap(input_name); % built-ins
         fprintf('Set through built-in colormap()\n')
+        if nargin > 1
+            disp('No optional arguments available for built-in maps!')
+        end
     end
 
 end
@@ -260,30 +271,45 @@ function list = build_namelist()
     };
 end
 
-function matplotlib_dispatch(name)
+function matplotlib_dispatch(name,N)
     switch name
     case 'cividis'
-        map = palette.cividis;
+        map = palette.cividis(N);
     case 'inferno'
-        map = palette.inferno;
+        map = palette.inferno(N);
     case 'magma'
-        map = palette.magma;
+        map = palette.magma(N);
     case 'plasma'
-        map = palette.plasma;
+        map = palette.plasma(N);
     case 'twilight'
-        map = palette.twilight;
+        map = palette.twilight(N);
     case 'twilight_shifted'
-        map = palette.twilight_shifted;
+        map = palette.twilight_shifted(N);
     case 'viridis'
-        map = palette.viridis;
+        map = palette.viridis(N);
     case 'tab10'
-        map = palette.tab10;
+        map = palette.tab10(N);
     case 'tab20'
-        map = palette.tab20;
+        map = palette.tab20(N);
     case 'tab20b'
-        map = palette.tab20b;
+        map = palette.tab20b(N);
     case 'tab20c'
-        map = palette.tab20c;
+        map = palette.tab20c(N);
     end
     colormap(gcf,map)
+end
+
+function N = cmDefaultN()
+% Get the colormap size from the current figure or default colormap.
+    try
+        F = get(groot,'CurrentFigure');
+    catch %#ok<CTCH> pre HG2
+        N = size(get(gcf,'colormap'),1);
+        return
+    end
+    if isempty(F)
+        N = size(get(groot,'DefaultFigureColormap'),1);
+    else
+        N = size(F.Colormap,1);
+    end
 end
