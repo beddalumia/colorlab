@@ -12,7 +12,7 @@ function map = preset_palette(N,varargin)
 % >> preset_palette(@cubehelix.map,0.25,-0.67,1.5,1)
 % >> colormap(preset_palette)
 % or
-% >> preset_colormap(5)
+% >> preset_palette(5)
 % ans =
 %          0         0         0
 %     0.1055    0.2788    0.4895

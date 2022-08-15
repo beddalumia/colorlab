@@ -128,7 +128,7 @@ Note that `set_palette('cubehelix',[],0,0.6,1.6,0.9,[0,1],[0,0.8])` is a totally
 Finally, despite giving access also to qualitative/categorical colorschemes, `set_palette` is currently not so useful in this area, since matlab treats colormaps and 'color-orders' in a totally different way. We might add a proper wrapper for this in future. For now you can set the color orders with the low level palette functions, as in:
 
 ```matlab
-set(0,'DefaultAxesColorOrder',palette.tab10)
+set(0,'DefaultAxesColorOrder',palette.<your-choice>)
 N = 6;
 X = linspace(0,pi*3,1000);
 Y = bsxfun(@(x,n)n*sin(x+2*n*pi/N), X.', 1:N);
@@ -138,7 +138,19 @@ for n = 1:N
 end
 xlim([0,3*pi]);
 ```
-![tab10](matplotlib/resources/tab10.svg)
+Some examples (non exhaustive):
+
+`palette.tab10` | `palette.tab20` | 
+------|-------|
+![tab10](matplotlib/resources/tab10.svg) | ![tab20](matplotlib/resources/tab20.svg)
+
+`palette.brewer('Accent')` | `palette.brewer('Pastel2')`
+------|-------|
+![accent](brewer/resources/accent.svg) | ![pastel2](brewer/resources/pastel2.svg) | 
+
+`palette.crameri('actonS')` | `palette.crameri('turkuS')`
+------|-------|
+![acton](crameri/resources/acton.svg) | ![turku](crameri/resources/turku.svg)
 
 More examples can be found in the [`lego.m`](.test/lego.m) test script, giving a fun rendition of the matlab logo:
 
@@ -146,11 +158,42 @@ More examples can be found in the [`lego.m`](.test/lego.m) test script, giving a
 
 #### Preset parameters for colormap generators via `preset_palette` 
 
-[🚧🚧🚧 Work ⚠️ in 🪜 Progress 🚧🚧🚧🚧🚧🚧 ]
+The generic "lambda-wrapper" `preset_palette` makes it easy to store complex parameters for the highly customizable generators, so to allow applying the desired colormap with the short `colormap(preset_palette)` afterwards. The generic syntax is 
+```matlab
+preset_palette(@lambda_function,varargin)
+```
+as in
+```matlab
+>> preset_palette(@cubehelix.map,0.25,-0.67,1.5,1)
+>> colormap(preset_palette)
+```
 
-#### Build fully custom diverging colormaps through `diverging_cmap`
+It can also come handy to circumvent come limitations in composability with toolboxes, since it exposes an interface that is exactly identical to official built-in colormap functions. For instance, one can easily use the infamous `contourcmap` function, from the Mapping Toolbox, with any of the provided colormaps, even with custom parameters:
 
-[🚧🚧🚧 Work ⚠️ in 🪜 Progress 🚧🚧🚧🚧🚧🚧 ]
+```matlab
+% preselect the colorscheme.
+preset_palette(@palette.<choice>, <parameters_if_any>); 
+% build the worldmap 
+load topo
+load coastlines
+figure
+worldmap(topo, topolegend);
+contourfm(topo, topolegend);
+plotm(coastlat, coastlon, 'k'); 
+% apply the preselected colormap
+contourcmap('preset_palette', 'Colorbar','on', 'Location','horizontal',...
+'TitleString','Contour Intervals in Meters');
+```
+
+> Note that something like `contourcmap('palette.<choice>')` would not work, due to how `countourcmap` evaluates the given colormap names!
+
+Here we show some wonderful choices for our worldmap!
+
+Matplotlib viridis  | CubeHelix custom | Brewer inverted purple-orange | CMocean topo| Crameri oleron |
+------|-----|-----|----|-----
+<img width=500 src=matplotlib/resources/worldmap_viridis.svg> | <img width=500 src=cubehelix/resources/worldmap_helix.svg> | <img width=500 src=brewer/resources/worldmap_brewer.svg> | <img width=500 src=cmocean/resources/worldmap_cmocean.svg> | <img width=500 src=crameri/resources/worldmap_crameri.svg>
+
+
 
 #### Common colornames to RGB triplets via the mighty `str2rgb`
 
@@ -159,6 +202,10 @@ More examples can be found in the [`lego.m`](.test/lego.m) test script, giving a
 ![](resources/X11vsXKCD.jpg)
 
 #### RGB to HEX space and viceversa through `rgb2hex` and `hex2rgb`
+
+[🚧🚧🚧 Work ⚠️ in 🪜 Progress 🚧🚧🚧🚧🚧🚧 ]
+
+#### Build fully custom diverging colormaps through `diverging_cmap`
 
 [🚧🚧🚧 Work ⚠️ in 🪜 Progress 🚧🚧🚧🚧🚧🚧 ]
 
