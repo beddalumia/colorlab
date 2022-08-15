@@ -28,9 +28,7 @@ The above table, showing all the continuous colormaps defined in the package, ca
     surfc(X,Y,Z+4)
     palette.crameri('bam','pivot',4) % recenter the color-axis
 ```
-![surfc](resources/surfc_bam.png)    
------------------------- 
-🚧🚧🚧 Work ⚠️ in 🪜 Progress 🚧🚧🚧🚧🚧🚧      
+![surfc](resources/surfc_bam.png)       
 ```matlab
     % A trick to deal with nasty CONTOURCMAP function (Mapping Toolbox):
     preset_palette(@palette.crameri, 'oleron'); % preselect the colorscheme.
@@ -45,8 +43,6 @@ The above table, showing all the continuous colormaps defined in the package, ca
     % -> we have applied our beautiful colormap through the preset function!
 ```   
 ![oleron](resources/worldmap_crameri.svg)     
-🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
----------------------------------- 
 ```matlab
     % Plot and compare RGB values:
     ax(1) = subplot(1,3,1); 

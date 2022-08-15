@@ -23,6 +23,7 @@ Note that the package delivers only a subset of all matplotlib's colorscheme, na
     surfc(X,Y,Z)
     colormap(palette.twilight_shifted) % shifted to have white at zero
 ```
+![surfc_twilight](resources/surfc_twilight.png)
 ```matlab
     % A trick to deal with nasty CONTOURCMAP function (Mapping Toolbox):
     preset_palette(@palette.viridis); % preselect the colorscheme.
@@ -34,10 +35,9 @@ Note that the package delivers only a subset of all matplotlib's colorscheme, na
     plotm(coastlat, coastlon, 'k'); 
     contourcmap('preset_palette', 'Colorbar','on', 'Location','horizontal',...
     'TitleString','Contour Intervals in Meters'); % Et Voilà...
-    % -> we have applied our beautiful colormap through the preset function!
+    % -> we have applied the viridis colormap through the preset function!
 ```
 ![world](resources/worldmap_viridis.svg)
-![surfc_twilight](resources/surfc_twilight.png)
 ```matlab
     % Plot and compare RGB values:
     ax(1) = subplot(1,2,1);

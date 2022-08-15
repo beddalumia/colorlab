@@ -25,9 +25,7 @@ The above table, showing all the colormaps defined in the package, can be retrie
     surfc(X,Y,Z+4)
     palette.cmocean('curl','pivot',4) % recenter the color-axis
 ```
-![surfc](resources/peaks.png)    
------------------------- 
-🚧🚧🚧 Work ⚠️ in 🪜 Progress 🚧🚧🚧🚧🚧🚧      
+![surfc](resources/peaks.png)         
 ```matlab
     % A trick to deal with nasty CONTOURCMAP function (Mapping Toolbox):
     preset_palette(@palette.cmocean, 'topo'); % preselect the colorscheme.
@@ -39,11 +37,9 @@ The above table, showing all the colormaps defined in the package, can be retrie
     plotm(coastlat, coastlon, 'k'); 
     contourcmap('preset_palette', 'Colorbar','on', 'Location','horizontal',...
     'TitleString','Contour Intervals in Meters'); % Et Voilà...
-    % -> we have applied our beautiful colormap through the preset function!
+    % -> we have applied the topo colormap through the preset function!
 ```   
 ![topo](resources/worldmap_cmocean.svg)     
-🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
----------------------------------- 
 ```matlab
     % Plot and compare RGB values:
     ax(1) = subplot(1,2,1); 
