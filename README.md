@@ -172,7 +172,7 @@ It can also come handy to circumvent come limitations in composability with tool
 
 ```matlab
 % preselect the colorscheme.
-preset_palette(@palette.<choice>, <parameters_if_any>); 
+preset_palette(@palette.<choice>,<parameters>); 
 % build the worldmap 
 load topo
 load coastlines
@@ -189,9 +189,13 @@ contourcmap('preset_palette', 'Colorbar','on', 'Location','horizontal',...
 
 Here we show some wonderful choices for our worldmap!
 
-Matplotlib viridis  | CubeHelix custom | Brewer inverted purple-orange | CMocean topo| Crameri oleron |
-------|-----|-----|----|-----
-<img width=500 src=matplotlib/resources/worldmap_viridis.svg> | <img width=500 src=cubehelix/resources/worldmap_helix.svg> | <img width=500 src=brewer/resources/worldmap_brewer.svg> | <img width=500 src=cmocean/resources/worldmap_cmocean.svg> | <img width=500 src=crameri/resources/worldmap_crameri.svg>
+`<choice>`  | `<parameters>` | `contourcmap`
+------|-----|-----|
+`viridis` | `N/A` | <img width=450 src=matplotlib/resources/worldmap_viridis.svg> |
+`cubehelix` | `3,-0.5,1.5,1` | <img width=450 src=cubehelix/resources/worldmap_helix.svg> |
+`brewer` | `'-PuOr'`| <img width=450 src=brewer/resources/worldmap_brewer.svg> |
+`cmocean` | `'topo'` | <img width=450 src=cmocean/resources/worldmap_cmocean.svg> |
+`crameri` | `'oleron'` | <img width=450 src=crameri/resources/worldmap_crameri.svg>
 
 
 
