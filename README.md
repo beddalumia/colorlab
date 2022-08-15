@@ -36,7 +36,7 @@ To start using the packages just:
 
 ### Usage
 
-The higher level API consists of the functions included in the colortools folder. Ideally the user would mostly use just these, although lower level machinery is made available by means of specialized namespaces. These are thoroughly documented in their specific READMEs, to which we'll refer whenever appropriate:
+The higher level API consists of the functions included in the colortools folder. Ideally the user would mostly use just these, although lower level machinery is made available by means of specialized namespaces. These are thoroughly documented in specific READMEs, to which we'll refer whenever appropriate:
 
 - [`BREWER`](brewer/README.md) colormap package.
 - [`CMOCEAN`](cmocean/README.md) colormap package.
@@ -47,33 +47,120 @@ The higher level API consists of the functions included in the colortools folder
 
 So let's start now describing the colortools!
 
-[🚧🚧🚧 Work ⚠️ in 🪜 Progress 🚧🚧🚧🚧🚧🚧 ]
-
 #### Select all available colormaps via `set_palette`
 
-[...]
+The `set_palette` command wraps all the provided colormap packages, exposing to the user a very simple and intuitive interface. Just feed a colormap name and it will set it up for the current figure or, if unrecognized, suggest some "nearest" matches for you, e.g.
 
-![](resources/parulaVSviridis.svg)
-![](resources/magmaVScubehelix.svg)
+```matlab
+>> set_palette grey
+   Palette "grey" not found!
+   Consider one of these options:
+      {'Greys'}
+      {'RdGy' }
+      {'gray' }
+>> set_palette gray
+   Set through palette.cmocean
+```
+
+As you can see, for any valid colormap name `set_palette` would inform you about which specific generator has been internally called. A full list of all available colormaps shall be obtained by typing `set_palette list`. For more info type `help set_palette`.
+
+Experimentally, `set_palette` supports also giving non-default parameters to the underlying colormap generators. Just call it as:
+
+```matlab
+>> set_palette('name',Number_of_Levels,varargin)
+```
+
+To set the `<name>` colormap with the desired `Number_of_Levels` and pass further generator-specific options through the `varargins`. Info about the required structure of such additional parameters is  available within generator-specific docstrings: `help palette.<generator-name>`. 
+
+Of course you can call directly the generators, which are all collected under the `palette` namespace. They have very different APIs so inspection of the generator-specific READMEs linked above is strongly advised. 
+
+Some generators provide single, fine-tuned, colormaps with the only option to select the number of levels. This is the case e.g. of `palette.viridis` which provides the current default colormap in matplotlib, [born as an open-source alternative to matlab's `parula`](https://www.youtube.com/watch?v=xAoljeRJ3lU). You can compare the two by:
+
+```matlab
+ax(1) = subplot(1,2,1); 
+cmap = parula(); % Built-in in Matlab
+rgbplot(cmap); title('parula')
+xlim([0,256]); xticks([]);
+colorbar('southoutside');
+colormap(ax(1),cmap); 
+
+ax(2) = subplot(1,2,2); 
+cmap = palette.viridis;
+rgbplot(cmap); title('viridis')
+xlim([0,256]); xticks([]);
+colorbar('southoutside');
+colormap(ax(2),cmap); 
+```
+
+![PARULAvsVIRIDIS](resources/parulaVSviridis.svg)
+
+Other generators provide complex algorithms that allow crafting your own colormap, with a high degree of customization. The richer example is currently given by `palette.cubehelix` which can easily mimic the alternatives, like in:
+
+```matlab
+ax(1) = subplot(1,2,1); 
+cmap = palette.magma;
+rgbplot(cmap); title('Original Magma')
+xlim([0,256]); xticks([]);
+colorbar('southoutside');
+colormap(ax(1),cmap); 
+
+ax(2) = subplot(1,2,2); % MAGMA-like CubeHelix params!
+cmap = palette.cubehelix([],0,0.6,1.6,0.9,[0,1],[0,0.8]);
+rgbplot(cmap); title('CubeHelix Magma')
+xlim([0,256]); xticks([]);
+colorbar('southoutside');
+colormap(ax(2),cmap);
+```
+
+![MAGMAvsCUBEHELIX](resources/magmaVScubehelix.svg)
+
+
+Note that `set_palette('cubehelix',[],0,0.6,1.6,0.9,[0,1],[0,0.8])` is a totally valid call to the generic wrapper, allowing the selection of our 'fake-magma' colormap through the cubehelix generator, without explicitly calling the specific `palette.cubehelix` function:
+
+```matlab
+>> imagesc(peaks(500))
+>> set_palette('cubehelix',[],0,0.6,1.6,0.9,[0,1],[0,0.8])
+   Set through palette.cubehelix
+```
+
+<img width=500 src=resources/fake_magma.svg>
+
+Finally, despite giving access also to qualitative/categorical colorschemes, `set_palette` is currently not so useful in this area, since matlab treats colormaps and 'color-orders' in a totally different way. We might add a proper wrapper for this in future. For now you can set the color orders with the low level palette functions, as in:
+
+```matlab
+set(0,'DefaultAxesColorOrder',palette.tab10)
+N = 6;
+X = linspace(0,pi*3,1000);
+Y = bsxfun(@(x,n)n*sin(x+2*n*pi/N), X.', 1:N);
+for n = 1:N
+   plot(X(:),Y(:,n), 'linewidth',4);
+   hold all
+end
+xlim([0,3*pi]);
+```
+![tab10](matplotlib/resources/tab10.svg)
+
+More examples can be found in the [`lego.m`](.test/lego.m) test script, giving a fun rendition of the matlab logo:
+
 <img src=resources/lego.gif width=300>
 
 #### Preset parameters for colormap generators via `preset_palette` 
 
-[...]
+[🚧🚧🚧 Work ⚠️ in 🪜 Progress 🚧🚧🚧🚧🚧🚧 ]
 
 #### Build fully custom diverging colormaps through `diverging_cmap`
 
-[...]
+[🚧🚧🚧 Work ⚠️ in 🪜 Progress 🚧🚧🚧🚧🚧🚧 ]
 
 #### Common colornames to RGB triplets via the mighty `str2rgb`
 
-[...]
+[🚧🚧🚧 Work ⚠️ in 🪜 Progress 🚧🚧🚧🚧🚧🚧 ]
 
 ![](resources/X11vsXKCD.jpg)
 
 #### RGB to HEX space and viceversa through `rgb2hex` and `hex2rgb`
 
-[...]
+[🚧🚧🚧 Work ⚠️ in 🪜 Progress 🚧🚧🚧🚧🚧🚧 ]
 
 #### Additional interactive functionality through `view_color`
 
