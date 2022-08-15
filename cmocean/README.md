@@ -7,9 +7,9 @@ CMOCEAN provides a MATLAB port of the beautiful homonym package in matplotlib. C
 
 ## Overview: colorschemes and main functionalities ##
 
-<img src="resources/cmocean_show.png" )
+<img src=resources/cmocean_show.png align=right width=100>
 
-The above table, showing all the colormaps defined in the package, can be retrieved at run time by invoking the `paletteshow.cmocean` command. All colorschemes can be inverted by prepending a `-` character (e.g. `palette.cmocean('-gray')`). Calling `palette.cmocean` without outputs would automatically set the colorscheme, without the need to explicitly calling the built-in `colormap` function. More info can be found typing `help palette.cmocean` or by inspection of the following examples.
+The table on the side, showing all the colormaps defined in the package, can be retrieved at run time by invoking the `paletteshow.cmocean` command. All colorschemes can be inverted by prepending a `-` character (e.g. `palette.cmocean('-gray')`). Calling `palette.cmocean` without outputs would automatically set the colorscheme, without the need to explicitly calling the built-in `colormap` function. More info can be found typing `help palette.cmocean` or by inspection of the following examples.
 
 ### Examples: command line usage through `palette.cmocean()` function ###
 
