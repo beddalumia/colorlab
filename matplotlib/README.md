@@ -23,7 +23,7 @@ Note that the package delivers only a subset of all matplotlib's colorscheme, na
     surfc(X,Y,Z)
     colormap(palette.twilight_shifted) % shifted to have white at zero
 ```
-![surfc_twilight](resources/surfc_twilight.png)
+![surfc_twilight](resources/surfc_twilight.svg)
 ```matlab
     % A trick to deal with nasty CONTOURCMAP function (Mapping Toolbox):
     preset_palette(@palette.viridis); % preselect the colorscheme.

@@ -47,7 +47,7 @@ The above table, showing all the discrete schemes defined in the package, can be
     surfc(X,Y,Z)
     colormap(palette.brewer([],'-RdBu')) % reversed red-blue divergent scheme
 ```
-![invRdBu](resources/surfc_invRdBu.png)
+![invRdBu](resources/surfc_invRdBu.svg)
 ```matlab
     % A trick to deal with nasty CONTOURCMAP function (Mapping Toolbox):
     preset_palette(@palette.brewer, '-PuOr'); % preselect the colorscheme.

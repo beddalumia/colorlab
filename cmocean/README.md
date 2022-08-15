@@ -25,7 +25,7 @@ The table on the side, showing all the colormaps defined in the package, can be 
     surfc(X,Y,Z+4)
     palette.cmocean('curl','pivot',4) % recenter the color-axis
 ```
-![surfc](resources/peaks.png)         
+![surfc](resources/peaks.svg)         
 ```matlab
     % A trick to deal with nasty CONTOURCMAP function (Mapping Toolbox):
     preset_palette(@palette.cmocean, 'topo'); % preselect the colorscheme.

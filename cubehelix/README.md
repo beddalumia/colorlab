@@ -25,7 +25,7 @@ The CUBEHELIX algorithm[^3] is originally defined [here](http://astron-soc.in/bu
     surfc(X,Y,Z)
     colormap(palette.cubehelix([],3,-0.5,1.5,1)) % Giving a relaxed forest-green vibe
 ```
-![forest](resources/forest_helix.png)
+![forest](resources/forest_helix.svg)
 ```matlab
     %% A trick to deal with nasty CONTOURCMAP function (Mapping Toolbox):
     preset_palette(@palette.cubehelix, 3,-0.5,1.5,1); % preselect the map.
