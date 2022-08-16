@@ -199,9 +199,17 @@ Here we show some wonderful choices for our worldmap!
 
 
 
-#### Common colornames to RGB triplets via the mighty `str2rgb`
+#### Common colornames for RGB triplets via the mighty `str2rgb`
 
 [🚧🚧🚧 Work ⚠️ in 🪜 Progress 🚧🚧🚧🚧🚧🚧 ]
+
+```matlab
+X11_list = rgb.X11('list')
+xkcd_list = rgb.xkcd('list')
+overlap = intersect(X11_list,xkcd_list)
+view_color(rgb.X11(overlap),'hbars')
+view_color(rgb.xkcd(overlap),'hbars')
+```
 
 ![](resources/X11vsXKCD.jpg)
 
@@ -237,3 +245,11 @@ would produce the following (left-right and top-down ordering):
 #### BONUS: we embeed also the legendary `cprintf`, for colorful terminal output (with caveats)
 
 [...]
+
+### TODO list
+
+- [ ] Implement the `'-name'` reverse option within `set_palette`, it is present in most colormap generators (all except the matplotlib ones) but we cannot use it in the wrapper. It would be handy to have...
+
+- [x] Convert `set_palette` into a `get_palette` wrapper, to actually retrieve the raw RGB triplets. ~~This would be internally called by a new `set_palette`.~~ [not yet] It might also help with the previous point (the `'-name'` reverse).
+
+- [ ] Write a `set_colororder` wrapper, to allow easier set of color order in figures. Still don't have a clear strategy.

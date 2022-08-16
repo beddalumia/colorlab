@@ -1,21 +1,21 @@
-function set_palette(input_name,N,varargin)
+function map = get_palette(input_name,N,varargin)
 %% Generic wrapper to set all available colormaps
 %
-%  >> set_palette(cmap_name,N,varargin)
+%  >> cmap = set_palette(cmap_name,N,varargin)
 %
 %     cmap_name: string, the input colormap name
 %     N: optional int, the number of requested levels
 %     varargin: optional, to request low level API
 %
 %  To see all available colormap names just call:
-%  >> set_palette('list') or set_palette list
+%  >> get_palette('list') or get_palette list
 %
 %  Though you will find that such option would prove
 %  unnecessary most of the time: thanks to a powerful
-%  string-search engine, set_palette can suggest you
+%  string-search engine, get_palette can suggest you
 %  a bunch of "near matches" if the given cmap_name 
 %  is not valid. Example:
-%  >> set_palette grey
+%  >> get_palette grey
 %  Palette "grey" not found!
 %  Consider one of these options:
 %      {'Greys'}
@@ -37,13 +37,13 @@ function set_palette(input_name,N,varargin)
 %  >> palette.viridis()
 %  >> etcetera...
 %
-% See also palette, paletteshow, paletteditor, preset_palette
+% See also palette, paletteshow, paletteditor, set_palette
 %
 % Copyright (c) 2022 Gabriele Bellomia
 % MIT License
 
     if nargin < 1
-        help set_palette
+        help get_palette
         return
     end
 
@@ -57,7 +57,6 @@ function set_palette(input_name,N,varargin)
 
     % First we retrieve all available colormap names
     namelist = build_namelist();
-    %load('/home/gbellomia/Dropbox/GitHub/colorlab/+rgb/private/X11_rgb_data.mat','namelist')
 
     if strcmpi(input_name,'list')
        disp('Available palettes:')
@@ -90,28 +89,23 @@ function set_palette(input_name,N,varargin)
     position = find(strcmp(namelist,input_name)); % Crameri calls for case!
     switch true
     case ismember(position, 1:11)
-        matplotlib_dispatch(input_name,N);
-        fprintf('Set through palette.%s\n',input_name)
+        map = matplotlib_dispatch(input_name,N);
+        fprintf('Got through palette.%s\n',input_name)
     case ismember(position, 12)
         map = palette.cubehelix(N,varargin{:});
-        colormap(map)
-        fprintf('Set through palette.%s\n',input_name)
+        fprintf('Got through palette.%s\n',input_name)
     case ismember(position, 13:46)
         map = palette.brewer(N,input_name);
-        colormap(map)
-        fprintf('Set through palette.brewer\n')
+        fprintf('Got through palette.brewer\n')
     case ismember(position, 47:68)
-        palette.cmocean(input_name,N,varargin{:});
-        fprintf('Set through palette.cmocean\n')
+        map = palette.cmocean(input_name,N,varargin{:});
+        fprintf('Got through palette.cmocean\n')
     case ismember(position, 69:121)
-        palette.crameri(input_name,N,varargin{:});
-        fprintf('Set through palette.crameri\n')
+        map = palette.crameri(input_name,N,varargin{:});
+        fprintf('Got through palette.crameri\n')
     case ismember(position, 122:140)
-        colormap(input_name); % built-ins
-        fprintf('Set through built-in colormap()\n')
-        if nargin > 1
-            disp('No optional arguments available for built-in maps!')
-        end
+        eval([input_name,sprintf('(%d)',N)]); % built-ins
+        fprintf('Got through built-in colormap()\n')
     end
 
 end
@@ -271,7 +265,7 @@ function list = build_namelist()
     };
 end
 
-function matplotlib_dispatch(name,N)
+function map = matplotlib_dispatch(name,N)
     switch name
     case 'cividis'
         map = palette.cividis(N);
@@ -296,7 +290,6 @@ function matplotlib_dispatch(name,N)
     case 'tab20c'
         map = palette.tab20c(N);
     end
-    colormap(gcf,map)
 end
 
 function N = cmDefaultN()
