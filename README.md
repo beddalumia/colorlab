@@ -204,14 +204,15 @@ Here we show some wonderful choices for our worldmap!
 [🚧🚧🚧 Work ⚠️ in 🪜 Progress 🚧🚧🚧🚧🚧🚧 ]
 
 ```matlab
-X11_list = rgb.X11('list')
-xkcd_list = rgb.xkcd('list')
-overlap = intersect(X11_list,xkcd_list)
+X11 = rgb.X11('list')
+XKCD = rgb.xkcd('list')
+overlap = intersect(X11,XKCD)
 view_color(rgb.X11(overlap),'hbars')
 view_color(rgb.xkcd(overlap),'hbars')
 ```
-
-![](resources/X11vsXKCD.jpg)
+ `overlap` | `rgb.X11(overlap)` | `rgb.xkcd(overlap)` |
+--|--|--|
+<img height=330 src=resources/X11vsXKCD.jpg>| <img height=400 src=resources/X11.svg>| <img height=400 src=resources/XKCD.svg>|
 
 #### RGB to HEX space and viceversa through `rgb2hex` and `hex2rgb`
 
