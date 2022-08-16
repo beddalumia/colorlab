@@ -59,7 +59,7 @@ The `set_palette` command wraps all the provided colormap packages, exposing to 
       {'RdGy' }
       {'gray' }
 >> set_palette gray
-   Set through palette.cmocean
+   gray got through palette.cmocean
 ```
 
 As you can see, for any valid colormap name `set_palette` would inform you about which specific generator has been internally called. A full list of all available colormaps shall be obtained by typing `set_palette list`. For more info type `help set_palette`.
@@ -120,7 +120,7 @@ Note that `set_palette('cubehelix',[],0,0.6,1.6,0.9,[0,1],[0,0.8])` is a totally
 ```matlab
 >> imagesc(peaks(500))
 >> set_palette('cubehelix',[],0,0.6,1.6,0.9,[0,1],[0,0.8])
-   Set through palette.cubehelix
+   cubehelix got through palette.cubehelix
 ```
 
 <img width=500 src=resources/fake_magma.svg>
@@ -250,6 +250,6 @@ would produce the following (left-right and top-down ordering):
 
 - [ ] Implement the `'-name'` reverse option within `set_palette`, it is present in most colormap generators (all except the matplotlib ones) but we cannot use it in the wrapper. It would be handy to have...
 
-- [x] Convert `set_palette` into a `get_palette` wrapper, to actually retrieve the raw RGB triplets. ~~This would be internally called by a new `set_palette`.~~ [not yet] It might also help with the previous point (the `'-name'` reverse).
+- [x] Convert `set_palette` into a `get_palette` wrapper, to actually retrieve the raw RGB triplets. This would be internally called by a new `set_palette`. It might also help with the previous point (the `'-name'` reverse).
 
 - [ ] Write a `set_colororder` wrapper, to allow easier set of color order in figures. Still don't have a clear strategy.

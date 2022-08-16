@@ -90,22 +90,22 @@ function map = get_palette(input_name,N,varargin)
     switch true
     case ismember(position, 1:11)
         map = matplotlib_dispatch(input_name,N);
-        fprintf('Got through palette.%s\n',input_name)
+        fprintf('%s got through palette.%s\n',input_name,input_name)
     case ismember(position, 12)
         map = palette.cubehelix(N,varargin{:});
-        fprintf('Got through palette.%s\n',input_name)
-    case ismember(position, 13:46)
+        fprintf('%s got through palette.%s\n',input_name,input_name)
+    case ismember(position, 13:45)
         map = palette.brewer(N,input_name);
-        fprintf('Got through palette.brewer\n')
-    case ismember(position, 47:68)
+        fprintf('%s got through palette.brewer\n',input_name)
+    case ismember(position, 46:67)
         map = palette.cmocean(input_name,N,varargin{:});
-        fprintf('Got through palette.cmocean\n')
-    case ismember(position, 69:121)
+        fprintf('%s got through palette.cmocean\n',input_name)
+    case ismember(position, 68:120)
         map = palette.crameri(input_name,N,varargin{:});
-        fprintf('Got through palette.crameri\n')
-    case ismember(position, 122:140)
-        eval([input_name,sprintf('(%d)',N)]); % built-ins
-        fprintf('Got through built-in colormap()\n')
+        fprintf('%s got through palette.crameri\n',input_name)
+    case ismember(position, 121:139)
+        map = eval([input_name,sprintf('(%d)',N)]); % built-ins
+        fprintf('%s got through built-in command\n',input_name)
     end
 
 end
@@ -162,7 +162,6 @@ function list = build_namelist()
     'Reds',
     'YlGn',
     'YlGnBu',
-    'YlOrBr',
     'YlOrBr',
     'YlOrRd',
     % cmocean sequential

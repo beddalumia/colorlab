@@ -4,7 +4,7 @@ palettes = build_namelist();
 peaks();
 
 for i = 1:length(palettes)
-    set_palette(palettes{i})
+    set_palette(palettes{i});
     title('Peaks',palettes{i})
     pause(0.1)
 end
@@ -67,7 +67,6 @@ function list = build_namelist()
         'Reds',
         'YlGn',
         'YlGnBu',
-        'YlOrBr',
         'YlOrBr',
         'YlOrRd',
         % cmocean sequential
