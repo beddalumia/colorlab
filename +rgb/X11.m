@@ -7,7 +7,8 @@ function [RGB] = X11(varargin)
 % col = rgb.X11('Color Name') 
 % col = rgb.X11('Color Name 1','Color Name 2',...,'Color Name N') 
 % col = rgb.X11({'Color Name 1','Color Name 2',...,'Color Name N'})  
-% rgb.X11("show");
+% lst = rgb.X11("list")
+% rgb.X11("show")
 % 
 %% DESCRIPTION 
 %
@@ -20,6 +21,9 @@ function [RGB] = X11(varargin)
 % 
 % col = X11({'Color Name 1','Color Name 2',...,'Color Name N'}) accepts
 % list of color names as a character array, too. 
+%
+% lst = X11("list") will return a cell of strings containing all available
+% colornames. To be utilized programmatically.
 %
 % X11('show') will try to open a local html chart on the default browser.
 % If not possible it would resort to CPRINTF to print all the available 
@@ -108,6 +112,12 @@ function [RGB] = X11(varargin)
                 disp(namelist(2:end));
             end
         end
+        return
+    end
+
+    if isequal(ColorNames,"list")
+        % Return all the names
+        RGB = namelist(2:end);
         return
     end
 

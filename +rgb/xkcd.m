@@ -9,7 +9,8 @@ function [RGB] = xkcd(varargin)
 % col = rgb.xkcd('Color Name') 
 % col = rgb.xkcd('Color Name 1','Color Name 2',...,'Color Name N') 
 % col = rgb.xkcd({'Color Name 1','Color Name 2',...,'Color Name N'})  
-% rgb.xkcd("show");
+% lst = rgb.xkcd("list")
+% rgb.xkcd("show")
 % 
 %% DESCRIPTION 
 %
@@ -22,6 +23,9 @@ function [RGB] = xkcd(varargin)
 % 
 % col = xkcd({'Color Name 1','Color Name 2',...,'Color Name N'}) accepts
 % list of color names as a character array, too. 
+%
+% lst = xkcd("list") will return a cell of strings containing all available
+% colornames. To be utilized programmatically.
 %
 % xkcd('show') will try to open a local copy of http://xkcd.com/color/rgb/
 % on the default browser. If not possible it would resort to CPRINTF to
@@ -109,6 +113,12 @@ function [RGB] = xkcd(varargin)
             end
             fprintf('\n\t> find more at https://xkcd.com/color/rgb/ \n\n');
         end
+        return
+    end
+
+    if isequal(ColorNames,"list")
+        % Return all the names
+        RGB = namelist(2:end);
         return
     end
 
