@@ -366,7 +366,7 @@ You might well have already heard about `cprintf`. It allows choosing the color 
 
 ## More showoff: generative art corner
 
-#### [Rosa](.test/rosa.m)
+### [Rosa](.test/rosa.m)
 
 Applying our most iconic colormaps to the most iconic flower.
 
@@ -378,7 +378,7 @@ Applying our most iconic colormaps to the most iconic flower.
 ----------|----------|-------------|--------
 <img src=.test/rosa_viridis.png>| <img src=.test/rosa_batlow.png> | <img src=.test/rosa_cubehelix.png>| <img src=.test/rosa_magma.png>
 
-#### [Leaves](.test/leaves.m)
+### [Leaves](.test/leaves.m)
 
 Comparing two famous built-in colormaps with much more effective alternatives proved by colorlab.
 
@@ -391,7 +391,7 @@ LEAVES | Matlab built-in | Colorlab provided
 summer (YlGn) | <img width=300 src=.test/leaves_summer.png>| <img width=300 src=.test/leaves_YlGn.png>
 autumn (lajollaS) |<img width=300 src=.test/leaves_autumn.png>| <img width=300 src=.test/leaves_lajollaS.png>
 
-#### [Fireworks](.test/fireworks.m)
+### [Fireworks](.test/fireworks.m)
 
 A silly divertissement with discrete palettes.
 
@@ -401,7 +401,7 @@ A silly divertissement with discrete palettes.
 ```
 ![](resources/fireworks.svg)
 
-#### [Lego](.test/lego.m)
+### [Lego](.test/lego.m)
 
 A fun rendition of the matlab logo.
 
