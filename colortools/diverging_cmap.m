@@ -9,16 +9,16 @@ function [map] = diverging_cmap(rgb1,rgb2,N)
 %
 % USAGE
 %
-%   >> [map] = diverging_cmap(rgb1,rgb2)
+%   >> [map] = diverging_cmap(rgb1,rgb2,N)
 %
-%   rgb1 : rgb triplet (or string†), the star point for your colormap.
+%   rgb1 : rgb triplet (or string†), the start point for your colormap.
 %   rgb2 : rgb triplet (or string†), the end point for your colormap.
 %   N    : integer, defining the number of color levels. [optional]
 %
 %   †) Conversion from most common color names is provided through str2rgb.
 %
 %
-% See also palette, preset_palette, str2rgb, rgb.X11, rgb.xkcd
+% See also palette, get_palette, preset_palette, str2rgb, rgb.X11, rgb.xkcd
 
 % TODO:
 %       - we definitely need better input checking, to come ASAP.

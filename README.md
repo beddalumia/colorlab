@@ -317,7 +317,20 @@ Finally we cite a lovely alternative, focusing on converting not only colornames
 
 ### Build fully custom diverging colormaps through `diverging_cmap`
 
-[🚧🚧🚧 Work ⚠️ in 🪜 Progress 🚧🚧🚧🚧🚧🚧 ]
+Exploiting `str2rgb` we allow free building of custom _diverging_ colormaps, from any pair of colors. The intended primary, handy, way of feeding them is as colornames (character vectors or strings), but you can also opt to pass in HEX codes or RGB triplets. The implemented algorithm is specified in [Kenneth Moreland's website](https://www.kennethmoreland.com/color-maps/).
+
+```matlab
+% Generic syntax
+map = diverging_cmap(start_color, end_color, N[optional])
+% Example
+peaks(50);
+fruit_map = diverging_cmap('lime','strawberry');
+colormap(fruit_map)
+% More info
+help diverging_cmap; help str2rgb
+```
+
+![strawberry-lime](resources/strawberry-lime.svg)
 
 ### Additional interactive functionality through `view_color`
 
@@ -354,4 +367,4 @@ You might well have already heard about `cprintf`. It allows choosing the color 
 
 - [ ] Add more colorname sets to `+rgb` and `str2rgb`, maybe integrating [Cobeldick's `colornames()`](https://it.mathworks.com/matlabcentral/fileexchange/48155-convert-between-rgb-and-color-names). Though its API is more focused on the "rgb2str" workflow and it provides many additional funcionality that we might not need. Also we would need some idea on how to deal with (proabably huge) name collisions and priorities in `str2rgb`.
 
-- [ ] Add the ["MetBrewer" colormaps](https://github.com/BlakeRMills/MetBrewer), extracting the HEX code from the original implementation (or the python transpile, whichever proves easier). They are beautifully chosen discrete palettes, with a small number of nodes, hence the implementation for the continous -perceptually uniform- interpolation should resemble (unsurprisingly?) the one in `palette.brewer`.
+- [ ] Add the ["MetBrewer" colormaps](https://github.com/BlakeRMills/MetBrewer), extracting the HEX code from the original implementation (or the python transpile, whichever proves easier). They are beautifully chosen discrete palettes, with a small number of nodes, hence the implementation for the continous --perceptually uniform-- interpolation should resemble (unsurprisingly?) the one in `palette.brewer`.
