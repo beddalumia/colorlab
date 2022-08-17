@@ -39,8 +39,11 @@ function [ rgb ] = hex2rgb(hex,range)
 %       204   153    51
 %        51    51   230
 % 
-% HexValsAsACharacterArray = {'#334D66';'#8099B3';'#CC9933';'#3333E6'}; 
-% rgbvals = hex2rgb(HexValsAsACharacterArray)
+% HexValsAsCharCell = {'#334D66';'#8099B3';'#CC9933';'#3333E6'}; 
+% rgbvals = hex2rgb(HexValsAsCharCell)
+%
+% HexValsAsStringArray = ["#334D66","#8099B3","#CC9933","#3333E6"]; 
+% rgbvals = hex2rgb(HexValssStringArray)
 % 
 % * * * * * * * * * * * * * * * * * * * * 
 % Chad A. Greene, April 2014
@@ -54,6 +57,9 @@ function [ rgb ] = hex2rgb(hex,range)
 % values scaled from 0 to 255. Function now also accepts character arrays
 % as input. 
 % 
+% Gabriele Bellomia, August 2021
+% The function now accept also string arrays.
+%
 % * * * * * * * * * * * * * * * * * * * * 
 % See also rgb2hex, dec2hex, and hex2num. 
 % 
@@ -69,6 +75,9 @@ function [ rgb ] = hex2rgb(hex,range)
     end
     
     %% Tweak inputs if necessary: 
+    if isstring(hex)
+        hex = str2mat(hex); %#ok
+    end
     if iscell(hex)
         assert(isvector(hex)==1,'Unexpected dimensions of input hex values.')
 

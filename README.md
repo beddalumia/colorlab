@@ -265,7 +265,10 @@ myrgbvalues =
     0.2000    0.2000    0.9020
 
 % String array (cell of chars): can concatenate horizontally
+>> HexStringArray = ["#334D66","#8099B3","#CC9933"];
+% or
 >> HexStringArray = {'#334D66','#8099B3','#CC9933'}; 
+% and then
 >> hex2rgb(HexStringArray)
 
 ans =
