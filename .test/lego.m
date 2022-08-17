@@ -48,5 +48,5 @@ end
 function save_fig(name)
     file = ['lego_',name,'.png'];
     res  = '-r228.3298'; % -> 1080px wide
-    export_fig(file,res);
+    %export_fig(file,res);
 end
