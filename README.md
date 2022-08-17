@@ -20,13 +20,18 @@ All for a unified user experience.
   - [Installation](#installation)
   - [Usage](#usage)
     - [Select all available colormaps via `set_palette`/`get_palette`](#select-all-available-colormaps-via-set_paletteget_palette)
+    - [Pick a palette as your _color order_ via `set_colororder`](#pick-a-palette-as-your-color-order-via-set_colororder)
     - [Preset parameters for colormap generators via `preset_palette`](#preset-parameters-for-colormap-generators-via-preset_palette)
     - [HEX to RGB and viceversa through `hex2rgb` and `rgb2hex`](#hex-to-rgb-and-viceversa-through-hex2rgb-and-rgb2hex)
     - [Get color by its common name via `str2rgb`](#get-color-by-its-common-name-via-str2rgb)
     - [Build fully custom diverging colormaps through `diverging_cmap`](#build-fully-custom-diverging-colormaps-through-diverging_cmap)
     - [Additional interactive functionality through `view_color`](#additional-interactive-functionality-through-view_color)
     - [BONUS: the legendary `cprintf`, for colorful terminal output (with caveats)](#bonus-the-legendary-cprintf-for-colorful-terminal-output-with-caveats)
-  - [To-do list](#todo)
+  - [More showoff: generative art corner](#more-showoff-generative-art-corner)
+      - [Leaves](#leaves)
+      - [Fireworks](#fireworks)
+      - [Lego](#lego)
+  - [TODO](#todo)
 
 ## Installation
 
@@ -141,10 +146,13 @@ Note that `set_palette('cubehelix',[],0,0.6,1.6,0.9,[0,1],[0,0.8])` is a totally
 
 <img width=500 src=resources/fake_magma.svg>
 
-Finally, despite giving access also to qualitative/categorical colorschemes, `set_palette` is currently not so useful in this area, since matlab treats colormaps and 'color-orders' in a totally different way. We might add a proper wrapper for this in future. For now you can set the color orders with the low level palette functions, as in:
+### Pick a palette as your _color order_ via `set_colororder`
+
+Despite giving access also to qualitative/categorical colorschemes, `set_palette` is not so useful in this area, since matlab treats colormaps and 'color order' in a totally different way. For that we provide a proper wrapper: `set_colororder`. It can be called after plotting, changing the color order used within the current figure.
+
+Example:
 
 ```matlab
-set(0,'DefaultAxesColorOrder',palette.<your-choice>)
 N = 6;
 X = linspace(0,pi*3,1000);
 Y = bsxfun(@(x,n)n*sin(x+2*n*pi/N), X.', 1:N);
@@ -153,24 +161,21 @@ for n = 1:N
    hold all
 end
 xlim([0,3*pi]);
+set_colororder(<your-choice>)
 ```
-Some examples (non exhaustive):
+Non-exhaustive showreel of `<your-choice>` options:
 
-`palette.tab10` | `palette.tab20` | 
+`'tab10'` | `'tab20'` | 
 ------|-------|
 ![tab10](matplotlib/resources/tab10.svg) | ![tab20](matplotlib/resources/tab20.svg)
 
-`palette.brewer('Accent')` | `palette.brewer('Pastel2')`
+`'Spectral', 6` | `'Pastel2'`
 ------|-------|
-![accent](brewer/resources/accent.svg) | ![pastel2](brewer/resources/pastel2.svg) | 
+![spectral](resources/spectral.svg) | ![pastel2](brewer/resources/pastel2.svg) | 
 
-`palette.crameri('actonS')` | `palette.crameri('turkuS')`
+`'actonS'` | `'turkuS'`
 ------|-------|
 ![acton](crameri/resources/acton.svg) | ![turku](crameri/resources/turku.svg)
-
-More examples can be found in the [`lego.m`](.test/lego.m) test script, giving a fun rendition of the matlab logo:
-
-<img src=resources/lego.gif width=300>
 
 ### Preset parameters for colormap generators via `preset_palette` 
 
@@ -357,13 +362,48 @@ would produce the following (left-right and top-down ordering):
 
 You might well have already heard about `cprintf`. It allows choosing the color of the stdout prints (but only in the official Matlab GUI). It does so by exploiting _undocumented_ functionality from the underlying Java runtime. More info can be found on the [original blog post from the author](https://undocumentedmatlab.com/matlab/wp-content/cache/all/articles/cprintf-display-formatted-color-text-in-command-window/index.html). Overall, being built upon undocumented (and so potentially all of a sudden unsupported) features, we strongly discourage systematic usage within structured projects. Nevertheless we provide it as a nice tool to be used in throw-away scripts. :)
 
+## More showoff: generative art corner
+
+#### [Leaves](.test/leaves.m)
+
+Comparing two famous built-in colormaps with much more effective alternatives proved by colorlab.
+
+```matlab
+>> !cd .test
+>> leaves
+```
+LEAVES | Matlab built-in | Colorlab provided
+------|----------|---------
+summer (YlGn) | <img width=300 src=.test/leaves_summer.png>| <img width=300 src=.test/leaves_YlGn.png>
+autumn (lajollaS) |<img width=300 src=.test/leaves_autumn.png>| <img width=300 src=.test/leaves_lajollaS.png>
+
+#### [Fireworks](.test/fireworks.m)
+
+A silly divertissement with discrete palettes.
+
+```matlab
+>> !cd .test
+>> fireworks
+```
+![](resources/fireworks.svg)
+
+#### [Lego](.test/lego.m)
+
+A fun rendition of the matlab logo.
+
+```matlab
+>> !cd .test
+>> lego
+```
+<img src=resources/lego.gif width=300>
+
 ## TODO
 
 - [ ] Implement the `'-name'` reverse option within `set_palette`, it is present in most colormap generators (all except the matplotlib ones) but we cannot use it in the wrapper. It would be handy to have...
 
 - [x] Convert `set_palette` into a `get_palette` wrapper, to actually retrieve the raw RGB triplets. This would be internally called by a new `set_palette`. It might also help with the previous point (the `'-name'` reverse).
 
-- [ ] Write a `set_colororder` wrapper, to allow easier set of color order in figures. Still don't have a clear strategy.
+- [x] Write a `set_colororder` wrapper, to allow easier set of color order in figures. 
 
 - [ ] Add more colorname sets to `+rgb` and `str2rgb`, maybe integrating [Cobeldick's `colornames()`](https://it.mathworks.com/matlabcentral/fileexchange/48155-convert-between-rgb-and-color-names). Though its API is more focused on the "rgb2str" workflow and it provides many additional funcionality that we might not need. Also we would need some idea on how to deal with (proabably huge) name collisions and priorities in `str2rgb`.
 

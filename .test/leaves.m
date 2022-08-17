@@ -1,3 +1,5 @@
+colorlab.enter
+
 t=0:0.01:pi;
 r=@rand;
 c=@(f)cos(f*t);
@@ -10,7 +12,22 @@ rotate(fill(r()*5+x,r()*5+y,r(),'Linewidth',1),[0 0 1],r()*360);
 end
 axis equal off
 set(gca,'Pos',[0 0 1 1])
-colorlab.enter
+
+set_palette summer
+save_fig summer
+
+set_palette YlGn
+save_fig YlGn
+
 set_palette autumn
-pause
+save_fig autumn
+
 set_palette lajollaS
+save_fig lajollaS
+
+function save_fig(name)
+    file = ['leaves_',name,'.png'];
+    res  = '-r228.3298'; % -> 1080px wide
+    pad  = '-p0.20000';
+    %export_fig(file,res,pad);
+end

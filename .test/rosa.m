@@ -1,3 +1,5 @@
+colorlab.enter
+
 n=3000;
 [R,T]=ndgrid(linspace(0,1,n),linspace(-2,20*pi,n));
 x=1-(.5)*((5/4)*(1-mod(3.6*T,2*pi)/pi).^2-.25).^2;
@@ -8,20 +10,21 @@ Y=K.*cos(T);Z=x.*(R.*J-y.*L);
 surf(X,Y,Z,'LineStyle','none');
 grid,axis('off','equal');
 
-addpath ../../colorlab/
-colorlab.enter
 set_palette viridis
 save_fig viridis 
+
 set_palette batlow
 save_fig batlow 
+
 set_palette cubehelix
 save_fig cubehelix
+
 set_palette magma
 save_fig magma 
 
 
 function save_fig(name)
-    file = [name,'.png'];
+    file = ['rosa_',name,'.png'];
     res  = '-r228.3298'; % -> 1080px wide
     pad  = '-p0.20000';
     %export_fig(file,res,pad);

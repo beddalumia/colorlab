@@ -48,6 +48,11 @@ function set_palette(varargin)
     end
 
     map = get_palette(varargin{:});
+
+    if isempty(map)
+        return
+    end
+
     colormap(map)
 
 end

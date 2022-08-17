@@ -82,6 +82,7 @@ function map = get_palette(input_name,N,varargin)
             nearbyNames = namelist(idx(1:3));
         end
         disp(nearbyNames); 
+        map = [];
         return
     end
 

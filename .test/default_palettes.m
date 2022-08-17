@@ -1,3 +1,4 @@
+colorlab.enter
 
 palettes = build_namelist();
 
