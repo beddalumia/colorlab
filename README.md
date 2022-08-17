@@ -226,9 +226,72 @@ view_color(rgb.xkcd(overlap),'hbars')
 --|--|--|
 <img height=330 src=resources/X11vsXKCD.jpg>| <img height=400 src=resources/X11.svg>| <img height=400 src=resources/XKCD.svg>|
 
-#### RGB to HEX space and viceversa through `rgb2hex` and `hex2rgb`
+#### HEX to RGB and viceversa through `hex2rgb` and `rgb2hex`
 
-[🚧🚧🚧 Work ⚠️ in 🪜 Progress 🚧🚧🚧🚧🚧🚧 ]
+While HEX color codes now almost dominate the web (see e.g. https://brandcolors.net), Matlab color specification still supports only RGB triplets, in the [0,1] domain.   
+A suitable conversion tool from HEX color codes to RGB triplets is provided by the `hex2rgb` function. It takes single character vectors, character matrices or arrays of strings and returns the appriopriate 'Nx3' RGB matrix. By default in the [0,1] domain, but optionally also in the [0,255] one.    
+The converse operation is handled by `rgb2hex`, which assumes RGB triplets in the [0,1] convention, but switches to [0,255] if any of the numbers exceeds 1. 
+
+Some examples:
+
+```matlab
+% Single character vector
+>> hex2rgb('#334D66')
+
+ans =
+    0.2000    0.3020    0.4000
+
+% The # char is optional, if you're on the rush...
+>> hex2rgb('334D66')
+
+ans = 
+    0.2000    0.3020    0.4000
+
+% 256 option (255 works too)
+>> hex2rgb('#334D66',256)
+
+ans = 
+    51    77   102
+
+% Character matrix (you have to concatenate vertically!)
+>> myhexvalues = ['#334D66';'#8099B3';'#CC9933';'#3333E6'];
+>> myrgbvalues = hex2rgb(myhexvalues)
+
+myrgbvalues =
+
+    0.2000    0.3020    0.4000
+    0.5020    0.6000    0.7020
+    0.8000    0.6000    0.2000
+    0.2000    0.2000    0.9020
+
+% String array (cell of chars): can concatenate horizontally
+>> HexStringArray = {'#334D66','#8099B3','#CC9933'}; 
+>> hex2rgb(HexStringArray)
+
+ans =
+
+    0.2000    0.3020    0.4000
+    0.5020    0.6000    0.7020
+    0.8000    0.6000    0.2000
+
+% Getting first 7 TAB10 HEX codes
+>> rgb2hex(get_palette('tab10',7))
+tab10 got through palette.tab10
+
+ans =
+
+  7x7 char array
+
+    '#1F77B4'
+    '#FF7F0E'
+    '#2CA02C'
+    '#D62728'
+    '#9467BD'
+    '#8C564B'
+    '#E377C2'
+```
+
+
 
 #### Build fully custom diverging colormaps through `diverging_cmap`
 
