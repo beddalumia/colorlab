@@ -14,12 +14,13 @@ The codebase mainly embeds several functions and packages by these two authors, 
 All for a unified user experience.
 
 
+### Table of Contents
   - [Installation](#installation)
   - [Usage](#usage)
     - [Select all available colormaps via `set_palette`](#select-all-available-colormaps-via-set_palette)
     - [Preset parameters for colormap generators via `preset_palette`](#preset-parameters-for-colormap-generators-via-preset_palette)
-    - [Common colornames for RGB triplets via the mighty `str2rgb`](#common-colornames-for-rgb-triplets-via-the-mighty-str2rgb)
     - [HEX to RGB and viceversa through `hex2rgb` and `rgb2hex`](#hex-to-rgb-and-viceversa-through-hex2rgb-and-rgb2hex)
+    - [Common colornames for RGB triplets via the mighty `str2rgb`](#common-colornames-for-rgb-triplets-via-the-mighty-str2rgb)
     - [Build fully custom diverging colormaps through `diverging_cmap`](#build-fully-custom-diverging-colormaps-through-diverging_cmap)
     - [Additional interactive functionality through `view_color`](#additional-interactive-functionality-through-view_color)
     - [BONUS: we embeed also the legendary `cprintf`, for colorful terminal output (with caveats)](#bonus-we-embeed-also-the-legendary-cprintf-for-colorful-terminal-output-with-caveats)
@@ -59,9 +60,9 @@ The higher level API consists of the functions included in the colortools folder
 
 So let's start now describing the colortools!
 
-#### Select all available colormaps via `set_palette`
+#### Select all available colormaps via `set_palette`/`get_palette`
 
-The `set_palette` command wraps all the provided colormap packages, exposing to the user a very simple and intuitive interface. Just feed a colormap name and it will set it up for the current figure or, if unrecognized, suggest some "nearest" matches for you, e.g.
+The `set_palette` and `get_palette` commands wrap all the provided colormap packages, exposing to the user a very simple and intuitive interface. Just feed a valid colormap name and they will respectively set it up for the current figure or return the corresponding RGB values. If instead the colormap name is unrecognized, both will suggest some "nearest" matches for you, e.g.
 
 ```matlab
 >> set_palette grey
@@ -76,10 +77,11 @@ The `set_palette` command wraps all the provided colormap packages, exposing to 
 
 As you can see, for any valid colormap name `set_palette` would inform you about which specific generator has been internally called. A full list of all available colormaps shall be obtained by typing `set_palette list`. For more info type `help set_palette`.
 
-Experimentally, `set_palette` supports also giving non-default parameters to the underlying colormap generators. Just call it as:
+Experimentally, both `set_palette` and `get_palette` support also giving non-default parameters to the underlying colormap generators. Just call them as:
 
 ```matlab
 >> set_palette('name',Number_of_Levels,varargin)
+>> get_palette('name',Number_of_Levels,varargin)
 ```
 
 To set the `<name>` colormap with the desired `Number_of_Levels` and pass further generator-specific options through the `varargins`. Info about the required structure of such additional parameters is  available within generator-specific docstrings: `help palette.<generator-name>`. 
@@ -209,23 +211,6 @@ Here we show some wonderful choices for our worldmap!
 `cmocean` | `'topo'` | <img width=450 src=cmocean/resources/worldmap_cmocean.svg> |
 `crameri` | `'oleron'` | <img width=450 src=crameri/resources/worldmap_crameri.svg>
 
-
-
-#### Common colornames for RGB triplets via the mighty `str2rgb`
-
-[🚧🚧🚧 Work ⚠️ in 🪜 Progress 🚧🚧🚧🚧🚧🚧 ]
-
-```matlab
-X11 = rgb.X11('list')
-XKCD = rgb.xkcd('list')
-overlap = intersect(X11,XKCD)
-view_color(rgb.X11(overlap),'hbars')
-view_color(rgb.xkcd(overlap),'hbars')
-```
- `overlap` | `rgb.X11(overlap)` | `rgb.xkcd(overlap)` |
---|--|--|
-<img height=330 src=resources/X11vsXKCD.jpg>| <img height=400 src=resources/X11.svg>| <img height=400 src=resources/XKCD.svg>|
-
 #### HEX to RGB and viceversa through `hex2rgb` and `rgb2hex`
 
 While HEX color codes now almost dominate the web (see e.g. https://brandcolors.net), Matlab color specification still supports only RGB triplets, in the [0,1] domain.   
@@ -294,7 +279,39 @@ ans =
     '#E377C2'
 ```
 
+#### Common colornames for RGB triplets via the mighty `str2rgb`
 
+An even more generic method to invoke colors is provided  through the `str2rgb` wrapper. It can take single or multiple character vectors / strings, string arrays, cell arrays of character vectors, containing HEX codes (it internally calls `hex2rgb`) and "common" color names. For the latter it searches two well-known databases, [X11/rgb](https://en.wikipedia.org/wiki/X11_color_names) and [xkcd/color](https://xkcd.com/color/rgb/), giving priority to the latter whenever there is a name collision. The reason for such a choice lies in the nature of the two databases: `X11` is an old scheme based on legacy digital screen technology, while `xkcd` is based on a recent wide web survey, averaging among all current display technology. The [lower level API](+rgb/README.md) allows to inspect the overall collision set, so that you can evaluate how much the `xkcd` colors make for a better "translation":
+
+```matlab
+X11 = rgb.X11('list')
+XKCD = rgb.xkcd('list')
+overlap = intersect(X11,XKCD)
+view_color(rgb.X11(overlap),'hbars')
+view_color(rgb.xkcd(overlap),'hbars')
+```
+ `overlap` | `rgb.X11(overlap)` | `rgb.xkcd(overlap)` |
+--|--|--|
+<img height=330 src=resources/X11vsXKCD.jpg>| <img height=400 src=resources/X11.svg>| <img height=400 src=resources/XKCD.svg>|
+
+Both databases are _huge_ and almost any conceivable colorname would be recognized. Furthermore `str2rgb` benefits from the same string lookup algorithm provided in `set_palette`/`get_palette`, in case _insensitive_ variant, so that it would allow you to select whatever colorname you can think off in a very ergonomic way.
+
+Some examples to try:
+
+```matlab
+>> str2rgb("yellow","red")
+>> str2rgb('yellow','red')
+>> str2rgb('yellowrong') % ==> will make proposals
+>> str2rgb({'yellowish'}) 
+>> str2rgb({'yellow','red2','reddish',"yellowish"})
+>> str2rgb('matlab1','matlab2','matlab3','matlab4')
+>> str2rgb({'pyplot1',"pyplot2",'pyplot3'})
+>> str2rgb('#ff00ff','de56f0')
+```
+
+Finally we cite a lovely alternative, focusing on converting not only colornames to rgb triplets, but also the converse: a higly nontrivial task, involving deep color-theory concepts.
+
+> [Cobeldick's `colornames()` function on file-exchange.](https://it.mathworks.com/matlabcentral/fileexchange/48155-convert-between-rgb-and-color-names)
 
 #### Build fully custom diverging colormaps through `diverging_cmap`
 
@@ -332,3 +349,5 @@ would produce the following (left-right and top-down ordering):
 - [x] Convert `set_palette` into a `get_palette` wrapper, to actually retrieve the raw RGB triplets. This would be internally called by a new `set_palette`. It might also help with the previous point (the `'-name'` reverse).
 
 - [ ] Write a `set_colororder` wrapper, to allow easier set of color order in figures. Still don't have a clear strategy.
+
+- [ ] Add more colorname sets to `+rgb` and `str2rgb`, maybe integrating [Cobeldick's `colornames()`](https://it.mathworks.com/matlabcentral/fileexchange/48155-convert-between-rgb-and-color-names). Though its API is more focused on the "rgb2str" workflow and it provides many additional funcionality that we might not need. Also we would need some idea on how to deal with (proabably huge) name collisions and priorities in `str2rgb`.

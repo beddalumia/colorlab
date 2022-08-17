@@ -3,12 +3,12 @@ RGB Colorname Package
 
 Here we provide methods to retrieve rgb triplets, from two huge well-known datasets: the old Unix [X11/rgb.txt](https://en.wikipedia.org/wiki/X11_color_names) file and the impressive web-survey carried out by [xkcd](https://xkcd.com/color/rgb/). There is no bias here between the two (contrary to what happens in [matplotlib, which prioritizes X11 names](https://matplotlib.org/stable/tutorials/colors/colors.html#comparison-between-x11-css4-and-xkcd-colors)), as you can invoke respectively `rgb.X11('colorname')` and `rgb.xkcd('colorname')` to get colors from either the datasets. Both functions share the same API:
 
-1. Both `rgb.X11('show')` and `rgb.xkcd('show')` will pop-up an html chart with all colors depicted, in window-based environments. On terminal it will just print all the colornames.
+1. Both `rgb.X11('show')` and `rgb.xkcd('show')` will pop-up an html chart with all colors depicted, in window-based environments. On terminal it will just print all the colornames. Use `'list'` instead of `'show'` if you want an actual return of the list of colornames (as a cell array).
    
-2. For whatever input other than `'show'` a powerful string-search engine will scan the selected database and either return the rgb triplet, for exact, case-insentive matches, or provide a list of 'nearest' (in string space!) matches. Try it, you'll find that the 'show' option is quite unuseful at the end of the day. 🙃
+2. For whatever input other than `'show'` and `'list'` a powerful string-search engine will scan the selected database and either return the rgb triplet, for exact, case-insentive matches, or provide a list of 'nearest' (in string space!) matches. Try it, you'll find that the 'show' option is quite unuseful at the end of the day. 🙃
 
     ```matlab
-    !EXAMPLE
+    % EXAMPLE
     rgb.xkcd('blue-green')
     Color 'blue-green' not found in xkcd/rgb.
     Consider one of these options:
@@ -27,7 +27,7 @@ For more detailed information and examples just invoke the docstrings by typing 
 ### COPYRIGHT & LICENSING ###
 
 © 2014 Chad Greene, original [rgb function](https://it.mathworks.com/matlabcentral/fileexchange/46872-intuitive-rgb-color-values-from-xkcd)    
-© 2022 Gabriele Bellomia, rgb.X11 adaptation    
+© 2022 Gabriele Bellomia, X11 colorset addition
 All rights reserved.    
 
 Redistribution and use in source and binary forms, with or without
