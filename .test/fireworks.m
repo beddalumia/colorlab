@@ -1,4 +1,8 @@
+disp('TESTING fireworks script [get_palette]')
+
 colorlab.enter
+close all
+clear
 
 for shape = {'circle'}
     figure('Name',shape{:})
@@ -8,6 +12,9 @@ for shape = {'circle'}
         boom(target,powder,shape{:})
     end
 end
+
+disp('>> All good!')
+disp('------------')
 
 function boom(point,powder,shape)
     for j = 1:10

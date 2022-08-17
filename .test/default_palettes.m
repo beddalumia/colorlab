@@ -1,4 +1,8 @@
+disp('TESTING default palettes [set_palette]')
+
 colorlab.enter
+close all
+clear
 
 palettes = build_namelist();
 
@@ -12,7 +16,8 @@ end
 
 pause(1)
 
-disp('All good!')
+disp('>> All good!')
+disp('------------')
 
 close gcf
 

@@ -1,4 +1,8 @@
+disp('TESTING lego script [+palette]')
+
 colorlab.enter
+close all
+clear
 import palette.*
 
 %% MIXED
@@ -28,6 +32,9 @@ set(0,'DefaultAxesColorOrder',crameri('batlowS'))
 legoland('batlowS')
 save_fig('batlowS')
 
+disp('>> All good!')
+disp('------------')
+
 function legoland(name)
 
     figure('Name',name)
@@ -48,5 +55,5 @@ end
 function save_fig(name)
     file = ['lego_',name,'.png'];
     res  = '-r228.3298'; % -> 1080px wide
-    %export_fig(file,res);
+    export_fig(file,res);
 end
