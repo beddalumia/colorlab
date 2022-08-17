@@ -62,6 +62,7 @@ jobs:
             ver % print to log the *exact* version
             addpath('MAT')
             matverse.enter
+            colorlab.enter
             cd .test
             default_palettes
             rosa
