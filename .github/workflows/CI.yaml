@@ -41,13 +41,12 @@ jobs:
         uses: matlab-actions/setup-matlab@v1
         with:      # retrieve previously exported value
           release: ${{ steps.release.outputs.default}}
-      # Retrieve all MATLAB dependencies from the MATVERSE
-      - name: Init the MATVERSE
+      # Retrieve needed dependence: export_fig
+      - name: Retrieve export_fig
         uses: actions/checkout@v3
         with:
-          repository: bellomia/MATVERSE
-          path: MAT
-          submodules: recursive
+          repository: altmany/export_fig
+          path: lib
       - name: Retrieve GHOSTSCRIPT and PDFTOPS
         run : | # External dependencies for export_figure
           sudo apt-get update
@@ -60,10 +59,10 @@ jobs:
         with:      
           command: | # here we are in the MATLAB shell
             ver % print to log the *exact* version
-            addpath('MAT')
-            matverse.enter
-            colorlab.enter
+            addpath('lib') % export_fig
+            colorlab.enter % install
             cd .test
+            % now all script
             default_palettes
             rosa
             leaves
@@ -76,7 +75,7 @@ jobs:
         run : | # here we setup & launch a python run
             pip3 install imagehash
             cd .test
-            cp .test/*.png .test/NEW
+            cp /*.png /NEW
             mkdir vdiffs
             mkdir vdiffs/REF
             mkdir vdiffs/NEW
