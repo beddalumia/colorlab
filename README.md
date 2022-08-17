@@ -309,7 +309,7 @@ Some examples to try:
 >> str2rgb('#ff00ff','de56f0')
 ```
 
-Finally we cite a lovely alternative, focusing on converting not only colornames to rgb triplets, but also the converse: a higly nontrivial task, involving deep color-theory concepts.
+Finally we cite a lovely alternative, focusing on converting not only colornames to rgb triplets, but also the converse: a highly nontrivial task, involving deep color-theory concepts.
 
 > [Cobeldick's `colornames()` function on file-exchange.](https://it.mathworks.com/matlabcentral/fileexchange/48155-convert-between-rgb-and-color-names)
 
