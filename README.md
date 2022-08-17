@@ -13,6 +13,18 @@ So here we provide a fair amount of such new color functionality, building up on
 The codebase mainly embeds several functions and packages by these two authors, retrieved either from the [file-exchange](https://www.mathworks.com/matlabcentral/fileexchange/) or github and then appropriately tweaked/extended, while providing some common wrappers and tools.    
 All for a unified user experience.
 
+
+  - [Installation](#installation)
+  - [Usage](#usage)
+    - [Select all available colormaps via `set_palette`](#select-all-available-colormaps-via-set_palette)
+    - [Preset parameters for colormap generators via `preset_palette`](#preset-parameters-for-colormap-generators-via-preset_palette)
+    - [Common colornames for RGB triplets via the mighty `str2rgb`](#common-colornames-for-rgb-triplets-via-the-mighty-str2rgb)
+    - [HEX to RGB and viceversa through `hex2rgb` and `rgb2hex`](#hex-to-rgb-and-viceversa-through-hex2rgb-and-rgb2hex)
+    - [Build fully custom diverging colormaps through `diverging_cmap`](#build-fully-custom-diverging-colormaps-through-diverging_cmap)
+    - [Additional interactive functionality through `view_color`](#additional-interactive-functionality-through-view_color)
+    - [BONUS: we embeed also the legendary `cprintf`, for colorful terminal output (with caveats)](#bonus-we-embeed-also-the-legendary-cprintf-for-colorful-terminal-output-with-caveats)
+  - [TODO list](#todo-list)
+
 ### Installation
 
 To start using the packages just:
@@ -21,7 +33,7 @@ To start using the packages just:
    ```ssh
    git clone https://github.com/bellomia/colorlab.git
    ```
-2. start a matlab session therein and in the matlab command window type
+2. start a matlab session therein and type
    ```matlab
    >> colorlab.enter
    >> savepath % to make changes resilient to session restart
