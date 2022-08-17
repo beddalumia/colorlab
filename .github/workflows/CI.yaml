@@ -1,0 +1,88 @@
+# Run .test/ scripts and check output against commit
+name: CI
+on: # setup triggers
+  push:
+    paths: 
+      - '**.m'   # diff in mfiles
+  workflow_dispatch: # manual-run
+    inputs:
+      release:
+        description: 'MATLAB RELEASE'     
+        required: true
+        default: 'R2020b' 
+        type: choice
+        options:
+        - latest
+        - R2022a
+        - R2021b
+        - R2021a
+        - R2020b
+        - R2020a
+jobs:
+  MATLAB-RUN:
+    runs-on: ubuntu-latest
+    steps:
+      # Clone this repository on the GitHub Actions runner 
+      - uses: actions/checkout@v3
+      # Backup all PNG files to later perform visual tests
+      - name: Backup committed figures
+        run : | # allows multi-line parsing *including* \n
+          cd $GITHUB_WORKSPACE
+          mkdir .test/REF
+          mkdir .test/NEW
+          cp .test/*.png .test/REF/
+      - name: Define MATLAB release
+        id  : release
+        run : | # here we use /shell parameter expansion/
+          RELEASE=${{ github.event.inputs.release }}
+          echo "::set-output name=default::${RELEASE:-"R2020b"}"
+      # Setup MATLAB on the GitHub Actions runner
+      - name: Setup MATLAB
+        uses: matlab-actions/setup-matlab@v1
+        with:      # retrieve previously exported value
+          release: ${{ steps.release.outputs.default}}
+      # Retrieve all MATLAB dependencies from the MATVERSE
+      - name: Init the MATVERSE
+        uses: actions/checkout@v3
+        with:
+          repository: bellomia/MATVERSE
+          path: MAT
+          submodules: recursive
+      - name: Retrieve GHOSTSCRIPT and PDFTOPS
+        run : | # External dependencies for export_figure
+          sudo apt-get update
+          sudo apt-get install ghostscript -y
+          sudo apt-get install poppler-utils -y
+          cd $GITHUB_WORKSPACE
+      # Run all MATLAB scripts
+      - name: Run all scripts
+        uses: matlab-actions/run-command@v1
+        with:      
+          command: | # here we are in the MATLAB shell
+            ver % print to log the *exact* version
+            addpath('MAT')
+            matverse.enter
+            cd .test
+            default_palettes
+            rosa
+            leaves
+            lego
+            fireworks
+            cd ..
+      # Compare the new output with the backup (vtests)
+      - name: Perform visual test
+        continue-on-error: true # soft fail for vtests
+        run : | # here we setup & launch a python run
+            pip3 install imagehash
+            cd .test
+            cp .test/*.png .test/NEW
+            mkdir vdiffs
+            mkdir vdiffs/REF
+            mkdir vdiffs/NEW
+            python3 vtest.py | tee vdiffs/vtest.txt
+      # Upload all the new and old figures: human-eye test
+      - name: Upload old and new artifacts for human check
+        uses: actions/upload-artifact@master
+        with:
+          name: vdiffs
+          path: .test/vdiffs
