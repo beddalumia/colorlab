@@ -29,6 +29,7 @@ All for a unified user experience.
     - [Additional interactive functionality through `view_color`](#additional-interactive-functionality-through-view_color)
     - [BONUS: the legendary `cprintf`, for colorful terminal output (with caveats)](#bonus-the-legendary-cprintf-for-colorful-terminal-output-with-caveats)
   - [More showoff: generative art corner](#more-showoff-generative-art-corner)
+      - [Rosa](#rosa)
       - [Leaves](#leaves)
       - [Fireworks](#fireworks)
       - [Lego](#lego)
@@ -364,6 +365,18 @@ would produce the following (left-right and top-down ordering):
 You might well have already heard about `cprintf`. It allows choosing the color of the stdout prints (but only in the official Matlab GUI). It does so by exploiting _undocumented_ functionality from the underlying Java runtime. More info can be found on the [original blog post from the author](https://undocumentedmatlab.com/matlab/wp-content/cache/all/articles/cprintf-display-formatted-color-text-in-command-window/index.html). Overall, being built upon undocumented (and so potentially all of a sudden unsupported) features, we strongly discourage systematic usage within structured projects. Nevertheless we provide it as a nice tool to be used in throw-away scripts. :)
 
 ## More showoff: generative art corner
+
+#### [Rosa](.test/rosa.m)
+
+Applying our most iconic colormaps to the most iconic flower.
+
+```matlab
+>> !cd .test
+>> rosa
+```
+`viridis` | `batlow` | `cubehelix` | `magma`
+----------|----------|-------------|--------
+<img src=.test/rosa_viridis.png>| <img src=.test/rosa_batlow.png> | <img src=.test/rosa_cubehelix.png>| <img src=.test/rosa_magma.png>
 
 #### [Leaves](.test/leaves.m)
 
