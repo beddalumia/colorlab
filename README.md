@@ -2,7 +2,12 @@
 
 `COLORLAB` a curated collection of color-related MATLAB libraries
 --------------------------
-![repo size](https://img.shields.io/github/repo-size/bellomia/colorlab?color=wheat&label=repository%20size&logo=git&style=flat)
+![repo size](https://img.shields.io/github/repo-size/bellomia/colorlab?color=white&label=&logo=git&style=social)
+[![R2020a](https://github.com/bellomia/colorlab/actions/workflows/R2020a.yaml/badge.svg)](https://github.com/bellomia/colorlab/actions/workflows/R2020a.yaml)
+[![R2020b](https://github.com/bellomia/colorlab/actions/workflows/R2020b.yaml/badge.svg)](https://github.com/bellomia/colorlab/actions/workflows/R2020b.yaml)
+[![R2021a](https://github.com/bellomia/colorlab/actions/workflows/R2021a.yaml/badge.svg)](https://github.com/bellomia/colorlab/actions/workflows/R2021a.yaml)
+[![R2021b](https://github.com/bellomia/colorlab/actions/workflows/R2021b.yaml/badge.svg)](https://github.com/bellomia/colorlab/actions/workflows/R2021b.yaml)
+[![R2022a](https://github.com/bellomia/colorlab/actions/workflows/R2022a.yaml/badge.svg)](https://github.com/bellomia/colorlab/actions/workflows/R2022a.yaml)
 
 For a long time Matlab has excelled for its plotting features, at a point where [matplotlib](https://matplotlib.org), arguably the most popular open-source plotting library nowadays, has started as an explicit clone of such functionality and still today keeps a strong influence. In recent years, though, one important aspect has greatly evolved in the plotting business: color management. So we had [Dave Green's 2011 paper](https://astron-soc.in/bulletin/11June/289392011.pdf) introducing a new, revolutionary, colormap with the aim of representing astronomical data with monotonically increasing brightness (and so black-and-white print friendliness); then in 2015 even better advances by the SciPy team, enriching matplotib with beautiful _perceptually uniform_ colormaps ([viridis, magma, plasma](https://www.youtube.com/watch?v=xAoljeRJ3lU) and the [domain-specific ones for oceanography: cmocean](https://youtu.be/XjHzLUnHeM0)). Meanwhile the results of a totally crazy and marvelous at the same time [2010 color survey](https://blog.xkcd.com/2010/05/03/color-survey-results/) made by the great xkcd webcomic, have gained more and more popularity, in fact challenging the old and trusted [X11 colorset](https://en.wikipedia.org/wiki/X11_color_names). Nowadays it's embedded again in [matplotlib](https://matplotlib.org/stable/tutorials/colors/colors.html) and available in [LaTeX](https://www.ctan.org/pkg/xkcdcolors), in [R](https://cran.r-project.org/web/packages/xkcdcolors/), and [Julia](https://github.com/JuliaGraphics/NamedColors.jl).
 
