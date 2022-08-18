@@ -4,3 +4,5 @@
 *.m linguist-language=MATLAB
 # Language override for HTML documentation files
 *.html linguist-documentation
+# Exclude from linguist CI-only scripts
+*.py linguist-vendored=true
