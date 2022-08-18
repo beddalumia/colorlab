@@ -36,5 +36,5 @@ function save_fig(name)
     file = ['leaves_',name,'.png'];
     res  = '-r228.3298'; % -> 1080px wide
     pad  = '-p0.20000';
-    export_fig(file,res,pad);
+    %export_fig(file,res,pad);
 end

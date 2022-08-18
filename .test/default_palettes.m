@@ -1,4 +1,4 @@
-disp('TESTING default palettes [set_palette]')
+disp('TESTING all default palettes [set_palette]')
 
 colorlab.enter
 close all
