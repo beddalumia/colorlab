@@ -1,10 +1,21 @@
 # Run .test/ scripts and check output against commit
 name: CI
 on: # setup triggers
-  push:
-    paths: 
-      - '**.m'   # diff in mfiles
   workflow_dispatch: # manual-run
+    inputs:
+      release:
+        description: 'MATLAB RELEASE'     
+        required: true
+        default: 'R2020b' 
+        type: choice
+        options:
+        - latest
+        - R2022a
+        - R2021b
+        - R2021a
+        - R2020b
+        - R2020a
+  workflow_call:    # subroutine-like
     inputs:
       release:
         description: 'MATLAB RELEASE'     
