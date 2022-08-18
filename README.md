@@ -2,7 +2,6 @@
 
 `COLORLAB` a curated collection of color-related MATLAB libraries
 --------------------------
-![repo size](https://img.shields.io/github/repo-size/bellomia/colorlab?color=white&label=&logo=git&style=social)
 [![R2020a](https://github.com/bellomia/colorlab/actions/workflows/R2020a.yaml/badge.svg)](https://github.com/bellomia/colorlab/actions/workflows/R2020a.yaml)
 [![R2020b](https://github.com/bellomia/colorlab/actions/workflows/R2020b.yaml/badge.svg)](https://github.com/bellomia/colorlab/actions/workflows/R2020b.yaml)
 [![R2021a](https://github.com/bellomia/colorlab/actions/workflows/R2021a.yaml/badge.svg)](https://github.com/bellomia/colorlab/actions/workflows/R2021a.yaml)
@@ -429,3 +428,7 @@ A fun rendition of the matlab logo.
 - [ ] Add more colorname sets to `+rgb` and `str2rgb`, maybe integrating [Cobeldick's `colornames()`](https://it.mathworks.com/matlabcentral/fileexchange/48155-convert-between-rgb-and-color-names). Though its API is more focused on the "rgb2str" workflow and it provides many additional funcionality that we might not need. Also we would need some idea on how to deal with (proabably huge) name collisions and priorities in `str2rgb`.
 
 - [ ] Add the ["MetBrewer" colormaps](https://github.com/BlakeRMills/MetBrewer), extracting the HEX code from the original implementation (or the python transpile, whichever proves easier). They are beautifully chosen discrete palettes, with a small number of nodes, hence the implementation for the continous --perceptually uniform-- interpolation should resemble (unsurprisingly?) the one in `palette.brewer`.
+  
+
+-------
+![repo size](https://img.shields.io/github/repo-size/bellomia/colorlab?color=red&label=repository%20size&logo=git&style=flat-square  )
