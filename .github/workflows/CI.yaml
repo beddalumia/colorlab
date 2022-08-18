@@ -63,14 +63,22 @@ jobs:
           command: | # here we are in the MATLAB shell
             ver % print to log the *exact* version
             addpath('lib') % export_fig
+            colorlab.vista % preinstall
             colorlab.enter % install
             cd .test
-            % now all script
+            % all test scripts:
             default_palettes
+            color_order_test
+            color_conversions
+            colorname_overlap
+            x11_colornames
+            xkcd_colornames
             rosa
             leaves
             lego
             fireworks
+            all_docstrings
+            colorlab.leave % uninstall
             cd ..
       # Compare the new output with the backup (vtests)
       - name: Perform visual test

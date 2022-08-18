@@ -149,8 +149,9 @@ Note that `set_palette('cubehelix',[],0,0.6,1.6,0.9,[0,1],[0,0.8])` is a totally
 >> set_palette('cubehelix',[],0,0.6,1.6,0.9,[0,1],[0,0.8])
    cubehelix got through palette.cubehelix
 ```
-
 <img width=500 src=resources/fake_magma.svg>
+
+If you wish to see a fast showrell of all available colormaps, as applied to a surface plot, just run [`.test/default_palettes.m`](.test/default_palettes.m).
 
 ### Pick a palette as your _color order_ via `set_colororder`
 
@@ -182,6 +183,8 @@ Non-exhaustive showreel of `<your-choice>` options:
 `'actonS'` | `'turkuS'`
 ------|-------|
 ![acton](crameri/resources/acton.svg) | ![turku](crameri/resources/turku.svg)
+
+If you wish to see a fast showrell of all available possibilities just run [`.test/color_order_test.m`](.test/color_order_test.m).
 
 ### Preset parameters for colormap generators via `preset_palette` 
 
