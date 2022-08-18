@@ -75,7 +75,7 @@ jobs:
         run : | # here we setup & launch a python run
             pip3 install imagehash
             cd .test
-            cp *.png /NEW
+            cp *.png NEW/
             mkdir vdiffs
             mkdir vdiffs/REF
             mkdir vdiffs/NEW
