@@ -20,15 +20,7 @@ on: # setup triggers
       release:
         description: 'MATLAB RELEASE'     
         required: true
-        default: 'R2020b' 
-        type: choice
-        options:
-        - latest
-        - R2022a
-        - R2021b
-        - R2021a
-        - R2020b
-        - R2020a
+        type: string
 jobs:
   MATLAB-RUN:
     runs-on: ubuntu-latest
