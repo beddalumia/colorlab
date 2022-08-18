@@ -413,6 +413,8 @@ A fun rendition of the matlab logo.
 
 ## TODO
 
+- [ ] Extend the [test suite](.test) to increase coverage (high priority).
+
 - [ ] Implement the `'-name'` reverse option within `set_palette`, it is present in most colormap generators (all except the matplotlib ones) but we cannot use it in the wrapper. It would be handy to have...
 
 - [x] Convert `set_palette` into a `get_palette` wrapper, to actually retrieve the raw RGB triplets. This would be internally called by a new `set_palette`. It might also help with the previous point (the `'-name'` reverse).

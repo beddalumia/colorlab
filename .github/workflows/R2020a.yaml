@@ -1,0 +1,12 @@
+# Run .test/ scripts and check output against commit
+name: R2020a
+on: # setup triggers
+  push:
+    paths: 
+      - '**.m'    # diff in mfiles
+  workflow_dispatch:  # manual-run
+jobs:
+  R2020a:
+    uses: bellomia/colorlab/.github/workflows/CI.yaml@master
+    with:
+      release: R2020a
