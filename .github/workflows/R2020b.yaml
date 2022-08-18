@@ -7,6 +7,6 @@ on: # setup triggers
   workflow_dispatch:  # manual-run
 jobs:
   R2020b:
-    uses: bellomia/colorlab/.github/workflows/CI.yml@master
+    uses: bellomia/colorlab/.github/workflows/CI.yaml@master
     with:
       release: R2020b
