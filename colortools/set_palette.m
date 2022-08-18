@@ -8,7 +8,11 @@ function set_palette(varargin)
 %     varargin: optional, to request low level API
 %
 %  To see all available colormap names just call:
-%  >> set_palette('list') or set_palette list
+%  >> set_palette('list') % or set_palette list
+%
+%  For a fast graphical show-reel 
+%  >> set_palette show % or
+%  >> set_palette('show',N)
 %
 %  Though you will find that such option would prove
 %  unnecessary most of the time: thanks to a powerful

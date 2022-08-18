@@ -10,6 +10,10 @@ function set_colororder(varargin)
 %  To see all available colormap names just call:
 %  >> set_colororder('list')
 %
+%  For a fast graphical show-reel 
+%  >> set_colororder show % or
+%  >> set_colororder('show',N)
+%
 %  Though you will find that such option would prove
 %  unnecessary most of the time: thanks to a powerful
 %  string-search engine, set_colororder can suggest
