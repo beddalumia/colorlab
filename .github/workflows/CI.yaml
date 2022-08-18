@@ -1,5 +1,5 @@
 # Run .test/ scripts and check output against commit
-name: CI
+name: Generic
 on: # setup triggers
   workflow_dispatch: # manual-run
     inputs:
@@ -22,7 +22,7 @@ on: # setup triggers
         required: true
         type: string
 jobs:
-  MATLAB-RUN:
+  CI:
     runs-on: ubuntu-latest
     steps:
       # Clone this repository on the GitHub Actions runner 
