@@ -373,48 +373,48 @@ You might well have already heard about `cprintf`. It allows choosing the color 
 
 ## More showoff: generative art corner
 
-### [Rosa](.test/rosa.m)
+### [Rosa](.art/rosa_test.m)
 
 Applying our most iconic colormaps to the most iconic flower.
 
 ```matlab
->> !cd .test
->> rosa
+>> !cd .art
+>> rosa_test
 ```
 `viridis` | `batlow` | `cubehelix` | `magma`
 ----------|----------|-------------|--------
-<img src=.test/rosa_viridis.png>| <img src=.test/rosa_batlow.png> | <img src=.test/rosa_cubehelix.png>| <img src=.test/rosa_magma.png>
+<img src=.art/rosa_viridis.png>| <img src=.art/rosa_batlow.png> | <img src=.art/rosa_cubehelix.png>| <img src=.art/rosa_magma.png>
 
-### [Leaves](.test/leaves.m)
+### [Leaves](.art/leaves_test.m)
 
 Comparing two famous built-in colormaps with much more effective alternatives proved by colorlab.
 
 ```matlab
->> !cd .test
->> leaves
+>> !cd .art
+>> leaves_test
 ```
 LEAVES | Matlab built-in | Colorlab provided
 ------|----------|---------
-summer (YlGn) | <img width=300 src=.test/leaves_summer.png>| <img width=300 src=.test/leaves_YlGn.png>
-autumn (lajollaS) |<img width=300 src=.test/leaves_autumn.png>| <img width=300 src=.test/leaves_lajollaS.png>
+summer (YlGn) | <img width=300 src=.art/leaves_summer.png>| <img width=300 src=.art/leaves_YlGn.png>
+autumn (lajollaS) |<img width=300 src=.art/leaves_autumn.png>| <img width=300 src=.art/leaves_lajollaS.png>
 
-### [Fireworks](.test/fireworks.m)
+### [Fireworks](.art/fireworks_test.m)
 
 A silly divertissement with discrete palettes.
 
 ```matlab
->> !cd .test
->> fireworks
+>> !cd .art
+>> fireworks_test
 ```
 ![](resources/fireworks.svg)
 
-### [Lego](.test/lego.m)
+### [Lego](.art/lego_test.m)
 
 A fun rendition of the matlab logo.
 
 ```matlab
->> !cd .test
->> lego
+>> !cd .art
+>> lego_test
 ```
 <img src=resources/lego.gif width=300>
 
