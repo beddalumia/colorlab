@@ -1,36 +1,38 @@
-disp('TESTING interaction with Mapping Toolbox [preset_palette]')
+function test_worldmaps()
 
-colorlab.enter
-close all
-clear
+    disp('TESTING interaction with Mapping Toolbox [preset_palette]')
 
-% build the worldmap 
-topographer()
-% preselect the colorscheme.
-preset_palette(@palette.viridis); 
-% apply the preselected colormap
-colorizer('viridis')
-% preselect the colorscheme.
-preset_palette(@palette.cubehelix,3,-0.5,1.5,1	); 
-% apply the preselected colormap
-colorizer('cubehelix')
-% preselect the colorscheme.
-preset_palette(@palette.brewer,'-PuOr'); 
-% apply the preselected colormap
-colorizer('-PuOr')
-% preselect the colorscheme.
-preset_palette(@palette.cmocean,'topo'); 
-% apply the preselected colormap
-colorizer('topo')
-% preselect the colorscheme.
-preset_palette(@palette.crameri,'oleron'); 
-% apply the preselected colormap
-colorizer('oleron')
+    colorlab.enter
+    close all
+    clear
 
+    % build the worldmap 
+    topographer()
+    % preselect the colorscheme.
+    preset_palette(@palette.viridis); 
+    % apply the preselected colormap
+    colorizer('viridis')
+    % preselect the colorscheme.
+    preset_palette(@palette.cubehelix,3,-0.5,1.5,1	); 
+    % apply the preselected colormap
+    colorizer('cubehelix')
+    % preselect the colorscheme.
+    preset_palette(@palette.brewer,'-PuOr'); 
+    % apply the preselected colormap
+    colorizer('-PuOr')
+    % preselect the colorscheme.
+    preset_palette(@palette.cmocean,'topo'); 
+    % apply the preselected colormap
+    colorizer('topo')
+    % preselect the colorscheme.
+    preset_palette(@palette.crameri,'oleron'); 
+    % apply the preselected colormap
+    colorizer('oleron')
 
+    disp('>> All good!')
+    disp('------------')
 
-disp('>> All good!')
-disp('------------')
+end
 
 function topographer()
     load topo

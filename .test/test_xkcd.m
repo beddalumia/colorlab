@@ -1,22 +1,26 @@
-disp('TESTING xkcd colorset [rgb.xkcd;rgb2hex]')
+function test_xkcd()
+    
+    disp('TESTING xkcd colorset [rgb.xkcd;rgb2hex]')
 
-colorlab.enter
-close all
-clear
+    colorlab.enter
+    close all
+    clear
 
-names = rgb.xkcd('list');
-disp('Are colornames unchanged?')
-assert(isequal(names,reference_names),'xkcd colornames have changed')
-disp('> yes')
+    names = rgb.xkcd('list');
+    disp('Are colornames unchanged?')
+    assert(isequal(names,reference_names),'xkcd colornames have changed')
+    disp('> yes')
 
-colors = rgb2hex(rgb.xkcd(names));
-refhex = rgb2hex(reference_colors);
-disp('Are colors unchanged?')
-assert(isequal(colors,refhex),'xkcd colors have changed')
-disp('> yes')
+    colors = rgb2hex(rgb.xkcd(names));
+    refhex = rgb2hex(reference_colors);
+    disp('Are colors unchanged?')
+    assert(isequal(colors,refhex),'xkcd colors have changed')
+    disp('> yes')
 
-disp('>> All good!')
-disp('------------')
+    disp('>> All good!')
+    disp('------------')
+
+end
 
 function list = reference_names()
 

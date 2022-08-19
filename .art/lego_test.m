@@ -1,39 +1,43 @@
-disp('TESTING lego script [+palette]')
+function lego_test()
+    
+    disp('TESTING lego script [+palette]')
 
-colorlab.enter
-close all
-clear
-import palette.*
+    colorlab.enter
+    close all
+    clear
+    import palette.*
 
-%% MIXED
+    %% MIXED
 
-set(0,'DefaultAxesColorOrder','default')
-legoland('default')
-save_fig('default')
-set(0,'DefaultAxesColorOrder',tab20)
-legoland('tab20')
-save_fig('tab20')
-set(0,'DefaultAxesColorOrder',brewer([],'Pastel2'))
-legoland('Pastel2')
-save_fig('Pastel2')
-set(0,'DefaultAxesColorOrder',brewer([],'Accent'))
-legoland('Accent')
-save_fig('Accent')
-set(0,'DefaultAxesColorOrder',brewer([],'Paired'))
-legoland('Paired')
-save_fig('Paired')
-set(0,'DefaultAxesColorOrder',brewer([],'Set1'))
-legoland('Set1')
-save_fig('Set1')
-set(0,'DefaultAxesColorOrder',brewer([],'Dark2'))
-legoland('Dark2')
-save_fig('Dark2')
-set(0,'DefaultAxesColorOrder',crameri('batlowS'))
-legoland('batlowS')
-save_fig('batlowS')
+    set(0,'DefaultAxesColorOrder','default')
+    legoland('default')
+    save_fig('default')
+    set(0,'DefaultAxesColorOrder',tab20)
+    legoland('tab20')
+    save_fig('tab20')
+    set(0,'DefaultAxesColorOrder',brewer([],'Pastel2'))
+    legoland('Pastel2')
+    save_fig('Pastel2')
+    set(0,'DefaultAxesColorOrder',brewer([],'Accent'))
+    legoland('Accent')
+    save_fig('Accent')
+    set(0,'DefaultAxesColorOrder',brewer([],'Paired'))
+    legoland('Paired')
+    save_fig('Paired')
+    set(0,'DefaultAxesColorOrder',brewer([],'Set1'))
+    legoland('Set1')
+    save_fig('Set1')
+    set(0,'DefaultAxesColorOrder',brewer([],'Dark2'))
+    legoland('Dark2')
+    save_fig('Dark2')
+    set(0,'DefaultAxesColorOrder',crameri('batlowS'))
+    legoland('batlowS')
+    save_fig('batlowS')
 
-disp('>> All good!')
-disp('------------')
+    disp('>> All good!')
+    disp('------------')
+
+end
 
 function legoland(name)
 

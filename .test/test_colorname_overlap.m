@@ -1,19 +1,23 @@
-disp('TESTING <X11|xkcd> overlap [+rgb]')
+function test_colorname_overlap()
 
-colorlab.enter
-close all
-clear
+    disp('TESTING <X11|xkcd> overlap [+rgb]')
 
-A = rgb.X11('list');
-B = rgb.xkcd('list');
-computed_overlap = intersect(A,B);
+    colorlab.enter
+    close all
+    clear
 
-disp overlap:
-disp(computed_overlap)
-assert(isequal(computed_overlap,reference_overlap),'overlap has changed')
+    A = rgb.X11('list');
+    B = rgb.xkcd('list');
+    computed_overlap = intersect(A,B);
 
-disp('>> All good!')
-disp('------------')
+    disp overlap:
+    disp(computed_overlap)
+    assert(isequal(computed_overlap,reference_overlap),'overlap has changed')
+
+    disp('>> All good!')
+    disp('------------')
+
+end
 
 function list = reference_overlap()
 

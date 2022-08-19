@@ -1,20 +1,24 @@
-disp('TESTING fireworks script [get_palette]')
+function fireworks_test()
 
-colorlab.enter
-close all
-clear
+    disp('TESTING fireworks script [get_palette]')
 
-for shape = {'circle'}
-    figure('Name',shape{:})
-    for scheme = {'tab20','tab20c','Set2'}
-        target = [randi(20),randi(20)];
-        powder = get_palette(scheme{:});
-        boom(target,powder,shape{:})
+    colorlab.enter
+    close all
+    clear
+
+    for shape = {'circle'}
+        figure('Name',shape{:})
+        for scheme = {'tab20','tab20c','Set2'}
+            target = [randi(20),randi(20)];
+            powder = get_palette(scheme{:});
+            boom(target,powder,shape{:})
+        end
     end
-end
 
-disp('>> All good!')
-disp('------------')
+    disp('>> All good!')
+    disp('------------')
+
+end
 
 function boom(point,powder,shape)
     for j = 1:10

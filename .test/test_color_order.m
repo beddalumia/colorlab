@@ -1,12 +1,16 @@
-disp('TESTING set_colororder')
+function test_color_order()
 
-colorlab.enter
-close all
-clear
+    disp('TESTING set_colororder')
 
-N = 7;
+    colorlab.enter
+    close all
+    clear
 
-set_colororder('show',N)
+    N = 7;
 
-disp('>> All good!')
-disp('------------')
+    set_colororder('show',N)
+
+    disp('>> All good!')
+    disp('------------')
+    
+end

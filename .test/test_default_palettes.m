@@ -1,10 +1,14 @@
-disp('TESTING all default palettes [set_palette]')
+ function test_default_palettes()
+ 
+    disp('TESTING all default palettes [set_palette]')
 
-colorlab.enter
-close all
-clear
+    colorlab.enter
+    close all
+    clear
 
-set_palette show
+    set_palette show
 
-disp('>> All good!')
-disp('------------')
+    disp('>> All good!')
+    disp('------------')
+
+ end

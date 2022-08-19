@@ -1,22 +1,26 @@
-disp('TESTING X11 colorset [rgb.X11;rgb2hex;]')
+function test_X11()
+    
+    disp('TESTING X11 colorset [rgb.X11;rgb2hex;]')
 
-colorlab.enter
-close all
-clear
+    colorlab.enter
+    close all
+    clear
 
-names = rgb.X11('list');
-disp('Are colornames unchanged?')
-assert(isequal(names,reference_names),'X11 colornames have changed')
-disp('> yes')
+    names = rgb.X11('list');
+    disp('Are colornames unchanged?')
+    assert(isequal(names,reference_names),'X11 colornames have changed')
+    disp('> yes')
 
-colors = rgb2hex(rgb.X11(names));
-refhex = rgb2hex(reference_colors);
-disp('Are colors unchanged?')
-assert(isequal(colors,refhex),'X11 colors have changed')
-disp('> yes')
+    colors = rgb2hex(rgb.X11(names));
+    refhex = rgb2hex(reference_colors);
+    disp('Are colors unchanged?')
+    assert(isequal(colors,refhex),'X11 colors have changed')
+    disp('> yes')
 
-disp('>> All good!')
-disp('------------')
+    disp('>> All good!')
+    disp('------------')
+
+end
 
 function list = reference_names()
 
