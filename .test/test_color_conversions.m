@@ -1,4 +1,6 @@
-function test_color_conversions()
+color_conversions()
+
+function color_conversions()
 
     disp('TESTING all color conversions [str2rgb;rgb2hex;hex2rgb]')
 

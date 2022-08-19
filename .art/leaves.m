@@ -1,4 +1,4 @@
-function leaves_test()
+function leaves()
     
     disp('TESTING leaves script [set_palette]')
 

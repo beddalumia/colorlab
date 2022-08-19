@@ -1,4 +1,6 @@
- function test_default_palettes()
+ default_palettes()
+ 
+ function default_palettes()
  
     disp('TESTING all default palettes [set_palette]')
 

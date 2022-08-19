@@ -1,4 +1,6 @@
-function test_xkcd()
+xkcd_colors()
+
+function xkcd_colors()
     
     disp('TESTING xkcd colorset [rgb.xkcd;rgb2hex]')
 

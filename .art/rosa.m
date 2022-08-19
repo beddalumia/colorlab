@@ -1,4 +1,4 @@
-function rosa_test()
+function rosa()
     
     disp('TESTING rosa script [set_palette]')
 

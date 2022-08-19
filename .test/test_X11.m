@@ -1,4 +1,6 @@
-function test_X11()
+X11_colors()
+
+function X11_colors()
     
     disp('TESTING X11 colorset [rgb.X11;rgb2hex;]')
 

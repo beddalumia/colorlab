@@ -1,4 +1,4 @@
-function lego_test()
+function lego()
     
     disp('TESTING lego script [+palette]')
 

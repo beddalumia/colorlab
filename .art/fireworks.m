@@ -1,4 +1,4 @@
-function fireworks_test()
+function fireworks()
 
     disp('TESTING fireworks script [get_palette]')
 

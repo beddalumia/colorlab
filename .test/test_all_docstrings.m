@@ -1,4 +1,6 @@
-function test_all_docstrings()
+all_docstrings()
+
+function all_docstrings()
 
     disp('TESTING all examples in docstrings.')
 

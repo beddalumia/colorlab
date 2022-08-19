@@ -1,4 +1,6 @@
-function test_color_order()
+color_order()
+
+function color_order()
 
     disp('TESTING set_colororder')
 

@@ -1,4 +1,6 @@
-function test_colorname_overlap()
+colorname_overlap()
+
+function colorname_overlap()
 
     disp('TESTING <X11|xkcd> overlap [+rgb]')
 

@@ -1,4 +1,6 @@
-function test_worldmaps()
+worldmaps()
+
+function worldmaps()
 
     disp('TESTING interaction with Mapping Toolbox [preset_palette]')
 
@@ -12,18 +14,26 @@ function test_worldmaps()
     preset_palette(@palette.viridis); 
     % apply the preselected colormap
     colorizer('viridis')
+    % build the worldmap 
+    topographer()
     % preselect the colorscheme.
     preset_palette(@palette.cubehelix,3,-0.5,1.5,1	); 
     % apply the preselected colormap
     colorizer('cubehelix')
+    % build the worldmap 
+    topographer()
     % preselect the colorscheme.
     preset_palette(@palette.brewer,'-PuOr'); 
     % apply the preselected colormap
     colorizer('-PuOr')
+    % build the worldmap 
+    topographer()
     % preselect the colorscheme.
     preset_palette(@palette.cmocean,'topo'); 
     % apply the preselected colormap
     colorizer('topo')
+    % build the worldmap 
+    topographer()
     % preselect the colorscheme.
     preset_palette(@palette.crameri,'oleron'); 
     % apply the preselected colormap
