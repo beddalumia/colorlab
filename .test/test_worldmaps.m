@@ -35,6 +35,7 @@ disp('------------')
 function topographer()
     load topo
     load coastlines
+    figure()
     disp('Worldmap building...')
     worldmap(topo, topolegend);
     contourfm(topo, topolegend);
