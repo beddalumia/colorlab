@@ -88,16 +88,6 @@ function showreel(N)
 
 end
 
-function plot_sines(N)
-    X = linspace(0,pi*3,1000);
-    Y = bsxfun(@(x,n)n*sin(x+2*n*pi/N), X.', 1:N);
-    for n = 1:N
-    plot(X(:),Y(:,n), 'linewidth',4);
-    hold all
-    end
-    xlim([0,3*pi]);
-end
-
 function list = build_namelist()
     % All colormap names available:
         list = {
