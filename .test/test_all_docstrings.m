@@ -8,6 +8,49 @@ function all_docstrings()
     close all
     clear
 
+    disp COLORNAMES 
+
+    disp colorshow
+    import rgb.*
+    X11('show')
+    xkcd('show')
+    disp '...done!'
+
+    disp X11
+    X11('navyblue') 
+    X11('SpringGreen','CornflowerBlue','sapphire','radioactive green')
+    x = -pi:.1:pi;
+    y = cos(x);
+    plot(x,y,'linewidth',4,'color',X11('CornflowerBlue'))
+    hold on
+    plot(x,y-1,'*','color',X11('Brown1'))
+    plot(x,y-2,'linewidth',4,'color',X11('SeaGreen'))
+    legend('cornflower','brown1 (wtf?!)','SeaGreen') 
+    set(gca,'color',X11('seashell'))
+    text(-1,-2,'This text is chocolate (wtf?!).','fontweight','bold','color',...
+            X11('chocolate')); 
+    close all
+    disp '...done!'
+
+    disp xkcd
+    xkcd('baby blue') 
+    xkcd('wintergreen','sunflower yellow','sapphire','radioactive green')
+    x = -pi:.1:pi;
+    y = cos(x);
+    plot(x,y,'linewidth',4,'color',xkcd('cornflower'))
+    hold on
+    plot(x,y-1,'*','color',xkcd('strawberry'))
+    plot(x,y-2,'linewidth',4,'color',xkcd('puke green'))
+    legend('cornflower','strawberry','puke green') 
+    set(gca,'color',xkcd('eggshell'))
+    text(-1,-2,'This text is burnt orange.','fontweight','bold','color',...
+            xkcd('burnt orange')); 
+    close all
+    disp '...done!'
+
+    disp('>> All good!')
+    disp('------------')
+
     disp COLORTOOLS
 
     disp view_color
@@ -130,7 +173,7 @@ function all_docstrings()
     surfc(X,Y,Z)
     cmap = palette.cubehelix([],0.7,-0.7,2,1,[0.1,0.9],[0.1,0.9]);
     colormap(cmap)
-    preset_palette(@palette.cubehelix, 3,-0.5,1.5,1); % preselect the map.
+    preset_palette(@palette.cubehelix,[3,-0.5,1.5,1]); % preselect the map.
     cmap = palette.cubehelix([],3,-0.5,1.5,1);
     assert(isequal(cmap,preset_palette))
     clear; close
@@ -160,9 +203,6 @@ function all_docstrings()
     %paletteshow.matplotlib TODO!
     close all force % brewer is nasty
     disp '...done!'
-
-    disp('>> All good!')
-    disp('------------')
 
 end
 

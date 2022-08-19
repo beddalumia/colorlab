@@ -77,7 +77,7 @@ function [RGB] = X11(varargin)
         % Make sure the function can load the data, rebuild it if necessary
         disp 'Cannot load X11/rgb database. I will try to import from local X11.txt file now.'
         X11_install
-        % Load data created by xkcd_install
+        % Load data created by X11_install
         load([here,'/private/X11_rgb_data.mat'],'namelist','rgblist');
     end
         
@@ -166,7 +166,7 @@ function [RGB] = X11(varargin)
     
 end
 
-%% Web-installation subfunction: 
+%% installation subfunction: 
 
 function X11_install 
 
@@ -186,13 +186,13 @@ function X11_install
     if ~exist('X11.txt','file')
         disp 'Cannot find X11.txt file.'
         try
-        %websave('rgb.txt','https://X11.com/color/rgb.txt');
+        % websave('rgb.txt','https://do-not-know-a-url.txt');
         catch 
             try
-                %urlwrite('https://X11.com/color/rgb.txt','rgb.txt'); %#ok <GNU>
+                % urlwrite('https://do-not-know-a-url.txt,'rgb.txt'); %#ok <GNU>
             catch
-                disp('Having trouble downloading the txt file. You''ll need to download it manually')
-                disp('from http://X11.com/color/rgb.txt and place it in current folder. Then run again.')
+                disp('Having trouble finding the txt file. You''ll need to retrieve it manually')
+                disp('from your *nix system and place it in current folder. Then run again.')
                 return
             end
         end
