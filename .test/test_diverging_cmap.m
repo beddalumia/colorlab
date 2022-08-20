@@ -17,6 +17,13 @@ function build_diverging_colormaps()
     [X,Y,Z] = peaks(50);
     surf(X,Y,Z); colormap(mapN);
 
+    % Near colors
+    diverging_cmap('pyplot1','matlab1'); 
+    diverging_cmap('g','y');
+
+    % Extreme case
+    diverging_cmap('w','k');
+
     close(gcf)
 
     disp('>> All good!')
