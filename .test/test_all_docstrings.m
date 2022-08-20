@@ -17,7 +17,7 @@ function all_docstrings()
     disp '...done!'
 
     disp X11
-    X11('navyblue') 
+    X11("navyblue") 
     X11('SpringGreen','CornflowerBlue','sapphire','radioactive green')
     x = -pi:.1:pi;
     y = cos(x);
@@ -33,7 +33,7 @@ function all_docstrings()
     disp '...done!'
 
     disp xkcd
-    xkcd('baby blue') 
+    xkcd("baby blue") 
     xkcd('wintergreen','sunflower yellow','sapphire','radioactive green')
     x = -pi:.1:pi;
     y = cos(x);
@@ -60,6 +60,7 @@ function all_docstrings()
     view_color({'pyplot1',"pyplot2",'pyplot3'},'vbars')
     view_color(palette.tab20(16),'hbars')
     view_color(palette.cubehelix(36))
+    view_color(palette.cubehelix(36),'square') % wrong form factor -> print help
     close all; clear
     disp '...done!'
 
@@ -74,11 +75,13 @@ function all_docstrings()
     disp '...done!'
 
     disp hex2rgb
+    hex2rgb % print help :)
     rgb = [0.2000,0.3020,0.4000];
     assert(norm(rgb-hex2rgb('#334D66'))<1e10)
     assert(norm(rgb-hex2rgb('334D66'))<1e10)
     RGB = [51,77,102];
-    assert(norm(rgb-hex2rgb('#334D66',256))<1e10)
+    assert(norm(RGB-hex2rgb('#334D66',256))<1e10)
+    hex2rgb('#334D66',250) % Error handling :)
     hexmatrix = ['#334D66';'#8099B3';'#CC9933';'#3333E6'];
     hexchcell = {'#334D66';'#8099B3';'#CC9933';'#3333E6'};
     hexstrarr = ["#334D66","#8099B3","#CC9933","#3333E6"]; 
@@ -88,6 +91,7 @@ function all_docstrings()
     disp '...done!'
 
     disp rgb2hex
+    hex2rgb % print help :)
     hex = '#00FF00';
     rgb = [0 1 0];
     RGB = [0 255 0];
@@ -153,7 +157,8 @@ function all_docstrings()
     close
     [X,Y,Z] = peaks(30);
     surfc(X,Y,Z+4)
-    palette.crameri('bam','pivot',4)
+    palette.crameri('Bam','pivot',4)
+    palette.crameri('sBam') % Error handling :)
     preset_palette(@palette.crameri,'oleron'); % preselect the map.
     cmap = palette.crameri('-oleron');
     assert(isequal(cmap(end:-1:1,:),preset_palette))
@@ -197,8 +202,11 @@ function all_docstrings()
     end
 
     disp paletteshow
+    paletteshow.brewer('show') % Error handling :)
     paletteshow.brewer
+    paletteshow.cmocean('show') % Error handling :)
     paletteshow.cmocean
+    paletteshow.crameri('show') % Error handling :)
     paletteshow.crameri
     %paletteshow.matplotlib TODO!
     close all force % brewer is nasty

@@ -8,7 +8,14 @@
     close all
     clear
 
+    set_palette % prints help
+
+    disp 'default N'
     set_palette show
+
+    N = 3;
+    disp 'N = 3'
+    set_palette('show',N)
 
     disp('>> All good!')
     disp('------------')

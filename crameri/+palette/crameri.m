@@ -116,8 +116,9 @@ catch
        S = load('CrameriColourMaps.mat',ColormapName); 
        cmap = S.(ColormapName); 
    catch
-       error(['Unknown colormap name ''',ColormapName,...
-       '''. Try typing paletteshow.crameri to check the options and try again.'])
+       fprintf(2,['ERROR: Unknown colormap name ''',ColormapName,...
+            '''. Try typing paletteshow.crameri to check the options and try again.\n'])
+       return
    end
 end
 

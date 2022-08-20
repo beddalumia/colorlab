@@ -1,4 +1,4 @@
-function brewer()
+function brewer(varargin)
 % Simple plot of all ColorBrewer colorscheme nodes in one static figure.
 %
 % (c) 2014-2022 Stephen Cobeldick, 2022 Gabriele Bellomia (package adaptation)
@@ -8,6 +8,10 @@ function brewer()
 %
 % See also 	PALETTE PALETTEDITOR PALETTESHOW CUBEHELIX MAXDISTCOLOR
 % LBMAP PARULA LINES RGBPLOT COLORMAP COLORBAR PLOT PLOT3 AXES SET
+
+if nargin > 0
+			fprintf(2,'Warning: you might want to call palette.brewer instead.\n');
+end
 
 [mcs,nmn,pyt] = palette.brewer('list');
 %

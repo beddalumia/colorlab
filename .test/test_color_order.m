@@ -8,8 +8,10 @@ function color_order()
     close all
     clear
 
-    N = 7;
-
+    set_colororder % prints help
+    N = 7
+    set_colororder show
+    N = N + 2
     set_colororder('show',N)
 
     disp('>> All good!')

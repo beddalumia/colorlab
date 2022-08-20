@@ -105,7 +105,8 @@ function [ rgb ] = hex2rgb(hex,range)
             rgb = reshape(sscanf(hex.','%2x'),3,[]).';
 
         otherwise
-            error('Range must be either "1" to scale from 0 to 1 or "256" to scale from 0 to 255.')
+            disp('ERROR: Range must be either "1" to scale from 0 to 1 or "256" to scale from 0 to 255.')
+            return
     end
     
     if isempty(rgb)

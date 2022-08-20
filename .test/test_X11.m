@@ -8,6 +8,8 @@ function X11_colors()
     close all
     clear
 
+    rgb.X11 % print help
+
     names = rgb.X11('list');
     disp('Are colornames unchanged?')
     assert(isequal(names,reference_names),'X11 colornames have changed')

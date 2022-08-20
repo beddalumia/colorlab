@@ -8,6 +8,8 @@ function xkcd_colors()
     close all
     clear
 
+    rgb.xkcd % print help
+
     names = rgb.xkcd('list');
     disp('Are colornames unchanged?')
     assert(isequal(names,reference_names),'xkcd colornames have changed')
