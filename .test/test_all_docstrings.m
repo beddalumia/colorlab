@@ -204,6 +204,33 @@ function all_docstrings()
     close all force % brewer is nasty
     disp '...done!'
 
+    disp paletteditor
+    paletteditor.brewer;
+    paletteditor.brewer(6);
+    paletteditor.brewer(6,'Spectral');
+    close all
+    peaks;
+    paletteditor.brewer(gcf,'PuOr')
+    close all
+    [map,num,typ] = paletteditor.brewer(3,'Accent');
+    disp(map)
+    disp(num)
+    disp(typ)
+    paletteditor.cubehelix
+    paletteditor.cubehelix(6)
+    paletteditor.cubehelix([],3,-0.5,1.5,1)
+    paletteditor.cubehelix([],0.7,-0.7,2,1,[0.1,0.9],[0.1,0.9])
+    paletteditor.cubehelix(6,[3,-0.5,1.5,1])
+    close all
+    peaks;
+    paletteditor.cubehelix(gca,[3,-0.5,1.5,1]) 
+    [map,lo,hi] = paletteditor.cubehelix(3,0.7,-0.7,2,1,[0.1,0.9],[0.1,0.9]);
+    disp(map)
+    disp(lo)
+    disp(hi)
+    close all
+    disp '...done!'
+
     disp CPRINTF
     cprintf;   % displays the demo
     cprintf('text',   'regular black text');
