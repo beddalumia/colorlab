@@ -174,9 +174,10 @@ function [RGB] = str2rgb(varargin)
                     try
                         RGB(i,:) = rgb.X11(requested_names{i}); disp('Catched!')
                     catch
-                        errormsg = ['Color not found. ',...
+                        warn_msg = ['Color not found. ',...
                                     'Call rgb.view to inspect the options.'];
-                        error(errormsg); % finally give up and exit with error
+                        disp(warn_msg); % finally give up and exit
+                        return
                     end
                 end
             end
