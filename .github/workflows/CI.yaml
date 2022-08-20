@@ -57,6 +57,11 @@ jobs:
       #     sudo apt-get install poppler-utils -y
       #     cd $GITHUB_WORKSPACE
       # Run all MATLAB tests
+      - run: | 
+          echo preprocessing source code...
+          rm colortools/cprintf.m
+          rm -r brewer/+paletteditor
+          rm -r cubehelix/+paletteditor
       - name: Run TESTSUITE
         uses: matlab-actions/run-tests@v1
         with:

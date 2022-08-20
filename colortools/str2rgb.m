@@ -34,7 +34,7 @@ function [RGB] = str2rgb(varargin)
 %  
 %  MIT LICENSE (c) 2022, Gabriele Bellomia
 %
-%  See also rgb.X11, rgb.xkcd, rgb.view, strlookup, palette
+%  See also rgb.X11, rgb.xkcd, view_color, strlookup, palette
 
     %% Input wrangling
     
@@ -175,7 +175,7 @@ function [RGB] = str2rgb(varargin)
                         RGB(i,:) = rgb.X11(requested_names{i}); disp('Catched!')
                     catch
                         warn_msg = ['Color not found. ',...
-                                    'Call rgb.view to inspect the options.'];
+                                    'Call view_color to inspect the options.'];
                         disp(warn_msg); % finally give up and exit
                         return
                     end
