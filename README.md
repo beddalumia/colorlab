@@ -421,7 +421,7 @@ A fun rendition of the matlab logo.
 
 ## TODO
 
-- [ ] Understand how to measure coverage, so to keep improving it.
+- [x] Understand how to measure coverage, so to keep improving it.
 
 - [ ] Implement the `'-name'` reverse option within `set_palette`, it is present in most colormap generators (all except the matplotlib ones) but we cannot use it in the wrapper. It would be handy to have...
 
