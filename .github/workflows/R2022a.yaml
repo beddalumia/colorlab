@@ -7,6 +7,6 @@ on: # setup triggers
   workflow_dispatch:  # manual-run
 jobs:
   R2022a:
-    uses: bellomia/colorlab/.github/workflows/CI.yaml@master
+    uses: beddalumia/colorlab/.github/workflows/CI.yaml@master
     with:
       release: R2022a
